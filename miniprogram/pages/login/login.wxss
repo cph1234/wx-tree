@@ -1,0 +1,56 @@
+/* login.wxss */
+.container {
+  padding: 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-img {
+  width: 130px;
+  height: 127px;
+  margin-top: 20%;
+  margin-bottom: 10%;
+}
+
+.title {
+  font-size: 16pt;
+  color: #1E0417;
+  margin: 80rpx 0 120rpx;
+  font-weight: Semibold;
+}
+
+.role-selection {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 80rpx;
+}
+
+.role {
+  margin: 0 45rpx;
+  font-size: 14px;
+}
+
+.login-btn {
+  width: 80%;
+  height: 90rpx;
+  line-height: 90rpx;
+  background: #1E0417;
+  color: white;
+  border-radius: 45rpx;
+  font-size: 30rpx;
+}
+
+.agreement {
+  position: fixed;
+  bottom: 40rpx;
+  font-size: 24rpx;
+  color: #666;
+  display: flex;
+  align-items: center;
+}
+
+.link {
+  color: #576b95;
+  margin: 0 10rpx;
+}

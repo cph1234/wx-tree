@@ -1,0 +1,32 @@
+<!-- login.wxml -->
+<view class="container">
+  <image class="login-img" src='/image/tree_logo.png'></image>
+  <view class="title">Hi，观察壹棵树吧</view>
+ 
+
+  <view class="role-selection">
+    <radio-group>
+      <label class="role">
+        <radio value="observer"/> 观察者
+      </label>
+      <label class="role">
+        <radio value="leader" checked /> 组长
+      </label>
+    </radio-group>
+  </view>
+
+  <button 
+    class="login-btn"
+    open-type="getPhoneNumber"
+    bindgetphonenumber="getPhoneNumber"
+  >
+    手机号码一键登录
+  </button>
+
+  <view class="agreement">
+    <text>已阅读并同意</text>
+    <navigator url="/pages/agreement/index" class="link">《用户协议》</navigator>
+    <text>和</text>
+    <navigator url="/pages/privacy/index" class="link">《隐私条款》</navigator>
+  </view>
+</view>
