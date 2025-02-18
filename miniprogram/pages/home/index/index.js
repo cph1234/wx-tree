@@ -1,6 +1,7 @@
 // pages/home/index/index.js
 const app = getApp()
 const config = require("../../../config.js");
+
 Page({
 
     /**
@@ -76,6 +77,24 @@ Page({
         messagefunc: Object,
         zanstatu: []
     },
+
+    data: {
+      filterList: ['全部', '点赞', '关注'],
+      filterIndex: 0,
+      hasNotification: true
+    },
+  
+    onFilterChange(e) {
+      this.setData({
+        filterIndex: e.detail.value
+      })
+    },
+  
+    onSearch(e) {
+      const keyword = e.detail.value
+      // 处理搜索逻辑
+    },
+
     // showselect
     showselect: function() {
         this.setData({
