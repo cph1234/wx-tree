@@ -1,0 +1,104 @@
+<!--pages/mine/mine.wxml-->
+<view class="page">
+  <view class="box_1">
+    <image src="https://lanhu-oss.lanhuapp.com/SketchPng6d0d3ca495a87090b3dcfe90b8bc7da0cc9d31614d263efa21016ccd980ab78d" class="image_1"></image>
+    <view class="group_1">
+      <image src="https://lanhu-oss.lanhuapp.com/SketchPngce288435ec49e1d2e3ef0a7d0a076e4e4113dd5163888a7240333bd35a1663a5" class="thumbnail_1"></image>
+      <view class="image-text_1">
+        <text lines="1" class="text-group_1">树龄勋章</text>
+        <image src="https://lanhu-oss.lanhuapp.com/SketchPngce288435ec49e1d2e3ef0a7d0a076e4e4113dd5163888a7240333bd35a1663a5" class="thumbnail_2"></image>
+      </view>
+      <view class="group_2">
+        <view class="text-group_2">
+          <text lines="1" class="text_1">2894</text>
+          <text lines="1" class="text_2">我的关注</text>
+        </view>
+        <image src="https://lanhu-oss.lanhuapp.com/SketchPng959947dc85aba6256dd63c8e7b59153a16a485cba896f5cd6a5b46eb15a05d12" class="image_2"></image>
+        <view class="text-group_3">
+          <text lines="1" class="text_3">3892</text>
+          <text lines="1" class="text_4">我的粉丝</text>
+        </view>
+        <image src="https://lanhu-oss.lanhuapp.com/SketchPng959947dc85aba6256dd63c8e7b59153a16a485cba896f5cd6a5b46eb15a05d12" class="image_3"></image>
+        <view class="text-group_4">
+          <text lines="1" class="text_5">68</text>
+          <text lines="1" class="text_6">我的组员</text>
+        </view>
+      </view>
+      <view class="image-text_2">
+        <view class="group_3">
+          <view class="text-wrapper_1">
+            <text lines="1" class="text_7">香樟组长</text>
+          </view>
+        </view>
+        <view class="group_4">
+          <text lines="1" class="text-group_5">不知名网友丫</text>
+          <view class="image-wrapper_1">
+            <image src="https://lanhu-oss.lanhuapp.com/SketchPngce288435ec49e1d2e3ef0a7d0a076e4e4113dd5163888a7240333bd35a1663a5" class="thumbnail_3"></image>
+            <image src="https://lanhu-oss.lanhuapp.com/SketchPngce288435ec49e1d2e3ef0a7d0a076e4e4113dd5163888a7240333bd35a1663a5" class="thumbnail_4"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="group_5">
+      <view class="group_6">
+        <view class="image-text_3">
+          <image src="https://lanhu-oss.lanhuapp.com/SketchPng7ba3bae223baf0436c554d32903ee099bc613197cf978fa2ed04e0586498713e" class="label_1"></image>
+          <text lines="1" class="text-group_6">我的观察</text>
+        </view>
+        <image src="https://lanhu-oss.lanhuapp.com/SketchPngb846d663912e5e4289b8cd52815980f675aa818cbbe99390713c587e28aa09fa" class="thumbnail_5"></image>
+      </view>
+      <view class="group_7">
+        <view class="image-text_4">
+          <image src="https://lanhu-oss.lanhuapp.com/SketchPngef4e52d51596ddbd487d3be2a791d41520a8238bc050b7b7287840e1a4030f30" class="label_2"></image>
+          <text lines="1" class="text-group_7">我的作业</text>
+        </view>
+        <image src="https://lanhu-oss.lanhuapp.com/SketchPng8a37d4fb0c328e2795c3e9c30254e0334764a570dbd9f61f9184ac5813da4bb5" class="thumbnail_6"></image>
+      </view>
+      <view class="group_8">
+        <view class="image-text_5">
+          <image src="https://lanhu-oss.lanhuapp.com/SketchPng090b5efb126b49176f9cc1e49037dd37208b9e46f18d2d0afa4e47348e926f0c" class="label_3"></image>
+          <text lines="1" class="text-group_8">树木信息管理</text>
+        </view>
+        <image src="https://lanhu-oss.lanhuapp.com/SketchPng8a37d4fb0c328e2795c3e9c30254e0334764a570dbd9f61f9184ac5813da4bb5" class="thumbnail_7"></image>
+      </view>
+      <view class="group_9">
+        <view class="image-text_6">
+          <image src="https://lanhu-dds-backend.oss-cn-beijing.aliyuncs.com/merge_image/imgs/c88be89cdc78405a9a9fb1a9f8a30e3b_mergeImage.png" class="label_4"></image>
+          <text lines="1" class="text-group_9">勤学榜</text>
+        </view>
+        <image src="https://lanhu-oss.lanhuapp.com/SketchPng8a37d4fb0c328e2795c3e9c30254e0334764a570dbd9f61f9184ac5813da4bb5" class="thumbnail_8"></image>
+      </view>
+      <view class="group_10">
+        <view class="image-text_7">
+          <image src="https://lanhu-oss.lanhuapp.com/SketchPng7ef11bffa73c4e5bde31acf43784564f00064541ee23eb33c618e393f9d363df" class="label_5"></image>
+          <text lines="1" class="text-group_10">客服</text>
+        </view>
+        <image src="https://lanhu-oss.lanhuapp.com/SketchPng8a37d4fb0c328e2795c3e9c30254e0334764a570dbd9f61f9184ac5813da4bb5" class="thumbnail_9"></image>
+      </view>
+      <view class="group_11">
+        <view class="image-text_8">
+          <image src="https://lanhu-oss.lanhuapp.com/SketchPng640466524ec898983fc12845f08f2624940a1a5a23879a94714f390c2db16d21" class="label_6"></image>
+          <text lines="1" class="text-group_11">退出</text>
+        </view>
+        <image src="https://lanhu-oss.lanhuapp.com/SketchPng8a37d4fb0c328e2795c3e9c30254e0334764a570dbd9f61f9184ac5813da4bb5" class="thumbnail_10"></image>
+      </view>
+    </view>
+    <view class="group_12">
+      <view class="image-text_9">
+        <image src="https://lanhu-oss.lanhuapp.com/SketchPng95445d106f16dcf759d6dd05336fe1f76bc3f5a0a3430be20bf7567ac3ba65bb" class="thumbnail_11"></image>
+        <text lines="1" class="text-group_12">树友圈</text>
+      </view>
+      <view class="image-text_10">
+        <view class="image-wrapper_2">
+          <image src="https://lanhu-oss.lanhuapp.com/SketchPng184ad386b7f3b03c1002fe9e67a27a68f0ca24f7e2858cb4a062d464f542fde5" class="image_4"></image>
+        </view>
+        <text lines="1" class="text-group_13">观察壹棵树</text>
+      </view>
+      <view class="image-text_11">
+        <image src="https://lanhu-oss.lanhuapp.com/SketchPng2988b84f79e94bc3489bc2d328b85bb5f24d44bea1057c3aa0d2408b8580c19a" class="image_5"></image>
+        <text lines="1" class="text-group_14">我的树</text>
+      </view>
+    </view>
+    <image src="https://lanhu-oss.lanhuapp.com/SketchPng5bb1abe2c11f01649252e9abdb79bd8b4cb8f99ebd69303912b5496c973af597" class="image_6"></image>
+  </view>
+</view>
