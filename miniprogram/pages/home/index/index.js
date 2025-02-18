@@ -1,93 +1,113 @@
 // pages/home/index/index.js
 const app = getApp()
 const config = require("../../../config.js");
-
+const db = wx.cloud.database()
+const _ = db.command
 Page({
 
     /**
      * 页面的初始数据
      */
-    data: {
-      filterList: ['全部', '点赞', '关注'],
-        filterIndex: 0,
-        hasNotification: true,
-        showselect: false,
-        show_auth: false,
-        userInfo: {},
-        images:['https://pic.52112.com/2020/04/13/JPG-200413_328/gCaPae4zjp_small.jpg'],
-        hasUserInfo: false,
-        school: '',
-        praiseBorder: '',
-        notPraiseBorder: '',
-        posts: [],
-        postType: 1,
-        baseImageUrl: app.globalData.imageUrl,
-        show: 0,
-        hidden: false,
-        showCommentInput: false,
-        commentContent: '',
-        commentObjId: '',
-        commentType: '',
-        refcommentId: '',
-        posteropenid: '',
-        filter: '',
-        pageSize: 10,
-        pageNumber: 1,
-        initPageNumber: 1,
-        showGeMoreLoadin: false,
-        currentTime: '',
-        notDataTips: false,
-        newMessage: false,
-        newMessageNumber: 0,
-        select: 1,
-        animationData: {},
-        commentValue: '',
-        showNormal: false,
-        showAudit: false,
-        topic: {
-            content: '',
-            attachments: '',
-            praise_number: '',
-            id: ''
-        },
-        commentInfo: {
-            title: '',
-            placeholder: '',
-            btn: ''
-        },
-        showpostbtn: true,
-        showposts: true,
-        showTopic: false,
-        showSelect: false,
-        showBegin: true,
-        showCancel: false,
-        showReport: false,
-        bindReport: false,
-        showSubmit: false,
-        showSearch: false,
-        tryAgant: false,
-        imageLeft: '',
-        imageRight: '',
-        postImageLeft: '',
-        PostImageRight: '',
-        rate: 0,
-        face: '',
-        conclusion: '',
-        canComment: true,
-        sharecomeIn: false,
-        shareId: '',
-        shareType: '',
-        param: app.globalData.param,
-        messagefunc: Object,
-        zanstatu: []
-    },
+    // data: {
+    //   filterList: ['全部', '点赞', '关注'],
+    //     filterIndex: 0,
+    //     hasNotification: true,
+    //     showselect: false,
+    //     show_auth: false,
+    //     userInfo: {},
+    //     images:['https://pic.52112.com/2020/04/13/JPG-200413_328/gCaPae4zjp_small.jpg'],
+    //     hasUserInfo: false,
+    //     school: '',
+    //     praiseBorder: '',
+    //     notPraiseBorder: '',
+    //     posts: [],
+    //     postType: 1,
+    //     baseImageUrl: app.globalData.imageUrl,
+    //     show: 0,
+    //     hidden: false,
+    //     showCommentInput: false,
+    //     commentContent: '',
+    //     commentObjId: '',
+    //     commentType: '',
+    //     refcommentId: '',
+    //     posteropenid: '',
+    //     filter: '',
+    //     pageSize: 10,
+    //     pageNumber: 1,
+    //     initPageNumber: 1,
+    //     showGeMoreLoadin: false,
+    //     currentTime: '',
+    //     notDataTips: false,
+    //     newMessage: false,
+    //     newMessageNumber: 0,
+    //     select: 1,
+    //     animationData: {},
+    //     commentValue: '',
+    //     showNormal: false,
+    //     showAudit: false,
+    //     topic: {
+    //         content: '',
+    //         attachments: '',
+    //         praise_number: '',
+    //         id: ''
+    //     },
+    //     commentInfo: {
+    //         title: '',
+    //         placeholder: '',
+    //         btn: ''
+    //     },
+    //     showpostbtn: true,
+    //     showposts: true,
+    //     showTopic: false,
+    //     showSelect: false,
+    //     showBegin: true,
+    //     showCancel: false,
+    //     showReport: false,
+    //     bindReport: false,
+    //     showSubmit: false,
+    //     showSearch: false,
+    //     tryAgant: false,
+    //     imageLeft: '',
+    //     imageRight: '',
+    //     postImageLeft: '',
+    //     PostImageRight: '',
+    //     rate: 0,
+    //     face: '',
+    //     conclusion: '',
+    //     canComment: true,
+    //     sharecomeIn: false,
+    //     shareId: '',
+    //     shareType: '',
+    //     param: app.globalData.param,
+    //     messagefunc: Object,
+    //     zanstatu: []
+    // },
 
     data: {
       filterList: ['全部', '点赞', '关注'],
       filterIndex: 0,
-      hasNotification: true
+      hasNotification: true,
+      dataList:[]
     },
-    
+    getData(condition,page){
+      console.log(page)
+      wx.cloud.callFunction({
+        name:"queryTreeFriendCircle",
+        data:{
+          condition:condition,
+          page:page
+        }
+      }).then(res=>{
+        let oldData = this.data.dataList
+        console.log(res.result) 
+        let newData = oldData.concat(res.result)
+        console.log(newData)
+        this.setData({
+          dataList:newData
+        })
+        console.log(this.data.dataList)
+      })
+    },
     onFilterChange(e) {
       this.setData({
         filterIndex: e.detail.value
@@ -204,34 +224,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(e) {
-        // 判断是否为发表话题跳转回来的
-        if (app.globalData.isposttopic) {
-            this.topics()
-            this.setData({
-                select: 2,
-                showTopic: true,
-                showposts: false
-            })
-        } else {
-            // this.getPost()
-            this.setData({
-                select: 1, 
-                showTopic:false,
-                showposts:true
-            })
-        }
-        wx.showLoading({
-            title: '加载中...',
-        });
-        // this.getPost();
-        // 获取新消息提醒,每20秒刷新一次
-        // 刷新消息
-        this.setData({
-            messagefunc: setInterval(function() {
-                that.newmessage()
-                console.log('flash')
-            }, config.FLASHTIME)
-        })
+      this.getData(this.data.filterIndex,0)
     },
 
     /**
@@ -254,35 +247,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function(option) {
-        console.log('onshow')
-        // 刷新消息
-        var that = this
-        // // 判断是否为发表话题跳转回来的
-        // 判断是否为发表话题跳转回来的
-        if (app.globalData.isposttopic) {
-            this.topics()
-            this.setData({
-                select: 2,
-                showTopic: true,
-                showposts: false
-            })
-        } else{
-            this.getPost()
-            this.setData({
-                select: 1,
-                showTopic: false,
-                showposts: true
-            })
-        }
-        // 清除定时任务
-        clearInterval(this.data.messagefunc)
-        // 刷新消息
-        this.setData({
-            messagefunc: setInterval(function() {
-                that.newmessage()
-                console.log('flash')
-            }, config.FLASHTIME)
-        })
+        
     },
 
     /**
@@ -468,59 +433,6 @@ Page({
             }
         })
     },
-    // 删除评论
-    deleteComment: function(e) {
-        var that = this
-        // 帖子类型，话题、表白墙
-        var type = e.currentTarget.dataset.type
-        // 评论位置
-        var index = e.currentTarget.dataset.index
-        // 评论内容
-        var item = e.currentTarget.dataset.item
-        // 帖子ID
-        var id = item.id
-        var comments = item.comments
-        // 删除确认
-        wx.showModal({
-            title: '提示',
-            content: '确定删除这条评论吗？',
-            success(res) {
-                if (res.confirm) {
-                    // 确定删除
-                    comments.splice(index, 1)
-                    wx.cloud.callFunction({
-                        name: 'FrofessComment',
-                        data: {
-                            id: id,
-                            dbname: type,
-                            newcomment_number: comments.length,
-                            comments: comments
-                        },
-                        success: function() {
-                            if (type == 'posts'){
-                                that.getPost()
-                                that.setData({
-                                    select: 1,
-                                    showTopic: false,
-                                    showposts: true
-                                })
-                            }else if(type == 'topics'){
-                                that.topics()
-                                that.setData({
-                                    select: 2,
-                                    showTopic: true,
-                                    showposts: false
-                                })
-                            }
-                        },
-                        fail: console.log
-                    })
-                } else if (res.cancel) {
-                    console.log('用户点击取消')
-                }
-            }
-        })
-    },
 
     // 赞、取消赞
     zan: function(e) {
@@ -622,413 +534,18 @@ Page({
             }
         })
     },
-
-    /**
-     * 获取具体类型的贴子
-     */
-    selected(e) {
-        let objType = e.target.dataset.type;
-        let thisTopic = this.data.topic;
-        // 最新帖子
-        if (objType == 1 && thisTopic != null) {
-
-            // console.log('new')
-            this.setData({
-                showpostbtn: true,
-                showTopic: false,
-                showposts: true,
-                posts: []
-            });
-            this.getPost();
-        } else {
-            this.setData({
-
-                showTopic: false,
-                showposts: true
-            });
-        }
-        // 今日话题
-        if (objType == 2 && thisTopic != null) {
-            this.topics();
-            // console.log('topic')
-            this.setData({
-                showpostbtn: false,
-                showTopic: true,
-                showposts: false,
-                posts: []
-            });
-            this.setData({
-                showTopic: true,
-                showposts: true,
-                posts: []
-            });
-
-        } else {
-            this.setData({
-                showTopic: false
-            });
-        }
-        // 最热帖子
-        if (objType == 4 && thisTopic != null) {
-            this.gethotpost()
-            // console.log('hot')
-            this.setData({
-                showpostbtn: true,
-                showTopic: false,
-                showposts: true,
-                posts: []
-            });
-        } else {
-            this.setData({
-                showTopic: false
-            });
-        }
-
-        if (objType == 5) {
-            this.setData({
-                showSearch: true,
-                showTopic: false,
-                showposts: true
-            });
-        } else {
-            this.setData({
-                showSearch: false,
-            });
-        }
-
-        this.setData({
-            select: objType,
-            postType: objType,
-            posts: [],
-            filter: ''
-        })
-
-        this.setData({
-            pageNumber: this.data.initPageNumber
-        });
-
-        if (objType != 5) {
-            // this.getPost();
-        }
-
-    },
-
-
-    /**
-     ** 获取今日话题
-     */
-    topics: function() {
-        var that = this
-        this.setData({
-            posts: []
-        })
-        wx.showLoading({
-            title: '加载中...',
-        });
-        // 1. 获取数据库引用
-        const db = wx.cloud.database()
-        db.collection('topics')
-            .orderBy('praise_number', 'desc')
-            .orderBy('comment_number', 'desc')
-            .orderBy('updated_at', 'desc')
-            .get({
-                success(res) {
-                    console.log('res', res)
-                    let topic = that.data.topic
-                    // 存在话题
-                    if (res.data.length > 0) {
-                        topic.content = res.data[0].content
-                        topic.attachments = res.data[0].attachments
-                        topic.praise_number = res.data[0].praise_number
-                        topic.view_number = res.data[0].view_number
-                        topic.comment_number = res.data[0].comment_number
-                        topic.id = res.data[0]._id
-                    } else {
-                        // 没有话题
-                        topic.content = '没有话题'
-                    }
-
-                    // 获取userInfo
-                    var userInfo = wx.getStorageSync('userInfo')
-                    // 获取自己的openid或昵称
-                    var ownernickname = userInfo.nickName
-                    var owneropenid = app.globalData.userId
-                    let posts = that.data.posts;
-                    if (res.errMsg == "collection.get:ok") {
-                        const datalength = res.data.length
-                        let item
-                        for (var i = 0; i < datalength; i++) {
-                            // console.log(i, res.data[i])
-                            var data = res.data[i]
-                            // 获取点赞列表
-                            var pariselist = data.parise
-                            var haszan = false
-                            // 判断自己是否已点赞
-                            if (pariselist.length > 0) {
-                                for (var k = 0; k < pariselist.length; k++) {
-                                    let nickname = pariselist[k].nickname
-                                    // console.log('nick', nickname)
-                                    if (nickname === ownernickname) {
-                                        haszan = true
-                                    }
-                                }
-                            }
-                            item = {
-                                "posteropenid": data._openid,
-                                "poster": data.poster,
-                                "private": data.private,
-                                "id": data._id,
-                                "follow": "",
-                                "topic": data.username,
-                                "content": data.content,
-                                "attachments": data.attachments,
-                                "created_at": data.created_at,
-                                "can_delete": "",
-                                "praises": pariselist,
-                                "comments": data.comment,
-                                "haszan": haszan
-                            }
-                            posts.push(item)
-                        }
-                        that.setData({
-                            topic: topic,
-                            showTopic: true,
-                            showposts: false,
-                            userInfo: userInfo,
-                            newMessageNumber: 0,
-                            posts: posts,
-                            showGeMoreLoadin: false
-                        })
-                        wx.hideLoading();
-                    } else {
-                        wx.showToast({
-                            title: res.errMsg,
-                            icon: 'none'
-                        });
-                        setTimeout(function() {
-                            wx.hideLoading();
-                        }, 700)
-                    }
-
-                }
-            })
-    },
-
-    /**
-     * 获取最新贴子
-     */
-    getPost: function(objType = null) {
-
-        this.setData({
-            posts: []
-        })
-        wx.showLoading({
-            title: '加载中...',
-        });
-        var that = this
-
-        // 读取数据
-        // 1. 获取数据库引用
-        const db = wx.cloud.database()
-        db.collection('posts')
-            .orderBy('created_at', 'desc')
-            .get({
-                success(res) {
-                    // 获取userInfo
-                    var userInfo = wx.getStorageSync('userInfo')
-                    // console.log('nickanme', userInfo)
-                    // 获取自己的openid或昵称
-                    var ownernickname = userInfo.nickName
-                    var owneropenid = app.globalData.userId
-
-                    let posts = that.data.posts;
-
-                    if (res.errMsg == "collection.get:ok") {
-
-                        const datalength = res.data.length
-                        let item
-
-                        for (var i = 0; i < datalength; i++) {
-
-                            var data = res.data[i]
-                            // 获取点赞列表
-                            var pariselist = data.parise
-                            var haszan = false
-
-                            // 判断自己是否已点赞
-                            if (pariselist.length > 0) {
-
-                                for (var k = 0; k < pariselist.length; k++) {
-                                    let nickname = pariselist[k].nickname
-                                    // console.log('nick', nickname)
-                                    if (nickname === ownernickname) {
-                                        haszan = true
-                                        continue;
-                                    }
-                                }
-                            }
-                            // console.log('zan', haszan)
-                            item = {
-                                "posteropenid": data._openid,
-                                "poster": data.poster,
-                                "private": data.private,
-                                "id": data._id,
-                                "follow": "",
-                                "topic": data.username,
-                                "content": data.content,
-                                "attachments": data.attachments,
-                                "created_at": data.created_at,
-                                "can_delete": "",
-                                "praises": pariselist,
-                                "comments": data.comment,
-                                "haszan": haszan
-                            }
-                            posts.push(item)
-
-                        }
-
-                        that.setData({
-                            userInfo: userInfo,
-                            newMessageNumber: 0,
-                            posts: posts,
-                            showGeMoreLoadin: false
-                        })
-                        wx.hideLoading();
-
-                    } else {
-                        wx.showToast({
-                            title: res.errMsg,
-                            icon: 'none'
-                        });
-                        setTimeout(function() {
-                            wx.hideLoading();
-                        }, 700)
-                    }
-
-                }
-            })
-
-    },
-
-    // 获取最热帖子
-    gethotpost: function() {
-        this.setData({
-            posts: []
-        })
-        wx.showLoading({
-            title: '加载中...',
-        });
-        var that = this
-        // 读取数据
-        // 1. 获取数据库引用
-        const db = wx.cloud.database()
-        db.collection('posts')
-            .orderBy('praise_number', 'desc')
-            .orderBy('comment_number', 'desc')
-            .get({
-                success(res) {
-                    // 获取userInfo
-                    var userInfo = wx.getStorageSync('userInfo')
-                    // 获取自己的openid或昵称
-                    var ownernickname = userInfo.nickName
-                    var owneropenid = app.globalData.userId
-                    let posts = that.data.posts;
-                    if (res.errMsg == "collection.get:ok") {
-                        const datalength = res.data.length
-                        let item
-                        for (var i = 0; i < datalength; i++) {
-                            // console.log(i, res.data[i])
-                            var data = res.data[i]
-                            // 获取点赞列表
-                            var pariselist = data.parise
-                            var haszan = false
-                            // 判断自己是否已点赞
-                            if (pariselist.length > 0) {
-                                for (var k = 0; k < pariselist.length; k++) {
-                                    let nickname = pariselist[k].nickname
-                                    // console.log('nick', nickname)
-                                    if (nickname === ownernickname) {
-                                        haszan = true
-                                    }
-                                }
-
-                            }
-
-                            item = {
-                                "posteropenid": data._openid,
-                                "poster": data.poster,
-                                "private": data.private,
-                                "id": data._id,
-                                "follow": "",
-                                "topic": data.username,
-                                "content": data.content,
-                                "attachments": data.attachments,
-                                "created_at": data.created_at,
-                                "can_delete": "",
-                                "praises": pariselist,
-                                "comments": data.comment,
-                                "haszan": haszan
-                            }
-                            posts.push(item)
-                        }
-
-                        that.setData({
-                            userInfo: userInfo,
-                            newMessageNumber: 0,
-                            posts: posts,
-                            showGeMoreLoadin: false
-                        })
-                        wx.hideLoading();
-
-                    } else {
-                        wx.showToast({
-                            title: res.errMsg,
-                            icon: 'none'
-                        });
-                        setTimeout(function() {
-                            wx.hideLoading();
-                        }, 700)
-                    }
-
-                }
-            })
-    },
-
-    /**
-     * 分享
-     */
-    onShareAppMessage: function(res) {
-        return {
-            title: 'hi，同学，有人跟你表白了',
-            path: '/pages/home/index/index',
-            imageUrl: 'http://image.kucaroom.com/share1.jpg',
-            success: function(res) {
-                // 转发成功
-            },
-            fail: function(res) {
-                // 转发失败
-            }
-        }
-    },
-
     /**
      * 上拉加载更多
      */
     onReachBottom: function() {
-        this.setData({
-            showGeMoreLoadin: true
-        });
-        this.getPost();
+        let page = this.data.dataList.length
+        this.getData(this.data.filterIndex,page)
     },
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function() {
-        this.setData({
-            pageNumber: this.data.initPageNumber,
-            posts: []
-        });
-        this.getPost();
+
     },
     /** 
      * 进入发表页面
@@ -1040,15 +557,7 @@ Page({
             url: page
         })
     },
-    // 查看帖子详情
-    postdetail: function(e) {
-        // console.log(e)
-        // 文章Id
-        // var id = e.currentTarget.dataset.id
-        // wx.navigateTo({
-        //     url: '../../home/post_detail/post_detail?id=' + id,
-        // })
-    },
+
     /**
      * 预览图片
      */
@@ -1107,13 +616,6 @@ Page({
      */
     onUnload: function() {
         console.log('onunload')
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function() {
-
     },
 
     /**

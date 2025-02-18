@@ -24,7 +24,7 @@
   },
   "compileType": "miniprogram",
   "libVersion": "3.7.8",
-  "appid": "wxbc4dd60e837d7db6",
+  "appid": "wxa87fc6e36db6e5a4",
   "projectname": "SayLove_V1.0",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
@@ -126,5 +126,6 @@
   "editorSetting": {
     "tabIndent": "insertSpaces",
     "tabSize": 2
-  }
+  },
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate/"
 }

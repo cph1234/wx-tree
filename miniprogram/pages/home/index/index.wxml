@@ -1,165 +1,84 @@
 <!-- pages/index/index.wxml -->
-<view class="search-container">
-  <!-- 左边筛选+搜索区域 -->
-  <view class="search-box">
-    <picker class="filter-picker" mode="selector" range="{{filterList}}" value="{{filterIndex}}" bindchange="onFilterChange">
-      <text class="filter-text">{{filterList[filterIndex]}}</text>
-      
-    </picker>
-    <image src="/image/share.png"></image>
-    <input 
-      class="search-input" 
-      placeholder="搜索" 
-      placeholder-class="placeholder-style"
-      confirm-type="search"
-      bindconfirm="onSearch"
-    />
+<view>
+  <view class="search-container">
+    <!-- 左边筛选+搜索区域 -->
+    <view class="search-box">
+      <picker class="filter-picker" mode="selector" range="{{filterList}}" value="{{filterIndex}}" bindchange="onFilterChange">
+        <text class="filter-text">{{filterList[filterIndex]}}</text>
+        
+      </picker>
+      <image src="/image/share.png"></image>
+      <input 
+        class="search-input" 
+        placeholder="搜索" 
+        placeholder-class="placeholder-style"
+        confirm-type="search"
+        bindconfirm="onSearch"
+      />
+    </view>
+    <!-- 右边通知图标 -->
+    <view class="notification">
+      <image src="/image/message.png" class="notification-icon"/>
+      <view class="badge" wx:if="{{hasNotification}}"></view>
+    </view>
   </view>
-  <!-- 右边通知图标 -->
-  <view class="notification">
-    <image src="/image/message.png" class="notification-icon"/>
-    <view class="badge" wx:if="{{hasNotification}}"></view>
-  </view>
-</view>
 
-<view class="container">
-  <!-- 动态列表 -->
-  <scroll-view scroll-y class="content-list">
-    <!-- 动态卡片 -->
-    <view class="post-card">
-      <!-- 用户信息 -->
-      <view class="user-info">
-        <image class="avatar" src="/image/boy.png"></image>
-        <text class="username">巴伦亚na</text>
-        <text class="follow-status">已关注</text>
-        <image class="image-sx" src="/image/comment.png"></image>
-      </view>
+  <view class="container">
+    <!-- 动态列表 -->
+    <view class="content-list">
+      <!-- 遍历 -->  
+      <view class="row" wx:for="{{dataList}}" wx:key="index">
+        <!-- 动态卡片 -->
+        <view class="post-card">
+          <!-- 用户信息 -->
+          <view class="user-info">
+            <image class="avatar" src="{{item.data.avatar_url}}"></image>
+            <text class="username">{{item.data.name}}</text>
+            <text class="follow-status">已关注</text>
+            <image class="image-sx" src="/image/comment.png"></image>
+          </view>
 
-      <!-- 动态内容 -->
-      <view class="post-content">
-        <text>这棵树的树皮呈灰褐色，布满裂纹，透露出一种沧桑感。树冠茂密，绿叶层层叠叠，为大地投下一片阴凉，树木挺拔而立，枝叶繁茂，阳光透过缝隙洒下斑驳光影。微风吹过，树叶沙沙作响</text>
-        <view class="grid-container">
-          <block wx:for="{{images}}" wx:key="index">
-            <!-- 单张图片特殊处理 -->
-            <view wx:if="{{images.length === 1}}" 
-                  class="single-image"
-                  bind:tap="previewImage"
-                  data-index="{{index}}">
-              <image src="{{item}}" mode="aspectFill"/>
-            </view>
-            
-            <!-- 多张图片九宫格布局 -->
-            <view wx:elif="{{images.length > 1}}"
-                  class="grid-image {{getImageClass(images.length)}}"
-                  bind:tap="previewImage"
-                  data-index="{{index}}">
-              <image src="{{item}}" mode="aspectFill"/>
-              <!-- 超过9张显示遮罩 -->
-              <view wx:if="{{index === 8 && images.length > 9}}" class="image-mask">
-                +{{images.length - 9}}
+          <!-- 动态内容 -->
+          <view class="post-content">
+            <text>{{item.content}}</text>
+            <!-- <view class="container">
+              <view class="grid">
+                <block wx:for="{{item.fileIds}}" wx:for-item="imageItem" wx:key="index">
+                  <image class="grid-item" src="{{imageItem}}" mode="aspectFill"></image>
+                </block>
               </view>
+            </view> -->
+          </view>
+          <view class="grid-container">
+            <block wx:for="{{item.fileIds}}" wx:for-item="imageItem" wx:key="index">
+              <view class="grid-item">
+                <image src="{{imageItem}}" mode="aspectFill"></image>
+              </view>
+            </block>
+          </view>
+
+          <!-- 互动区域 -->
+          <view class="interaction">
+            <text class="time">{{item.create_time}}</text>
+            <view class="like">
+              <image class="icon" src="/image/ilove.png" wx:if="{{userInfo.includes(item._id)}}"></image>
+              <text>{{item.likes}}</text>
             </view>
-          </block>
-        </view>
-      </view>
+            <view class="comment">
+              <image class="icon" src="/image/comment-icon.png"></image>
+              <text>评论</text>
+            </view>
+          </view>
 
-      <!-- 互动区域 -->
-      <view class="interaction">
-        <text class="time">今天12:20</text>
-        <view class="like">
-          <image class="icon" src="/image/ilove.png"></image>
-          <text>1456</text>
-        </view>
-        <view class="comment">
-          <image class="icon" src="/image/comment-icon.png"></image>
-          <text>评论</text>
-        </view>
-      </view>
-
-      <!-- 评论区 -->
-      <view class="comment-section">
-        <view class="comment-item">
-          <text class="comment-user">Smile：</text>
-          <text>有鸟归巢的呼唤，有夕阳滑过树梢的呢喃，有流水轻抚小桥的滋润，有天边的一朵云。</text>
-        </view>
-        <view class="comment-item reply">
-          <text class="comment-user">Roidn：</text>
-          <text>岁月催人老，请呵护你的树</text>
-        </view>
-        <view class="comment-item reply">
-          <text class="comment-user">Smile回复Roidn：</text>
-          <text>岁月催人老，请呵护你的树</text>
+          <!-- 评论区 -->
+          <view class="comment-section"  wx:for="{{item.comment}}" wx:for-item="commentItem" wx:key="index">
+            <view class="comment-item">
+              <text class="comment-user">{{commentItem.userName}}：</text>
+              <text>{{commentItem.content}}</text>
+            </view>
+          </view>
         </view>
       </view>
     </view>
-
-    <view class="post-card">
-      <!-- 用户信息 -->
-      <view class="user-info">
-        <image class="avatar" src="/image/girl.png"></image>
-        <text class="username">种一棵树吧</text>
-        <text class="follow-status">关注</text>
-        <image class="image-sx" src="/image/comment.png"></image>
-      </view>
-
-      <!-- 动态内容 -->
-      <view class="post-content">
-        <text>种一棵树，最好是十年前，其次是现在</text>
-        <!-- 图片容器 -->
-        <view class="grid-container">
-  <block wx:for="{{images}}" wx:key="index">
-    <!-- 单张图片特殊处理 -->
-    <view wx:if="{{images.length === 1}}" 
-          class="single-image"
-          bind:tap="previewImage"
-          data-index="{{index}}">
-      <image src="{{item}}" mode="aspectFill"/>
-    </view>
-    
-    <!-- 多张图片九宫格布局 -->
-    <view wx:elif="{{images.length > 1}}"
-          class="grid-image {{getImageClass(images.length)}}"
-          bind:tap="previewImage"
-          data-index="{{index}}">
-      <image src="{{item}}" mode="aspectFill"/>
-      <!-- 超过9张显示遮罩 -->
-      <view wx:if="{{index === 8 && images.length > 9}}" class="image-mask">
-        +{{images.length - 9}}
-      </view>
-    </view>
-  </block>
-        </view>
-      </view>
-
-      <!-- 互动区域 -->
-      <view class="interaction">
-        <text class="time">昨天01:20</text>
-        <view class="like">
-          <image class="icon" src="/image/ilike.png"></image>
-          <text>24</text>
-        </view>
-        <view class="comment">
-          <image class="icon" src="/image/comment-icon.png"></image>
-          <text>评论</text>
-        </view>
-      </view>
-
-      <!-- 评论区 -->
-      <view class="comment-section">
-        <view class="comment-item">
-          <text class="comment-user">Smile：</text>
-          <text>有鸟归巢的呼唤，有夕阳滑过树梢的呢喃，有流水轻抚小桥的滋润，有天边的一朵云。</text>
-        </view>
-        <view class="comment-item reply">
-          <text class="comment-user">Roidn：</text>
-          <text>岁月催人老，请呵护你的树</text>
-        </view>
-        <view class="comment-item reply">
-          <text class="comment-user">Smile回复Roidn：</text>
-          <text>岁月催人老，请呵护你的树</text>
-        </view>
-      </view>
-    </view>
-
-  </scroll-view>
+  </view>
 </view>
