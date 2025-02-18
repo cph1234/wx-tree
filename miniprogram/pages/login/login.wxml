@@ -17,8 +17,7 @@
 
   <button 
     class="login-btn"
-    open-type="getPhoneNumber"
-    bindgetphonenumber="getPhoneNumber"
+    bindtap="login"
   >
     手机号码一键登录
   </button>

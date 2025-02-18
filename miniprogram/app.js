@@ -29,6 +29,17 @@ App({
                 traceUser: true,
             })
         }
+        //调用云函数
+        console.log('here')
+        wx.cloud.callFunction({
+          name: 'login',
+          success: res => {
+            //获取用户openid
+            console.log(res)
+            this.globalData.user_openid = res.result.openid
+            console.log(this.globalData.user_openid)
+          }
+        })
     },
 
     // 获取当前时间
