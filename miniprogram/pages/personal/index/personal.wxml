@@ -1,59 +1,84 @@
 <view class="personal-container">
-
-  <view class="bg-container">
-    <view class='bg-image'>
-      <!-- <image mode="aspectFill" src='http://image.kucaroom.com/tmp/wx0f587d7c97a68e2b.o6zAJs3oh85Zb1lJE8oWix57vny0.QEZuzGgsiSFtf6b9dd803a7fe4bf5f75b6afd5705a73.jpg'></image> -->
-      <image mode="aspectFill" src='bgimg.jpg'></image>
-    </view>
-    <view>
-      <image class='user-image' src='{{avatar}}'></image>
-    </view>
-    <view class='user-info'>
-      <view class='user-name'>{{nickname}}</view>
-      <view class='article'>
-        <view class="letter" >
-          <image src="/image/color-love.png"></image>
-         
+  
+  <!-- 用户信息区域 -->
+  <view class="user-section">
+    <view class="user-info">
+      <!-- 头像与角标容器 -->
+      <view class="avatar-container">
+        <image class="avatar" src="/image/boy.png"></image>
+        <text class="avatar-badge">香樟组长</text>
+      </view>
+      <view class="user-detail">
+        <text class="username">不知名网友丫</text>
+        <!-- 仅保留树龄勋章 -->
+        <view class="badges">
+          <text class="badge">树龄勋章</text>
         </view>
-        <view>|</view>
-        <view class="word">爱情属于勇敢的人儿</view>
       </view>
     </view>
   </view>
 
-
-  <view class='content-container'>
-
-    <view class='content-item sale'  bindtap='openMessage'>
-      <view>
-        <image src='/image/my-message.png' class='item-image'></image>
-      </view>
-      <view class='word'>消 息</view>
+    <!-- 数据统计 -->
+  <view class="stats-grid">
+    <view class="stat-item">
+      <text class="stat-num">2894</text>
+      <text class="stat-label">我的关注</text>
     </view>
+    <view class="stat-item">
+      <text class="stat-num">3892</text>
+      <text class="stat-label">我的粉丝</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-num">68</text>
+      <text class="stat-label">我的组员</text>
+    </view>
+  </view>
 
-    <view class='content-item say-love' bindtap="opendPostList">
+  <!-- 功能列表 -->
+  <view class="menu-list">
+    <navigator class="menu-item" url="/pages/observation/observation">
       <view>
         <image src='/image/color-love.png' class='item-image'></image>
       </view>
-      <view class='word'>我的表白墙</view>
-    </view>
-
-    <view class='content-item say-love' bindtap="opendTopicList">
+      <text class="word">我的观察</text>
+      <view class="arrow"></view>
+    </navigator>
+    <navigator class="menu-item" url="/pages/homework/homework">
       <view>
-        <image src='/image/topic.png' class='item-image'></image>
+        <image src='/image/confirm.png' class='item-image'></image>
       </view>
-      <view class='word'>我的话题</view>
-    </view>
-
-    <view class='content-item sale' bindtap="openSaleList">
+      <text class="word">我的作业</text>
+      <view class="arrow"></view>
+    </navigator>
+    <navigator class="menu-item" url="/pages/tree-management/tree-management">
       <view>
-        <image src='/image/select-sale.png' class='item-image'></image>
+        <image src='/image/confirm.png' class='item-image'></image>
       </view>
-      <view class='word'>我的卖舍友</view>
-    </view>
-
+      <text class="word">树木信息管理</text>
+      <view class="arrow"></view>
+    </navigator>
+    <navigator class="menu-item" url="/pages/ranking/ranking">
+      <view>
+        <image src='/image/confirm.png' class='item-image'></image>
+      </view>
+      <text class="word">勤学榜</text>
+      <view class="arrow"></view>
+    </navigator>
+    <navigator class="menu-item" url="/pages/ranking/ranking">
+      <view>
+        <image src='/image/confirm.png' class='item-image'></image>
+      </view>
+      <text class="word">客服</text>
+      <view class="arrow"></view>
+    </navigator>
+    <navigator class="menu-item" url="/pages/ranking/ranking">
+      <view>
+        <image src='/image/confirm.png' class='item-image'></image>
+      </view>
+      <text class="word">退出</text>
+      <view class="arrow"></view>
+    </navigator>
   </view>
-
   
 
 </view>
