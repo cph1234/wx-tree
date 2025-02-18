@@ -1,21 +1,8 @@
-<<<<<<< HEAD
 ## 观察一棵树（微信小程序）
 ### 页面一：登录页面
 
-## 云开发 quickstart
-
-这是云开发的快速启动指引，其中演示了如何上手使用云开发的三大基础能力：
-
-- 数据库：一个既可在小程序前端操作，也能在云函数中读写的 JSON 文档型数据库
-- 文件存储：在小程序前端直接上传/下载云端文件，在云开发控制台可视化管理
-- 云函数：在云端运行的代码，微信私有协议天然鉴权，开发者只需编写业务逻辑代码
-
-## 参考文档
-
-- [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
-
-=======
-## 观察一棵树（微信小程序）
+### 页面二：树友圈首页
+功能：全局搜索/朋友圈图片展示
 
 ## 云开发 quickstart
 
@@ -29,4 +16,3 @@
 
 - [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
 
->>>>>>> d87a91d69acd1e47018319e30766ef0389d8b6bd

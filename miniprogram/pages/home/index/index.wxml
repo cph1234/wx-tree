@@ -32,6 +32,7 @@
         <image class="avatar" src="/image/boy.png"></image>
         <text class="username">巴伦亚na</text>
         <text class="follow-status">已关注</text>
+        <image class="image-sx" src="/image/comment.png"></image>
       </view>
 
       <!-- 动态内容 -->
@@ -98,6 +99,7 @@
         <image class="avatar" src="/image/girl.png"></image>
         <text class="username">种一棵树吧</text>
         <text class="follow-status">关注</text>
+        <image class="image-sx" src="/image/comment.png"></image>
       </view>
 
       <!-- 动态内容 -->

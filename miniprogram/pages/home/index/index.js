@@ -8,9 +8,13 @@ Page({
      * 页面的初始数据
      */
     data: {
+      filterList: ['全部', '点赞', '关注'],
+        filterIndex: 0,
+        hasNotification: true,
         showselect: false,
         show_auth: false,
         userInfo: {},
+        images:['https://pic.52112.com/2020/04/13/JPG-200413_328/gCaPae4zjp_small.jpg'],
         hasUserInfo: false,
         school: '',
         praiseBorder: '',
@@ -83,7 +87,7 @@ Page({
       filterIndex: 0,
       hasNotification: true
     },
-  
+    
     onFilterChange(e) {
       this.setData({
         filterIndex: e.detail.value

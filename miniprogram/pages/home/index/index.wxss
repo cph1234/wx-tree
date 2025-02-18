@@ -124,7 +124,7 @@
   margin-top: 10rpx;
   display: grid;
   align-items: center;
-  grid-template-columns: 100rpx auto 130rpx;
+  grid-template-columns: 100rpx auto 100rpx 70rpx;
   margin-bottom: 20rpx;
 }
 
@@ -133,6 +133,11 @@
   height: 40px;
   border-radius: 50%;
   margin-right: 10px;
+}
+
+.image-sx {
+  width: 40rpx;
+  height: 40rpx;
 }
 
 .username {
