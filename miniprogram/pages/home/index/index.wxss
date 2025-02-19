@@ -131,8 +131,8 @@
 .avatar {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
-  margin-right: 10px;
+  display: flex;
+  align-items: center;
 }
 
 .image-sx {
@@ -174,7 +174,13 @@
   margin-right: 5px;
 }
 
-.like, .comment {
+.like {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.comment {
   display: flex;
   align-items: center;
   margin-right: 20px;
@@ -349,4 +355,49 @@ button {
   color: white;
   border: none;
   border-radius: 5px;
+}
+
+.input-section {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  height: 80rpx;
+  bottom: 0;
+  left: 0rpx;
+  right: 0rpx;
+  z-index: 500;
+  background: rgb(233, 231, 231);
+}
+
+.input_input {
+  background: #fff;
+  margin-top: 4rpx;
+  margin-left: 8rpx;
+  z-index: 500;
+  width: 580rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  padding-left: 35rpx;
+}
+
+.send_btn {
+  width: 110rpx;
+  height: 60rpx;
+  position: absolute;
+  top: 12rpx;
+  right: 30rpx;
+  background: rgb(47, 80, 19);
+  z-index: 550;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.send_btn_text {
+  display: flex;
+  font-size: 32rpx;
+  font-family: 'PingFang';
+  color: #fff;
+  z-index: 560;
 }

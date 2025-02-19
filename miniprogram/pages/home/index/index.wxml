@@ -1,4 +1,13 @@
 <!-- pages/index/index.wxml -->
+<wxs module="tools">
+  var includes = function (array, searchElement) {
+    return array.indexOf(searchElement) !== -1
+  }
+  module.exports = {
+    includes:includes
+  }
+</wxs>
+
 <view>
   <view class="search-container">
     <!-- 左边筛选+搜索区域 -->
@@ -33,10 +42,12 @@
           <view class="user-info">
             <image class="avatar" src="{{item.data.avatar_url}}"></image>
             <text class="username">{{item.data.name}}</text>
-            <text class="follow-status">已关注</text>
+            <view class="avatar" bindtap="getAttention" data-userId="{{item.userId}}">
+              <image class="icon" src="/image/我的关注.png" wx:if="{{tools.includes(userInfo.my_attention,item.userId)}}"></image>
+              <image class="icon" src="/image/关注.png" wx:else></image>
+            </view>
             <image class="image-sx" src="/image/comment.png"></image>
           </view>
-
           <!-- 动态内容 -->
           <view class="post-content">
             <text>{{item.content}}</text>
@@ -62,24 +73,28 @@
           <!-- 互动区域 -->
           <view class="interaction">
             <text class="time">{{item.create_time}}</text>
-            <view class="like">
-              <image class="icon" src="/image/ilove.png" wx:if="{{userInfo.includes(item._id)}}"></image>
+            <view class="like" bindtap="thumbsUp" data-id="{{item._id}}">
+              <image class="icon" src="/image/like-after.png" wx:if="{{tools.includes(userInfo.my_likes,item._id)}}"></image>
+              <image class="icon" src="/image/like-before.png" wx:else></image>
               <text>{{item.likes}}</text>
             </view>
             <view class="comment">
               <image class="icon" src="/image/comment-icon.png" bindtap="showInput"></image>
-              <view wx:if="{{showInputBox}}">
-                <input type="text" placeholder="写评论..." bindinput="handleInput" bindconfirm="confirmInput" />
-                <button bindtap="cancelInput">取消</button>
-              </view>
             </view>
           </view>
-
           <!-- 评论区 -->
           <view class="comment-section"  wx:for="{{item.comment}}" wx:for-item="commentItem" wx:key="index">
             <view class="comment-item">
               <text class="comment-user">{{commentItem.userName}}：</text>
               <text>{{commentItem.content}}</text>
+            </view>
+          </view>
+        </view>
+        <view class="input-section" wx:if="{{showInputBox}}" style="bottom:{{bottom}}px">
+          <input class='input_input' value="{{inputContent}}" focus="auto" bindfocus="onbindfocus" bindinput='bindInputMsg' bindblur="onHideInput" confirm-type="send" bindconfirm="sendTextMsg" />
+          <view style="height:60rpx;width:170rpx;">
+            <view class="send_btn">
+              <text class="send_btn_text">发送</text>
             </view>
           </view>
         </view>

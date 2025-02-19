@@ -8,80 +8,6 @@ Page({
     /**
      * 页面的初始数据
      */
-    // data: {
-    //   filterList: ['全部', '点赞', '关注'],
-    //     filterIndex: 0,
-    //     hasNotification: true,
-    //     showselect: false,
-    //     show_auth: false,
-    //     userInfo: {},
-    //     images:['https://pic.52112.com/2020/04/13/JPG-200413_328/gCaPae4zjp_small.jpg'],
-    //     hasUserInfo: false,
-    //     school: '',
-    //     praiseBorder: '',
-    //     notPraiseBorder: '',
-    //     posts: [],
-    //     postType: 1,
-    //     baseImageUrl: app.globalData.imageUrl,
-    //     show: 0,
-    //     hidden: false,
-    //     showCommentInput: false,
-    //     commentContent: '',
-    //     commentObjId: '',
-    //     commentType: '',
-    //     refcommentId: '',
-    //     posteropenid: '',
-    //     filter: '',
-    //     pageSize: 10,
-    //     pageNumber: 1,
-    //     initPageNumber: 1,
-    //     showGeMoreLoadin: false,
-    //     currentTime: '',
-    //     notDataTips: false,
-    //     newMessage: false,
-    //     newMessageNumber: 0,
-    //     select: 1,
-    //     animationData: {},
-    //     commentValue: '',
-    //     showNormal: false,
-    //     showAudit: false,
-    //     topic: {
-    //         content: '',
-    //         attachments: '',
-    //         praise_number: '',
-    //         id: ''
-    //     },
-    //     commentInfo: {
-    //         title: '',
-    //         placeholder: '',
-    //         btn: ''
-    //     },
-    //     showpostbtn: true,
-    //     showposts: true,
-    //     showTopic: false,
-    //     showSelect: false,
-    //     showBegin: true,
-    //     showCancel: false,
-    //     showReport: false,
-    //     bindReport: false,
-    //     showSubmit: false,
-    //     showSearch: false,
-    //     tryAgant: false,
-    //     imageLeft: '',
-    //     imageRight: '',
-    //     postImageLeft: '',
-    //     PostImageRight: '',
-    //     rate: 0,
-    //     face: '',
-    //     conclusion: '',
-    //     canComment: true,
-    //     sharecomeIn: false,
-    //     shareId: '',
-    //     shareType: '',
-    //     param: app.globalData.param,
-    //     messagefunc: Object,
-    //     zanstatu: []
-    // },
 
     data: {
       filterList: ['全部', '点赞', '关注'],
@@ -90,7 +16,9 @@ Page({
       dataList:[],
       showInputBox: false,
       comment: '',
-      inputContent: ''
+      inputContent: '',
+      userInfo:{},
+      bottom:0
     },
     getData(condition,page){
       console.log(page)
@@ -98,7 +26,9 @@ Page({
         name:"queryTreeFriendCircle",
         data:{
           condition:condition,
-          page:page
+          page:page,
+          statusBarHeight: getApp().globalData.statusBarHeight,
+          showInput: false, //控制输入栏
         }
       }).then(res=>{
         let oldData = this.data.dataList
@@ -111,6 +41,82 @@ Page({
         console.log(this.data.dataList)
       })
     },
+    getUserInfo(){
+      let user_openid = app.globalData.user_openid
+      console.log(user_openid)
+      db.collection("userInfo").where({
+        _openid:user_openid
+      }).get().then(res=>{
+        this.setData({
+          userInfo : res.data[0]
+        })
+      })
+    },
+    thumbsUp(e){
+      let treeId = e.currentTarget.dataset.id
+      let likes=this.data.userInfo.my_likes
+      let newArr = likes;
+      let num=-1
+      if(likes.includes(treeId)){
+        //取消点赞、点赞数减一
+        newArr = likes.filter((item) => item !== treeId);
+      }else{
+        newArr.push(treeId)
+        num=1
+      }
+      db.collection("userInfo").where({
+        _openid:app.globalData.user_openid
+      }).update({
+        data:{
+          my_likes:newArr
+        }
+      }).then(res=>{
+        this.getUserInfo()
+        const targetObj = this.data.dataList.find(item => item._id === treeId);
+        if (targetObj) {
+            targetObj.likes = targetObj.likes + num;
+        }
+        this.setData({
+          dataList:this.data.dataList
+        })
+        db.collection("treeFriendsCircleInfo")
+        .doc(treeId)
+        .update({
+          data:{
+            likes:_.inc(num)
+          }
+        }).then(res=>{
+          console.log(res)
+          
+        })
+      })
+    },
+    onbindfocus(e) {
+      console.log(e)
+      this.setData({
+          bottom: e.detail.height,
+      })
+    },
+    getAttention(e){
+      let userId = e.currentTarget.dataset.userid
+      let attention=this.data.userInfo.my_attention
+      let newArr = attention
+      if(attention.includes(userId)){
+        //取消关注
+        newArr = attention.filter((item) => item !== userId);
+      }else{
+        newArr.push(userId)
+      }
+      db.collection("userInfo").where({
+        _openid:app.globalData.user_openid
+      }).update({
+        data:{
+          my_attention:newArr
+        }
+      }).then(res=>{
+        this.getUserInfo()
+      })
+    },
     onFilterChange(e) {
       this.setData({
         filterIndex: e.detail.value
@@ -120,15 +126,8 @@ Page({
     // 显示输入框
     showInput: function() {
       this.setData({
-        showInputBox: true
+        showInputBox: !this.data.showInputBox
       });
-      this.setData({
-        inputContent: '' // 清空输入框内容
-      });
-      this.inputCtx = wx.createSelectorQuery().select('#commentInput');
-      this.inputCtx.context(function(res) {
-        res.context.setFocus();
-      }).exec();
     },
   
     // 处理输入
@@ -168,6 +167,7 @@ Page({
             showselect: true
         })
     },
+
 
     // 创建新的消息盒子
     message: function(data) {
@@ -268,6 +268,7 @@ Page({
      */
     onLoad: function(e) {
       this.getData(this.data.filterIndex,0)
+      this.getUserInfo()
     },
 
     /**
