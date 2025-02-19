@@ -54,6 +54,9 @@
                 <image src="{{imageItem}}" mode="aspectFill"></image>
               </view>
             </block>
+            <!-- 占位view，用于在图片数量不足时实现布局自适应 -->
+            <view class="grid-item" wx:if="{{item.fileIds.length % 3 === 1 || item.fileIds.length % 3 === 2}}"></view>
+            <view class="grid-item" wx:if="{{item.fileIds.length % 3 === 1}}"></view>
           </view>
 
           <!-- 互动区域 -->
@@ -64,8 +67,11 @@
               <text>{{item.likes}}</text>
             </view>
             <view class="comment">
-              <image class="icon" src="/image/comment-icon.png"></image>
-              <text>评论</text>
+              <image class="icon" src="/image/comment-icon.png" bindtap="showInput"></image>
+              <view wx:if="{{showInputBox}}">
+                <input type="text" placeholder="写评论..." bindinput="handleInput" bindconfirm="confirmInput" />
+                <button bindtap="cancelInput">取消</button>
+              </view>
             </view>
           </view>
 

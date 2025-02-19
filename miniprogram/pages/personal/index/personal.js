@@ -2,6 +2,7 @@ const app = getApp();
 
 Page({
   data: {
+    userInfo:{},
     avatar: '',
     nickname: '',
     newLetterNumber: 0,
@@ -9,25 +10,35 @@ Page({
     param: app.globalData.param
   },
   onLoad: function () {
-    // console.log(app.globalData.userInfo)
-    let userStorage = wx.getStorageSync('user');
-    if (userStorage) {
-      this.setData({
-        user: userStorage
-      })
-    }
-    var avatar = ''
-    var nickname = ''
+    console.log(app.globalData)
+    let user_openid = app.globalData.user_openid
+    wx.cloud.callFunction({
+      name: 'queryUserInfo',
+      data: {
+          openid: user_openid
+      },
+      success: res => {
+        console.log(res)
+      },
+  })
+    // let userStorage = wx.getStorageSync('user');
+    // if (userStorage) {
+    //   this.setData({
+    //     user: userStorage
+    //   })
+    // }
+    // var avatar = ''
+    // var nickname = ''
 
-    if (app.globalData.userInfo) {
-      avatar = app.globalData.userInfo.avatarUrl,
-      nickname = app.globalData.userInfo.nickName
-    }
-    this.setData({
-      param: app.globalData.param,
-      avatar: avatar,
-      nickname: nickname,
-    })
+    // if (app.globalData.userInfo) {
+    //   avatar = app.globalData.userInfo.avatarUrl,
+    //   nickname = app.globalData.userInfo.nickName
+    // }
+    // this.setData({
+    //   param: app.globalData.param,
+    //   avatar: avatar,
+    //   nickname: nickname,
+    // })
   },
   onShow: function () {},
   onReady: function () {},
