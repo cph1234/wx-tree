@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/login/login",
+    "pages/index/index",
     "pages/home/index/index",
     "pages/home/post/post",
     "pages/home/postTopic/postTopic",
@@ -16,13 +16,13 @@
     "pages/personal/topic_list/topic_list",
     "pages/personal/sale_list/sale_list",
     "pages/compare_face/face",
-    "pages/mine/index/mine"
+    "pages/login/login"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#66CDAA",
-    "navigationBarTitleText": "Say Love",
-    "navigationBarTextStyle": "white"
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTitleText": "Hi，观察壹颗树吧",
+    "navigationBarTextStyle": "black"
   },
   "permission": {},
   "tabBar": {
@@ -44,10 +44,10 @@
         "text": "卖舍友"
       },
       {
-        "pagePath": "pages/mine/index/mine",
+        "pagePath": "pages/compare_face/face",
         "iconPath": "image/fall-in-love.png",
         "selectedIconPath": "image/select-fall-in-love.png",
-        "text": "new我的"
+        "text": "情侣脸"
       },
       {
         "pagePath": "pages/personal/index/personal",

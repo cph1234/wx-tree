@@ -7,18 +7,25 @@ const _ = db.command
 
 // 云函数入口函数
 exports.main = async (event, context) => {
+  console.log(event)
     const condition = event.condition
     const userId = event.userId
     const page = event.page
-    //全部
-    if(condition=="all"){
+    //全部 0 点赞 1 关注 2 组员3
+    if(condition=="0"){
       try {
-        return await db.collection("treeFriendsCircleInfo").skip(page * 5)
+        let list=[]
+        let data = await db.collection("treeFriendsCircleInfo").skip(page)
         .limit(5).get()
+        for(let item of data.data){
+          let userInfo = await db.collection("userInfo").doc(item.userId).get()
+          list.push({...item,...userInfo})
+        }
+        return list
       } catch (e) {
           console.error(e)
       }
-    }else if(condition=="attention"){
+    }else if(condition=="2"){
       try {
         // 查询 userInfo 表，获取 attentions 数组
         const userInfoResult = await db.collection('userInfo')
@@ -46,7 +53,7 @@ exports.main = async (event, context) => {
         console.error(error);
         return [];
       }
-    }else if(condition=="member"){
+    }else if(condition=="3"){
       try {
         // 查询 userInfo 表，获取 members 数组
         const userInfoResult = await db.collection('userInfo')
@@ -74,7 +81,7 @@ exports.main = async (event, context) => {
         console.error(error);
         return [];
       }
-    }else if(condition=="likes"){
+    }else if(condition=="1"){
       const circleResult = await db.collection('treeFriendsCircleInfo')
           .where({
             likes: _.neq(0)
