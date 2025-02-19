@@ -152,6 +152,32 @@
   color: #999;
 }
 
+.upload-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10rpx;
+}
+
+.note-word {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 24rpx;
+  color: #898781;
+  line-height: 24rpx;
+  text-align: left;
+  font-style: normal;
+}
+
+.sync-word {
+  margin-left: 10rpx;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 500;
+  font-size: 26rpx;
+  color: #1E0417;
+  text-align: left;
+  font-style: normal;
+}
 
 .sync-option {
   display: flex;

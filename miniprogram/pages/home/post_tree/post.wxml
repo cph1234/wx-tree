@@ -157,9 +157,12 @@
       </view>
     </view>
 
-    <view class="sync-option">
+    <view class="upload-bottom">
+      <view class="note-word">*最多选9张发树友圈</view>
+      <view class="sync-option">
       <checkbox checked="{{syncToHomework}}" bindtap="toggleSync"/>
-      <text>同步照片至交作业</text>
+      <text class="sync-word">同步照片至交作业</text>
+    </view>
     </view>
   </view>
 
