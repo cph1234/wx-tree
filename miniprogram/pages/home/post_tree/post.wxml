@@ -82,77 +82,57 @@
       </view>
       <view class="upload-item">
         <view class="add-btn">
-        <text>+ \n \n 周边环境</text>
+        <text>+ \n \n 整株树形</text>
         </view>
       </view>
       <view class="upload-item">
         <view class="add-btn">
-        <text>+ \n \n 周边环境</text>
+        <text>+ \n \n 根茎</text>
         </view>
       </view>
       <view class="upload-item">
         <view class="add-btn">
-        <text>+ \n \n 周边环境</text>
+        <text>+ \n \n 树叶</text>
         </view>
       </view>
       <view class="upload-item">
         <view class="add-btn">
-        <text>+ \n \n 周边环境</text>
+        <text>+ \n \n 花(含孢子)</text>
         </view>
       </view>
       <view class="upload-item">
         <view class="add-btn">
-        <text>+ \n \n 周边环境</text>
+        <text>+ \n \n 果(含种子)</text>
         </view>
       </view>
       <view class="upload-item">
         <view class="add-btn">
-        <text>+ \n \n 周边环境</text>
+        <text>+ \n \n 树栖动物</text>
         </view>
       </view>
       <view class="upload-item">
         <view class="add-btn">
-        <text>+ \n \n 周边环境</text>
+        <text>+ \n \n 树生植物</text>
         </view>
       </view>
       <view class="upload-item">
         <view class="add-btn">
-        <text>+ \n \n 周边环境</text>
+        <text>+ \n \n 病虫害</text>
         </view>
       </view>
       <view class="upload-item">
         <view class="add-btn">
-        <text>+ \n \n 周边环境</text>
+        <text>+ \n \n 特殊性状</text>
         </view>
       </view>
       <view class="upload-item">
         <view class="add-btn">
-        <text>+ \n \n 周边环境</text>
+        <text>+ \n \n 人文资料</text>
         </view>
       </view>
       <view class="upload-item">
         <view class="add-btn">
-        <text>+ \n \n 周边环境</text>
-        </view>
-      </view>
-      <view class="upload-item">
-        <view class="add-btn">
-        <text>+ \n \n 周边环境</text>
-        </view>
-      </view>
-      <view class="upload-item">
-        <view class="add-btn">
-        <text>+ \n \n 周边环境</text>
-        </view>
-      </view>
-      <view class="upload-item">
-        <view class="add-btn">
-        <text>+ \n \n 周边环境</text>
-        </view>
-      </view>
-      <view class="upload-item">
-        <view class="add-btn">
-        <text>+ \n \n 周边环境</text>
+        <text>+ \n \n 其他</text>
         </view>
       </view>
     </view>
