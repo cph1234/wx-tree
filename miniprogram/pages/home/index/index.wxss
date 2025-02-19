@@ -324,3 +324,29 @@
   height: 200rpx;
   display: block;
 }
+
+.container {
+  padding: 20px;
+}
+ 
+.comment-icon {
+  width: 50px;
+  height: 50px;
+}
+ 
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+ 
+button {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #1aad19;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}

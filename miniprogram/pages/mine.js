@@ -1,3 +1,6 @@
+// 获取全局的 App 实例
+const app = getApp();
+
 // pages/mine.js
 Page({
 

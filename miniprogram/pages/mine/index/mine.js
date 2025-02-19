@@ -1,3 +1,5 @@
+// 获取全局的 App 实例
+const app = getApp();
 // pages/mine/mine.js
 Page({
 
@@ -5,14 +7,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    userInfo:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    console.log('here')
+    console.log(app.globalData.user_openid)
   },
 
   /**

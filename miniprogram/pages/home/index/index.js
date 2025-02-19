@@ -87,7 +87,10 @@ Page({
       filterList: ['全部', '点赞', '关注'],
       filterIndex: 0,
       hasNotification: true,
-      dataList:[]
+      dataList:[],
+      showInputBox: false,
+      comment: '',
+      inputContent: ''
     },
     getData(condition,page){
       console.log(page)
@@ -114,6 +117,46 @@ Page({
       })
     },
   
+    // 显示输入框
+    showInput: function() {
+      this.setData({
+        showInputBox: true
+      });
+      this.setData({
+        inputContent: '' // 清空输入框内容
+      });
+      this.inputCtx = wx.createSelectorQuery().select('#commentInput');
+      this.inputCtx.context(function(res) {
+        res.context.setFocus();
+      }).exec();
+    },
+  
+    // 处理输入
+    handleInput: function(e) {
+      this.setData({
+        inputContent: e.detail.value
+      });
+    },
+  
+    // 确认输入
+    confirmInput: function() {
+      this.setData({
+        comment: this.data.inputContent,
+        showInputBox: false
+      });
+      wx.showToast({
+        title: '评论已保存',
+        icon: 'success'
+      });
+    },
+  
+    // 取消输入
+    cancelInput: function() {
+      this.setData({
+        showInputBox: false,
+        inputContent: ''
+      });
+    },
     onSearch(e) {
       const keyword = e.detail.value
       // 处理搜索逻辑

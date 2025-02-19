@@ -17,7 +17,8 @@ App({
         reloadHome: false,
         param: false,
         // 是否从posttopic跳转
-        isposttopic:false
+        isposttopic:false,
+        user_openid:''
     },
     onLaunch: function() {
         // 初始化云环境
