@@ -1,0 +1,175 @@
+/* pages/home/post_tree/post.wxss */
+
+/* pages/treePost/treePost.wxss */
+.container {
+  padding: 20rpx;
+  background-color: #FFFFFF;
+}
+
+.section {
+  margin-bottom: 10rpx;
+  padding: 30rpx;
+}
+
+.picker {
+  padding: 20rpx;
+  background: #F6DB74;
+  width: 690rpx;
+  height: 84rpx;
+  border-radius: 38rpx;
+  text-align: center;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 500;
+  font-size: 30rpx;
+  color: #444243;
+  font-style: normal;
+}
+
+.info-box {
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 5rpx 0;
+}
+
+.info-row.single-line {
+  border-bottom: none;
+  padding: 0;
+}
+
+.info-item {
+  flex: 1;
+  padding: 12rpx 20rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.info-item.full-width {
+  width: 100%;
+}
+
+.label {
+  color: #898781;
+  font-size: 26rpx;
+  padding-right: 10rpx;
+}
+
+.value {
+  color: #1E0417;
+  font-weight: 500;
+  font-size: 26rpx;
+  padding-right: 10rpx;
+}
+
+.custom-btns {
+  display: flex;
+  justify-content: space-between;
+  margin: 40rpx 0;
+  background-color: #F2F3F5;
+  border-radius: 28rpx;
+}
+
+.btn-container {
+  position: relative;
+  width: 320rpx;
+  height: 80rpx;
+  border-radius: 30rpx
+  ;
+}
+
+.btn-bg {
+  width: 100%;
+  height: 100%;
+}
+
+.large-btn-bg {
+  width: 100%;
+  height: 100rpx;
+}
+
+.btn-text-active {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+.btn-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32rpx;
+  color: #898781;
+}
+
+
+
+.textarea {
+  width: 100%;
+  height: 200rpx;
+  padding: 20rpx;
+  border-radius: 8rpx;
+}
+
+.word-count {
+  text-align: right;
+  color: #999;
+  font-size: 24rpx;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+}
+
+.upload-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4rpx;
+  justify-content: space-around;
+}
+
+.upload-item {
+  width: calc((100% - 20rpx) / 4);
+  text-align: center;
+}
+
+.add-btn {
+  width: 162rpx;
+  height: 162rpx;
+  border: 2rpx dashed #ddd;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25rpx;
+  color: #999;
+}
+
+
+.sync-option {
+  display: flex;
+  align-items: center;
+  margin-top: 20rpx;
+  color: #666;
+}
+
+.publish-btn {
+  background: #1E0417;
+  text-align: center;
+  padding: 30rpx;
+  border-radius: 50rpx;
+  width: 690rpx;
+  margin: 40rpx 0;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 500;
+  font-size: 30rpx;
+  color: #F2F3F5;
+  font-style: normal;
+}

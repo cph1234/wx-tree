@@ -5,7 +5,6 @@
     <view class="search-box">
       <picker class="filter-picker" mode="selector" range="{{filterList}}" value="{{filterIndex}}" bindchange="onFilterChange">
         <text class="filter-text">{{filterList[filterIndex]}}</text>
-        
       </picker>
       <image src="/image/share.png"></image>
       <input 

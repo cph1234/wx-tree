@@ -16,7 +16,8 @@
     "pages/personal/topic_list/topic_list",
     "pages/personal/sale_list/sale_list",
     "pages/compare_face/face",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/home/post_tree/post"
   ],
   "window": {
     "backgroundTextStyle": "light",
