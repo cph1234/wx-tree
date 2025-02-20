@@ -19,6 +19,7 @@
 .search-box image{
   width: 48rpx;
   height: 48rpx;
+  margin-right: 10rpx;
 }
 
 .filter-picker {
@@ -27,22 +28,23 @@
   margin-right: 24rpx;
   border-radius: 30rpx 0 0 30rpx; 
   background: #F6DB74; 
-  width: line-width;
-  height: line-height;
 }
 
 .filter-text {
   font-size: 36rpx;
   color: #444243;
-
 }
 
 .search-input {
-  flex: 1;
   font-size: 28rpx;
   color: #333; 
-  padding: 0 20rpx;
   background: transparent;
+  border: 0px;
+  flex: 1;
+  height: 100%; /* 继承容器高度 */
+  padding: 0;
+  line-height: 1.4; /* 文字垂直居中 */
+  margin: auto;
 }
 
 .placeholder-style {

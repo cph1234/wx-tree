@@ -15,7 +15,7 @@
       <picker class="filter-picker" mode="selector" range="{{filterList}}" value="{{filterIndex}}" bindchange="onFilterChange">
         <text class="filter-text">{{filterList[filterIndex]}}</text>
       </picker>
-      <image src="/image/share.png"></image>
+      <image src="/image/sousuo.png"></image>
       <input 
         class="search-input" 
         placeholder="搜索" 
@@ -31,7 +31,7 @@
     </view>
   </view>
 
-  <view class="container">
+  <view class="container" style="height: -285rpx; display: flex; box-sizing: border-box">
     <!-- 动态列表 -->
     <view class="content-list">
       <!-- 遍历 -->  
