@@ -121,6 +121,7 @@ page{
   margin-left: 5%;
   margin-right: 5%;
   margin-top: 30rpx;
+  margin-bottom: 30rpx;
   background-color: #F2F3F5;
 }
 
@@ -128,6 +129,7 @@ page{
   padding-left: 20rpx;
   padding-right: 20rpx;
   padding-top: 10rpx;
+  padding-bottom: 10rpx;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -146,11 +148,13 @@ page{
   }
 
 .item-image{
-  width: 50rpx;
-  height: 50rpx;
+  width: 55rpx;
+  height: 55rpx;
   margin-top: 10rpx;
   margin-left: 10rpx;
   margin-right: 20rpx;
+  border-radius: 50%;
+  padding: 10rpx;
 }
 
 .word{
