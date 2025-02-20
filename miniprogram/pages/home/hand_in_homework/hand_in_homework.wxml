@@ -1,0 +1,78 @@
+<!--pages/home/hand_in_homework/hand_in_homework.wxml-->
+<view class="container">
+  <!-- 第一部分：选择树木 -->
+  <view class="section">
+    <picker bindchange="bindTreeChange" value="{{index}}" range="{{trees}}">
+      <view class="picker">当前选择：{{selectedTree || '请选择树种'}}</view>
+    </picker>
+    
+    <!-- 树木信息展示 -->
+    <view class="info-box">
+
+      <!-- 第一行：树木定位 -->
+      <view class="info-row single-line">
+        <view class="info-item full-width">
+          <text class="label">树木定位</text>
+          <text class="value">宁波市海曙区</text>
+        </view>
+      </view>
+
+        <!-- 第二行：海拔高度 + 日照情况 -->
+      <view class="info-row">
+        <view class="info-item">
+          <text class="label">海拔高度</text>
+          <text class="value">3.6米</text>
+        </view>
+        <view class="info-item">
+          <text class="label">日照情况</text>
+          <text class="value">全日照</text>
+        </view>
+      </view>
+
+      <!-- 第三行：土壤类型 + 天气情况 -->
+      <view class="info-row">
+        <view class="info-item">
+          <text class="label">土壤类型</text>
+          <text class="value">壤土</text>
+        </view>
+        <view class="info-item">
+          <text class="label">天气情况</text>
+          <text class="value">晴 25°C</text>
+        </view>
+      </view>
+
+      <!-- 第四行：树木规格 -->
+      <view class="info-row">
+        <view class="info-item">
+          <text class="label">树木规格</text>
+          <text class="value">胸径 10cm 树高 900m 冠幅 34cm</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 第二部分：交作业 -->
+  <view class="section">
+      <!-- 操作按钮 -->
+      <view class="custom-btns">
+        <view class="btn-container" bindtap="publishMoment">
+          <text class="btn-text">发布树友圈</text>
+        </view>
+        <view class="btn-container" bindtap="submitWork">
+          <image src="/image/btn_bg2.png" class="btn-bg" mode="widthFix"/>
+          <text class="btn-text-active">交作业</text>
+        </view>
+      </view>    
+      <view>
+        <text class="work-note-1">每个节气交作业一次，节气前后3天内提交有效！</text>
+      </view>
+  </view>
+
+  <!-- 第三部分：作业内容 -->
+  <view class="section">
+    <view class="author_info">
+    </view>
+    
+  </view>
+
+</view>
