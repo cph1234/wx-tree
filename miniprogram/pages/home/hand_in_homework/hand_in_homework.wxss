@@ -1,16 +1,15 @@
-/* pages/home/post_tree/post.wxss */
-
-/* pages/treePost/treePost.wxss */
+/* pages/home/hand_in_homework/hand_in_homework.wxss */
 .container {
   padding: 20rpx;
   background-color: #FFFFFF;
 }
 
 .section {
-  margin-bottom: 10rpx;
-  padding: 30rpx;
   display: flex;
   flex-direction: column;
+  position: relative;
+  margin-bottom: 10rpx;
+  padding: 30rpx;
 }
 
 .picker {
@@ -113,6 +112,19 @@
   color: #898781;
 }
 
+.work-note-1{
+  width: 520rpx;
+  height: 24rpx;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 24rpx;
+  color: #898781;
+  line-height: 24rpx;
+  text-align: left;
+  font-style: normal;
+  position: absolute; /* 相对relative也可以 */
+  right: 0; /* 靠右调节 */
+}
 
 
 .textarea {
