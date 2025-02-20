@@ -10,7 +10,7 @@ Page({
      */
 
     data: {
-      filterList: ['全部', '点赞', '关注'],
+      filterList: ['全部', '点赞', '关注', '组员'],
       filterIndex: 0,
       hasNotification: true,
       dataList:[],
@@ -27,14 +27,11 @@ Page({
         data:{
           condition:condition,
           page:page,
-          statusBarHeight: getApp().globalData.statusBarHeight,
-          showInput: false, //控制输入栏
+          userId:this.data.userInfo._id
         }
       }).then(res=>{
         let oldData = this.data.dataList
-        console.log(res.result) 
         let newData = oldData.concat(res.result)
-        console.log(newData)
         this.setData({
           dataList:newData
         })
@@ -92,10 +89,11 @@ Page({
       })
     },
     onbindfocus(e) {
-      console.log(e)
-      this.setData({
-          bottom: e.detail.height,
-      })
+      wx.onKeyboardHeightChange(res => { //监听键盘高度变化
+        this.setData({
+          bottom: res.height
+        });
+      });
     },
     getAttention(e){
       let userId = e.currentTarget.dataset.userid
@@ -119,10 +117,18 @@ Page({
     },
     onFilterChange(e) {
       this.setData({
-        filterIndex: e.detail.value
+        filterIndex: e.detail.value,
+        dataList: []
       })
+      this.getData(e.detail.value,0)
     },
-  
+    previewImage: function(e) {
+      console.log(e)
+      wx.previewImage({
+        current: e.currentTarget.dataset.url, // 当前显示图片的链接
+        urls: e.currentTarget.dataset.urls // 需要预览的图片链接列表（此处仅为示例，实际应用中可能有多个链接）
+      });
+    },
     // 显示输入框
     showInput: function() {
       this.setData({
@@ -602,16 +608,6 @@ Page({
         })
     },
 
-    /**
-     * 预览图片
-     */
-    previewImage: function(event) {
-        let url = event.target.id;
-        wx.previewImage({
-            current: '',
-            urls: [url]
-        })
-    },
 
     /**
      * 预览图片

@@ -62,7 +62,7 @@
           <view class="grid-container">
             <block wx:for="{{item.fileIds}}" wx:for-item="imageItem" wx:key="index">
               <view class="grid-item">
-                <image src="{{imageItem}}" mode="aspectFill"></image>
+                <image src="{{imageItem}}" mode="aspectFill" bindtap="previewImage"  data-url="{{imageItem}}" data-urls="{{item.fileIds}}"></image>
               </view>
             </block>
             <!-- 占位view，用于在图片数量不足时实现布局自适应 -->
@@ -85,8 +85,13 @@
           <!-- 评论区 -->
           <view class="comment-section"  wx:for="{{item.comment}}" wx:for-item="commentItem" wx:key="index">
             <view class="comment-item">
-              <text class="comment-user">{{commentItem.userName}}：</text>
-              <text>{{commentItem.content}}</text>
+              <text class="comment-user">{{commentItem.userName1}}</text>
+              <block wx:if="{{commentItem.userName2!==null}}">
+                <text>回复 </text>
+                <text class="comment-user">{{commentItem.userName2}}</text>
+              </block>
+              
+              <text>: {{commentItem.content}}</text>
             </view>
           </view>
         </view>

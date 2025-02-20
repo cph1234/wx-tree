@@ -18,6 +18,14 @@ exports.main = async (event, context) => {
         let data = await db.collection("treeFriendsCircleInfo").skip(page)
         .limit(5).get()
         for(let item of data.data){
+          for(iten of item.comment){
+            let userInfo1 = await db.collection("userInfo").doc(iten.userId).get()
+            iten.userName1 = userInfo1.data.name
+            if(iten.userId2!==null&&iten.userId2!==""){
+              let userInfo2 = await db.collection("userInfo").doc(iten.userId2).get()
+              iten.userName2 = userInfo2.data.name
+            }
+          }
           let userInfo = await db.collection("userInfo").doc(item.userId).get()
           list.push({...item,...userInfo})
         }
@@ -42,13 +50,27 @@ exports.main = async (event, context) => {
         const attentions = userInfo.my_attention || []; // 确保 likes 是一个数组，即使为空
      
         // 根据 attentions 数组中的 userId 查询 circle 表
-        const circleResult = await db.collection('treeFriendsCircleInfo')
+        let list=[]
+        const data = await db.collection('treeFriendsCircleInfo')
           .where({
             userId: _.in(attentions)
           })
+          .skip(page)
+          .limit(5)
           .get();
-     
-        return circleResult;
+        for(let item of data.data){
+          for(iten of item.comment){
+            let userInfo1 = await db.collection("userInfo").doc(iten.userId).get()
+            iten.userName1 = userInfo1.data.name
+            if(iten.userId2!==null&&iten.userId2!==""){
+              let userInfo2 = await db.collection("userInfo").doc(iten.userId2).get()
+              iten.userName2 = userInfo2.data.name
+            }
+          }
+          let userInfo = await db.collection("userInfo").doc(item.userId).get()
+          list.push({...item,...userInfo})
+        }
+        return list
       } catch (error) {
         console.error(error);
         return [];
@@ -68,26 +90,66 @@ exports.main = async (event, context) => {
      
         const userInfo = userInfoResult.data[0];
         const members = userInfo.my_team_member || []; // 确保 members 是一个数组，即使为空
-     
-        // 根据 members 数组中的 userId 查询 circle 表
-        const circleResult = await db.collection('treeFriendsCircleInfo')
+        let list=[]
+        const data = await db.collection('treeFriendsCircleInfo')
           .where({
             userId: _.in(members)
           })
+          .skip(page)
+          .limit(5)
           .get();
-     
-        return circleResult;
+        for(let item of data.data){
+          for(iten of item.comment){
+            let userInfo1 = await db.collection("userInfo").doc(iten.userId).get()
+            iten.userName1 = userInfo1.data.name
+            if(iten.userId2!==null&&iten.userId2!==""){
+              let userInfo2 = await db.collection("userInfo").doc(iten.userId2).get()
+              iten.userName2 = userInfo2.data.name
+            }
+          }
+          let userInfo = await db.collection("userInfo").doc(item.userId).get()
+          list.push({...item,...userInfo})
+        }
+        return list
       } catch (error) {
         console.error(error);
         return [];
       }
     }else if(condition=="1"){
-      const circleResult = await db.collection('treeFriendsCircleInfo')
-          .where({
-            likes: _.neq(0)
-          })
-          .get();
-      return circleResult;
+      // 查询 userInfo 表，获取 members 数组
+      const userInfoResult = await db.collection('userInfo')
+        .where({
+          _id: userId // 假设 userId 是 userInfo 表中的 _id 字段，根据实际情况调整
+        })
+        .get();
+  
+      if (userInfoResult.data.length === 0) {
+        return [];
+      }
+  
+      const userInfo = userInfoResult.data[0];
+      const likes = userInfo.my_likes || []; // 确保 members 是一个数组，即使为空
+      let list=[]
+      const data = await db.collection('treeFriendsCircleInfo')
+        .where({
+          _id: _.in(likes)
+        })
+        .skip(page)
+        .limit(5)
+        .get();
+      for(let item of data.data){
+        for(iten of item.comment){
+          let userInfo1 = await db.collection("userInfo").doc(iten.userId).get()
+          iten.userName1 = userInfo1.data.name
+          if(iten.userId2!==null&&iten.userId2!==""){
+            let userInfo2 = await db.collection("userInfo").doc(iten.userId2).get()
+            iten.userName2 = userInfo2.data.name
+          }
+        }
+        let userInfo = await db.collection("userInfo").doc(item.userId).get()
+        list.push({...item,...userInfo})
+      }
+      return list
     }
     
 }
