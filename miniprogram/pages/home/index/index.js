@@ -18,7 +18,10 @@ Page({
       comment: '',
       inputContent: '',
       userInfo:{},
-      bottom:0
+      bottom:0,
+      commentTreeId:'',
+      commentUserId:'',
+      textareaHeight:30
     },
     getData(condition,page){
       console.log(page)
@@ -130,12 +133,74 @@ Page({
       });
     },
     // 显示输入框
-    showInput: function() {
+    showInput: function(e) {
       this.setData({
-        showInputBox: !this.data.showInputBox
+        showInputBox: !this.data.showInputBox,
+        commentTreeId: e.currentTarget.dataset.id,
+        commentUserId: e.currentTarget.dataset.id2
       });
     },
-  
+    // 输入框内容变化时触发
+    inputComment: function (e) {
+      this.setData({
+        inputValue: e.detail.value
+      });
+    },
+    // 提交评论按钮点击事件
+    submitComment: function () {
+      const inputValue = this.data.inputValue;
+      if (inputValue.trim() === '') {
+        wx.showToast({
+          title: '评论内容不能为空',
+          icon: 'none'
+        });
+        return;
+      }
+      const newComment = {
+        userId: this.data.userInfo._id,
+        userId2: this.data.commentUserId || "",
+        content: inputValue
+      };
+      db.collection("treeFriendsCircleInfo")
+        .doc(this.data.commentTreeId)
+        .update({
+          data:{
+            comment:_.push(newComment)
+          }
+        }).then(res=>{
+          const index = this.data.dataList.findIndex(item => item._id === this.data.commentTreeId);
+          let tree = this.data.dataList
+          if (index!== -1) {
+            newComment.userName1 = this.data.userInfo.name
+            if(this.data.commentUserId!==null&&this.data.commentUserId!==""&&this.data.commentUserId!==undefined){
+              db.collection("userInfo").doc(this.data.commentUserId).get()
+              .then(res=>{
+                newComment.userName2 = res.data.name
+                tree[index].comment.push(newComment);
+                this.setData({
+                  dataList : tree,
+                  showInputBox : false,
+                  inputValue: ''
+                })
+              })
+            }else{
+              tree[index].comment.push(newComment);
+              this.setData({
+                dataList : tree,
+                showInputBox : false,
+                inputValue: ''
+              })
+            }
+          }
+        })
+    },
+    handleLineChange(e) {
+      // 获取当前textarea的高度
+      const height = e.detail.height;
+      this.setData({
+        textareaHeight: height
+      });
+    },
     // 处理输入
     handleInput: function(e) {
       this.setData({

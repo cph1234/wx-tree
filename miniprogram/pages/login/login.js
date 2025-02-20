@@ -33,39 +33,32 @@ Page({
                 data: {
                   avatar_url: user.avatarUrl,
                   name: user.nickName,
-                  open_id: app.globalData.user_openid
+                  open_id: app.globalData.user_openid,
+                  my_attention:[],
+                  my_fans:[],
+                  my_team_member:[]
                 },
                 success: res => {
                   wx.showToast({
                     title: '登录成功',
                     icon: 'none'
                   })
-                }
-              })
-            } else {
-              //已经添加过了
-              //将数据更新到数据库
-              wx.cloud.database().collection('userInfo')
-              .where({
-                open_id:app.globalData.user_openid
-              })
-              .update({
-                data: {
-                  avatar_url: user.avatarUrl,
-                  name: user.nickName
-                },
-                success: res => {
-                  console.log('here')
-                  wx.showToast({
-                    title: '登录成功',
-                    icon: 'none'
-                  })
-                  // wx.setStorageSync('openid', res.result.openid)
                   wx.hideLoading()
                   wx.switchTab({
                       url: '/pages/home/index/index'
                   })
                 }
+              })
+            } else {
+              //已经添加过了
+              wx.showToast({
+                title: '登录成功',
+                icon: 'none'
+              })
+              // wx.setStorageSync('openid', res.result.openid)
+              wx.hideLoading()
+              wx.switchTab({
+                  url: '/pages/home/index/index'
               })
             }
           }

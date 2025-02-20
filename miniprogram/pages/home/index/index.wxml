@@ -79,27 +79,26 @@
               <text>{{item.likes}}</text>
             </view>
             <view class="comment">
-              <image class="icon" src="/image/comment-icon.png" bindtap="showInput"></image>
+              <image class="icon" src="/image/comment-icon.png" bindtap="showInput" data-id="{{item._id}}"></image>
             </view>
           </view>
           <!-- 评论区 -->
-          <view class="comment-section"  wx:for="{{item.comment}}" wx:for-item="commentItem" wx:key="index">
-            <view class="comment-item">
+          <view class="comment-section" >
+            <view class="comment-item" wx:for="{{item.comment}}" wx:for-item="commentItem" wx:key="index" bindtap="showInput" data-id="{{item._id}}" data-id2="{{commentItem.userId}}">
               <text class="comment-user">{{commentItem.userName1}}</text>
-              <block wx:if="{{commentItem.userName2!==null}}">
+              <block wx:if="{{commentItem.userName2!==null&&commentItem.userName2!==''&&commentItem.userName2!==undefined}}">
                 <text>回复 </text>
                 <text class="comment-user">{{commentItem.userName2}}</text>
               </block>
-              
-              <text>: {{commentItem.content}}</text>
+              <text class="comment-content">: {{commentItem.content}}</text>
             </view>
           </view>
         </view>
-        <view class="input-section" wx:if="{{showInputBox}}" style="bottom:{{bottom}}px">
-          <input class='input_input' value="{{inputContent}}" focus="auto" bindfocus="onbindfocus" bindinput='bindInputMsg' bindblur="onHideInput" confirm-type="send" bindconfirm="sendTextMsg" />
+        <view class="input-section" wx:if="{{showInputBox}}" style="bottom:{{bottom}}px;height:{{textareaHeight+10}}px">
+          <textarea class='input_input' value="{{inputContent}}" focus="auto" bindinput="inputComment" show-confirm-bar='{{false}}' auto-height bindlinechange="handleLineChange"></textarea>
           <view style="height:60rpx;width:170rpx;">
             <view class="send_btn">
-              <text class="send_btn_text">发送</text>
+              <text class="send_btn_text" bindtap="submitComment">发送</text>
             </view>
           </view>
         </view>

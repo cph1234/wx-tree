@@ -256,9 +256,14 @@
 .comment-item {
   font-size: 14px;
   line-height: 1.4;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
+  margin-top: 4px;
 }
-
+.comment-content {
+  word-break: break-word;
+  word-wrap: break-word;
+  white-space: normal;
+}
 .comment-user {
   color: #07c160;
   margin-right: 5px;
@@ -360,10 +365,10 @@ button {
 }
 
 .input-section {
-  position: absolute;
+  position: fixed;
   display: flex;
   align-items: center;
-  height: 80rpx;
+  min-height: 80rpx;
   bottom: 0;
   left: 0rpx;
   right: 0rpx;
@@ -377,7 +382,7 @@ button {
   margin-left: 8rpx;
   z-index: 500;
   width: 580rpx;
-  height: 60rpx;
+  min-height: 60rpx;
   line-height: 60rpx;
   padding-left: 35rpx;
 }

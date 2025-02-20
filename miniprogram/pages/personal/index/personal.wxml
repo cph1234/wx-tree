@@ -5,11 +5,17 @@
     <view class="user-info">
       <!-- 头像与角标容器 -->
       <view class="avatar-container">
-        <image class="avatar" src="/image/boy.png"></image>
+        <button class="avatar-wrapper" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+          <image class="avatar" src="{{userInfo.avatar_url}}"></image>
+        </button>
+        <!-- <image class="avatar" src="{{userInfo.avatar_url}}"></image> -->
         <text class="avatar-badge">香樟组长</text>
       </view>
       <view class="user-detail">
-        <text class="username">不知名网友丫</text>
+        <view style="display: flex;align-content: flex-start;">
+          <input type="nickname"  class="username" value="{{userInfo.name}}" style="width: {{inputWidth}}px" bindinput="onInput"/>
+          <image class="icon" src="/image/修改.png"></image>
+        </view>
         <!-- 仅保留树龄勋章 -->
         <view class="badges">
           <text class="badge">树龄勋章</text>
@@ -21,15 +27,15 @@
     <!-- 数据统计 -->
   <view class="stats-grid">
     <view class="stat-item">
-      <text class="stat-num">2894</text>
+      <text class="stat-num">{{userInfo.my_attention.length}}</text>
       <text class="stat-label">我的关注</text>
     </view>
     <view class="stat-item">
-      <text class="stat-num">3892</text>
+      <text class="stat-num">{{userInfo.my_fans.length}}</text>
       <text class="stat-label">我的粉丝</text>
     </view>
     <view class="stat-item">
-      <text class="stat-num">68</text>
+      <text class="stat-num">{{userInfo.my_team_member.length}}</text>
       <text class="stat-label">我的组员</text>
     </view>
   </view>
