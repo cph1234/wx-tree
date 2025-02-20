@@ -70,8 +70,67 @@
 
   <!-- 第三部分：作业内容 -->
   <view class="section">
-    <view class="author_info">
+
+    <!-- 作业信息  -->
+    <view class="homework-info">
+      <!-- 题目输入 -->
+      <input 
+        name="title" 
+        class="input-title" 
+        placeholder="请输入题目" 
+        placeholder-class="placeholder-title"
+      />
+      <!-- 作者输入 -->
+      <view class="form-item">
+        <text class="author-label">作者：</text>
+        <input 
+          name="author" 
+          class="input" 
+          placeholder="输入作者昵称" 
+          placeholder-class="placeholder-other"
+        />
+      </view>
+
+      <!-- 所在位置 -->
+      <view class="form-item">
+        <text class="author-label">所在位置：</text>
+        <input 
+          name="author" 
+          class="input" 
+          placeholder="输入作者昵称" 
+          placeholder-class="placeholder-other"
+        />
+      </view>
+
+      <!-- 作业时间 -->
+      <view class="form-item">
+        <text class="author-label">作业时间：</text>
+        <input 
+          name="author" 
+          class="input" 
+          placeholder="输入作业时间（备注节气）" 
+          placeholder-class="placeholder-other"
+        />
+      </view>
+
     </view>
+
+    <!-- 前言  -->
+    <textarea
+        name="intro" 
+        class="input-intro" 
+        placeholder="前言" 
+        placeholder-class="placeholder-intro"
+    ></textarea>
+
+    <!-- 描述分析区域  -->
+
+    <view>
+
+
+    </view>
+
+
     
   </view>
 
