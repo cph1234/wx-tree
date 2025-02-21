@@ -10,7 +10,14 @@ Page({
     ],
     selectedTags: [],
     images: [],
-    syncToHomework: false
+    syncToHomework: false,
+    currentPage: 'handInHomework'
+  },
+
+  switchTab(e) {
+    const page = e.currentTarget.dataset.page;
+    console.log('[Debug] Received page:', page);
+    this.setData({ currentPage: page });
   },
 
   bindTreeChange(e) {
