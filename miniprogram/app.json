@@ -35,27 +35,21 @@
     "list": [
       {
         "pagePath": "pages/home/index/index",
-        "iconPath": "image/saylove.png",
-        "selectedIconPath": "image/select-saylove.png",
-        "text": "表白墙"
+        "iconPath": "image/tree_group.png",
+        "selectedIconPath": "image/tree_group_after.png",
+        "text": "树友圈"
       },
       {
-        "pagePath": "pages/sale/index/sale",
-        "iconPath": "image/sale.png",
-        "selectedIconPath": "image/select-sale.png",
-        "text": "卖舍友"
-      },
-      {
-        "pagePath": "pages/compare_face/face",
-        "iconPath": "image/fall-in-love.png",
-        "selectedIconPath": "image/select-fall-in-love.png",
-        "text": "情侣脸"
+        "pagePath": "pages/home/post_tree/post",
+        "iconPath": "image/camera.png",
+        "selectedIconPath": "image/camera.png",
+        "text": "观察壹棵树"
       },
       {
         "pagePath": "pages/personal/index/personal",
-        "iconPath": "image/iam.png",
-        "selectedIconPath": "image/select-iam.png",
-        "text": "我的"
+        "iconPath": "image/my_tree.png",
+        "selectedIconPath": "image/my_tree_after.png",
+        "text": "我的树"
       }
     ]
   },
