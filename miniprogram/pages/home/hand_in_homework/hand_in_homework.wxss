@@ -93,6 +93,7 @@
 .large-btn-bg {
   width: 100%;
   height: 100rpx;
+  margin-top: 10rpx;
 }
 
 .btn-text-active {
@@ -150,6 +151,16 @@
   margin-bottom: 20rpx;
 }
 
+.input-desp {
+  width: 100%;
+  height: 146rpx;
+  border-radius: 20rpx;
+  Vertical-align: top;
+  padding: 15rpx;
+  margin-bottom: 20rpx;  
+  border: 2rpx solid #E6E9EE;
+}
+
 .placeholder-title {
   font-family: PingFangSC, PingFang SC;
   font-weight: 500;
@@ -176,6 +187,29 @@
   line-height: 26rpx;
   text-align: right;
   font-style: normal;
+}
+
+.add-photo {
+  width: 28rpx;
+  height: 28rpx;
+  margin-left: auto;
+  margin-right: 5rpx;
+}
+
+.add-text {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 28rpx;
+  color: #898781;
+  text-align: left;
+  font-style: normal;
+}
+
+.photo-big {
+  width: 100%;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+  border-radius: 20rpx;
 }
 
 .form-item {
@@ -210,6 +244,39 @@
   font-size: 24rpx;
   margin-top: 10rpx;
   margin-bottom: 10rpx;
+}
+
+.description {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10rpx;
+}
+
+.d-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.d-title {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 500;
+  font-size: 28rpx;
+  color: #1E0417;
+  text-align: left;
+  font-style: normal;
+  margin-right: 15rpx;
+}
+
+.d-note {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 22rpx;
+  color: #898781;
+  text-align: left;
+  font-style: normal;
 }
 
 .upload-section {
@@ -275,11 +342,41 @@
   text-align: center;
   padding: 30rpx;
   border-radius: 50rpx;
-  width: 690rpx;
+  width: 486rpx;
   margin: 40rpx 0;
   font-family: PingFangSC, PingFang SC;
   font-weight: 500;
   font-size: 30rpx;
   color: #F2F3F5;
+  font-style: normal;
+  margin-left: auto;
+}
+
+.add-hw-area {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.btn-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 30rpx;
+}
+
+.btn-image {
+  height: 72rpx;
+  width: 72rpx;
+}
+
+.text-other {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 22rpx;
+  color: #898781;
+  text-align: right;
   font-style: normal;
 }

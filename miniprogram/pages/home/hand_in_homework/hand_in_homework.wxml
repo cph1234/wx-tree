@@ -124,13 +124,261 @@
     ></textarea>
 
     <!-- 描述分析区域  -->
-
     <view>
+      <!-- 周边环境  -->
+      <view class="description">
+        <view class="d-info">
+            <text class="d-title">周边环境</text>
+            <text class="d-note">*最多可传3张图</text>
+            <image src="/image/add-photo.png" class="add-photo"></image>
+            <text class="add-text">添加</text>
+        </view>
 
+        <image class="photo-big"></image>
+
+        <textarea
+          name="intro" 
+          class="input-desp" 
+          placeholder="请输入文字描述" 
+          placeholder-class="placeholder-intro"
+      ></textarea>
+      </view>
+
+      <!-- 整株树形  -->
+      <view class="description">
+        <view class="d-info">
+            <text class="d-title">整株树形</text>
+            <text class="d-note">*最多可传3张图</text>
+            <image src="/image/add-photo.png" class="add-photo"></image>
+            <text class="add-text">添加</text>
+        </view>
+
+        <image class="photo-big"></image>
+
+        <textarea
+          name="intro" 
+          class="input-desp" 
+          placeholder="请输入文字描述" 
+          placeholder-class="placeholder-intro"
+      ></textarea>
+      </view>
+
+      <!-- 根茎  -->
+      <view class="description">
+        <view class="d-info">
+            <text class="d-title">根茎</text>
+            <text class="d-note">*最多可传3张图</text>
+            <image src="/image/add-photo.png" class="add-photo"></image>
+            <text class="add-text">添加</text>
+        </view>
+
+        <image class="photo-big"></image>
+
+        <textarea
+          name="intro" 
+          class="input-desp" 
+          placeholder="请输入文字描述" 
+          placeholder-class="placeholder-intro"
+      ></textarea>
+      </view>
+
+      <!-- 树叶  -->
+      <view class="description">
+        <view class="d-info">
+            <text class="d-title">树叶</text>
+            <text class="d-note">*最多可传3张图</text>
+            <image src="/image/add-photo.png" class="add-photo"></image>
+            <text class="add-text">添加</text>
+        </view>
+
+        <image class="photo-big"></image>
+
+        <textarea
+          name="intro" 
+          class="input-desp" 
+          placeholder="请输入文字描述" 
+          placeholder-class="placeholder-intro"
+      ></textarea>
+      </view>
+
+      <!-- 花(含孢子)  -->
+      <view class="description">
+        <view class="d-info">
+            <text class="d-title">花(含孢子)</text>
+            <text class="d-note">*最多可传3张图</text>
+            <image src="/image/add-photo.png" class="add-photo"></image>
+            <text class="add-text">添加</text>
+        </view>
+
+        <image class="photo-big"></image>
+
+        <textarea
+          name="intro" 
+          class="input-desp" 
+          placeholder="请输入文字描述" 
+          placeholder-class="placeholder-intro"
+      ></textarea>
+      </view>
+
+      <!-- 果(含种子)  -->
+      <view class="description">
+        <view class="d-info">
+            <text class="d-title">果(含种子)</text>
+            <text class="d-note">*最多可传3张图</text>
+            <image src="/image/add-photo.png" class="add-photo"></image>
+            <text class="add-text">添加</text>
+        </view>
+
+        <image class="photo-big"></image>
+
+        <textarea
+          name="intro" 
+          class="input-desp" 
+          placeholder="请输入文字描述" 
+          placeholder-class="placeholder-intro"
+      ></textarea>
+      </view>
+
+      <!-- 树栖动物  -->
+      <view class="description">
+        <view class="d-info">
+            <text class="d-title">树栖动物</text>
+            <text class="d-note">*最多可传3张图</text>
+            <image src="/image/add-photo.png" class="add-photo"></image>
+            <text class="add-text">添加</text>
+        </view>
+
+        <image class="photo-big"></image>
+
+        <textarea
+          name="intro" 
+          class="input-desp" 
+          placeholder="请输入文字描述" 
+          placeholder-class="placeholder-intro"
+      ></textarea>
+      </view>
+
+      <!-- 树生植物  -->
+      <view class="description">
+        <view class="d-info">
+            <text class="d-title">树生植物</text>
+            <text class="d-note">*最多可传3张图</text>
+            <image src="/image/add-photo.png" class="add-photo"></image>
+            <text class="add-text">添加</text>
+        </view>
+
+        <image class="photo-big"></image>
+
+        <textarea
+          name="intro" 
+          class="input-desp" 
+          placeholder="请输入文字描述" 
+          placeholder-class="placeholder-intro"
+      ></textarea>
+      </view>
+
+      <!-- 病虫害  -->
+      <view class="description">
+        <view class="d-info">
+            <text class="d-title">病虫害</text>
+            <text class="d-note">*最多可传3张图</text>
+            <image src="/image/add-photo.png" class="add-photo"></image>
+            <text class="add-text">添加</text>
+        </view>
+
+        <image class="photo-big"></image>
+
+        <textarea
+          name="intro" 
+          class="input-desp" 
+          placeholder="请输入文字描述" 
+          placeholder-class="placeholder-intro"
+      ></textarea>
+      </view>
+
+      <!-- 特殊性状  -->
+      <view class="description">
+        <view class="d-info">
+            <text class="d-title">特殊性状</text>
+            <text class="d-note">*最多可传3张图</text>
+            <image src="/image/add-photo.png" class="add-photo"></image>
+            <text class="add-text">添加</text>
+        </view>
+
+        <image class="photo-big"></image>
+
+        <textarea
+          name="intro" 
+          class="input-desp" 
+          placeholder="请输入文字描述" 
+          placeholder-class="placeholder-intro"
+      ></textarea>
+      </view>
+
+      <!-- 人文资料  -->
+      <view class="description">
+        <view class="d-info">
+            <text class="d-title">人文资料</text>
+            <text class="d-note">*最多可传3张图</text>
+            <image src="/image/add-photo.png" class="add-photo"></image>
+            <text class="add-text">添加</text>
+        </view>
+
+        <image class="photo-big"></image>
+
+        <textarea
+          name="intro" 
+          class="input-desp" 
+          placeholder="请输入文字描述" 
+          placeholder-class="placeholder-intro"
+      ></textarea>
+      </view>
+
+      <!-- 其他  -->
+      <view class="description">
+        <view class="d-info">
+            <text class="d-title">其他</text>
+            <text class="d-note">*最多可传3张图</text>
+            <image src="/image/add-photo.png" class="add-photo"></image>
+            <text class="add-text">添加</text>
+        </view>
+
+        <image class="photo-big"></image>
+
+        <textarea
+          name="intro" 
+          class="input-desp" 
+          placeholder="请输入文字描述" 
+          placeholder-class="placeholder-intro"
+      ></textarea>
+      </view>
 
     </view>
 
+    <!-- 结语  -->
+    <textarea
+        name="intro" 
+        class="input-intro" 
+        placeholder="结语" 
+        placeholder-class="placeholder-intro"
+    ></textarea>
+    
+  </view>
 
+  <!-- 第四部分：保存/提交按钮 -->
+
+  <view class="add-hw-area">
+    <view class = 'btn-area'>
+      <image src="/image/save_script.png" class = "btn-image"></image>
+      <text class="text-other">存草稿</text>
+    </view>
+    <view class = 'btn-area'>
+      <image src="/image/preview.png" class = "btn-image"></image>
+      <text class='text-other'>预览</text>
+    </view>
+    <view class="publish-btn" bindtap="handlePublish">
+    交作业
+    </view>
     
   </view>
 
