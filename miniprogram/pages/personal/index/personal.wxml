@@ -9,12 +9,12 @@
           <image class="avatar" src="{{userInfo.avatar_url}}"></image>
         </button>
         <!-- <image class="avatar" src="{{userInfo.avatar_url}}"></image> -->
-        <text class="avatar-badge">香樟组长</text>
+        <text class="avatar-badge" wx:if="{{userInfo.identity=='teamleader'}}">香樟组长</text>
       </view>
       <view class="user-detail">
         <view style="display: flex;align-content: flex-start;">
-          <input type="nickname"  class="username" value="{{userInfo.name}}" style="width: {{inputWidth}}px" bindinput="onInput"/>
-          <image class="icon" src="/image/修改.png"></image>
+          <input type="nickname" disabled="{{isDisabled}}" class="username" value="{{inputContent}}" style="width: {{inputWidth}}rpx" bindinput="onInput" id="inputField"  focus="{{!isDisabled}}" bindblur="onInputBlur"/>
+          <image class="icon" src="/image/修改.png" bindtap="enableInput"></image>
         </view>
         <!-- 仅保留树龄勋章 -->
         <view class="badges">

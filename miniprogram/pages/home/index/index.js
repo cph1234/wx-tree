@@ -21,15 +21,17 @@ Page({
       bottom:0,
       commentTreeId:'',
       commentUserId:'',
-      textareaHeight:30
+      textareaHeight:30,
+      searchValue:''
     },
-    getData(condition,page){
+    getData(condition,page,content=""){
       console.log(page)
       wx.cloud.callFunction({
         name:"queryTreeFriendCircle",
         data:{
           condition:condition,
           page:page,
+          content:content,
           userId:this.data.userInfo._id
         }
       }).then(res=>{
@@ -200,6 +202,21 @@ Page({
       this.setData({
         textareaHeight: height
       });
+    },
+    searchInput(e){
+      const searchValue = e.detail.value;
+      this.setData({
+        searchValue:searchValue
+      })
+    },
+    searchBlur(){
+      let index = this.data.filterIndex
+      let content = this.data.searchValue
+      console.log(content)
+      this.setData({
+        dataList:[]
+      })
+      this.getData(index,0,content)
     },
     // 处理输入
     handleInput: function(e) {

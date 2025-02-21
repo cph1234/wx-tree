@@ -36,7 +36,8 @@ Page({
                   open_id: app.globalData.user_openid,
                   my_attention:[],
                   my_fans:[],
-                  my_team_member:[]
+                  my_team_member:[],
+                  my_likes:[]
                 },
                 success: res => {
                   wx.showToast({

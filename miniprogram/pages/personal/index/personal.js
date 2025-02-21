@@ -10,7 +10,8 @@ Page({
     newLetterNumber: 0,
     serviceId: '',
     param: app.globalData.param,
-    inputValue:40
+    inputValue:40,
+    isDisabled:true
   },
   onLoad: function () {
     console.log(app.globalData)
@@ -19,9 +20,10 @@ Page({
       _openid:user_openid
     }).get().then(res=>{
       this.setData({
-        userInfo : res.data[0]
+        userInfo : res.data[0],
+        inputContent:res.data[0].name
       })
-      const width = res.data[0].name.length * 18; // 假设每个字符宽度为 14px
+      const width = res.data[0].name.length * 36; // 假设每个字符宽度为 36rpx
       console.log(width)
       this.setData({
         inputWidth: width
@@ -55,7 +57,7 @@ Page({
       userInfo:info
     })
     wx.cloud.uploadFile({
-      cloudPath: 'avator.png', // 云存储路径
+      cloudPath: 'avatar/' + app.globalData.user_openid + '.png', // 云存储路径
       filePath: avatarUrl, // 本地文件路径
       success: function (res) {
         console.log('上传成功', res.fileID);
@@ -78,14 +80,28 @@ Page({
   onInput(e) {
     const value = e.detail.value;
     console.log(value)
-    this.setData({
-      inputValue: value
-    });
     // 模拟计算输入内容的宽度，实际中可根据字体大小等精确计算
-    const width = value.length * 18; // 假设每个字符宽度为 14px
     this.setData({
-      inputWidth: width
+      inputContent: value,
+      inputWidth: value.length * 36
     });
+  },
+  enableInput(){
+    this.setData({
+      isDisabled: false,
+    });
+  },
+  onInputBlur(e){
+    setTimeout(() => {
+      console.log(this.data.inputContent)
+      db.collection("userInfo").where({
+        _openid:app.globalData.user_openid
+      }).update({
+        data:{
+          name:this.data.inputContent
+        }
+      })
+    }, 1000);
   },
   onShow: function () {
     

@@ -7,16 +7,29 @@ const _ = db.command
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  console.log(event)
     const condition = event.condition
     const userId = event.userId
     const page = event.page
+    const content = event.content
+    console.log(event)
     //全部 0 点赞 1 关注 2 组员3
     if(condition=="0"){
       try {
         let list=[]
-        let data = await db.collection("treeFriendsCircleInfo").skip(page)
-        .limit(5).get()
+        let data
+        if(content!==null&&content!==""&&content!==undefined){
+          data = await db.collection("treeFriendsCircleInfo").where({
+            content:db.RegExp({
+              regexp: content,
+              options: 'i', // 'i' 表示不区分大小写
+            })
+          }).skip(page)
+          .limit(3).get()
+        }else{
+          data = await db.collection("treeFriendsCircleInfo")
+          .skip(page)
+          .limit(3).get()
+        }
         for(let item of data.data){
           for(iten of item.comment){
             let userInfo1 = await db.collection("userInfo").doc(iten.userId).get()
@@ -51,13 +64,28 @@ exports.main = async (event, context) => {
      
         // 根据 attentions 数组中的 userId 查询 circle 表
         let list=[]
-        const data = await db.collection('treeFriendsCircleInfo')
+        let data
+        if(content!==null&&content!==""&&content!==undefined){
+          data = await db.collection("treeFriendsCircleInfo")
+          .where({
+            content:db.RegExp({
+              regexp: content,
+              options: 'i', // 'i' 表示不区分大小写
+            }),
+            userId: _.in(attentions)
+          })
+          .skip(page)
+          .limit(3)
+          .get()
+        }else{
+          data = await db.collection('treeFriendsCircleInfo')
           .where({
             userId: _.in(attentions)
           })
           .skip(page)
-          .limit(5)
+          .limit(3)
           .get();
+        }
         for(let item of data.data){
           for(iten of item.comment){
             let userInfo1 = await db.collection("userInfo").doc(iten.userId).get()
@@ -91,13 +119,28 @@ exports.main = async (event, context) => {
         const userInfo = userInfoResult.data[0];
         const members = userInfo.my_team_member || []; // 确保 members 是一个数组，即使为空
         let list=[]
-        const data = await db.collection('treeFriendsCircleInfo')
+        let data
+        if(content!==null&&content!==""&&content!==undefined){
+          data = await db.collection('treeFriendsCircleInfo')
+          .where({
+            content:db.RegExp({
+              regexp: content,
+              options: 'i', // 'i' 表示不区分大小写
+            }),
+            userId: _.in(members)
+          })
+          .skip(page)
+          .limit(3)
+          .get();
+        }else{
+          data = await db.collection('treeFriendsCircleInfo')
           .where({
             userId: _.in(members)
           })
           .skip(page)
-          .limit(5)
+          .limit(3)
           .get();
+        }
         for(let item of data.data){
           for(iten of item.comment){
             let userInfo1 = await db.collection("userInfo").doc(iten.userId).get()
@@ -130,13 +173,28 @@ exports.main = async (event, context) => {
       const userInfo = userInfoResult.data[0];
       const likes = userInfo.my_likes || []; // 确保 members 是一个数组，即使为空
       let list=[]
-      const data = await db.collection('treeFriendsCircleInfo')
+      let data
+      if(content!==null&&content!==""&&content!==undefined){
+        data = await db.collection('treeFriendsCircleInfo')
+        .where({
+          content:db.RegExp({
+            regexp: content,
+            options: 'i', // 'i' 表示不区分大小写
+          }),
+          _id: _.in(likes)
+        })
+        .skip(page)
+        .limit(3)
+        .get();
+      }else{
+        data = await db.collection('treeFriendsCircleInfo')
         .where({
           _id: _.in(likes)
         })
         .skip(page)
-        .limit(5)
+        .limit(3)
         .get();
+      }
       for(let item of data.data){
         for(iten of item.comment){
           let userInfo1 = await db.collection("userInfo").doc(iten.userId).get()

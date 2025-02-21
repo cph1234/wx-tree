@@ -22,6 +22,9 @@
         placeholder-class="placeholder-style"
         confirm-type="search"
         bindconfirm="onSearch"
+        bindinput="searchInput"
+        bindblur="searchBlur"
+        value="{{searchValue}}"
       />
     </view>
     <!-- 右边通知图标 -->
