@@ -1,6 +1,4 @@
 /* pages/home/post_tree/post.wxss */
-
-/* pages/treePost/treePost.wxss */
 .container {
   padding: 20rpx;
   background-color: #FFFFFF;
@@ -8,7 +6,7 @@
 
 .section {
   margin-bottom: 10rpx;
-  padding: 30rpx;
+  padding: 10rpx;
   display: flex;
   flex-direction: column;
 }
@@ -75,6 +73,7 @@
   margin: 40rpx 0;
   background-color: #F2F3F5;
   border-radius: 28rpx;
+  width: 100%;
 }
 
 .btn-container {
@@ -130,18 +129,6 @@
   margin-bottom: 10rpx;
 }
 
-.upload-section {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4rpx;
-  justify-content: space-around;
-}
-
-.upload-item {
-  width: calc((100% - 20rpx) / 4);
-  text-align: center;
-}
-
 .add-btn {
   width: 162rpx;
   height: 162rpx;
@@ -152,7 +139,8 @@
   justify-content: center;
   font-size: 25rpx;
   color: #999;
-}
+  text-align: center;
+} 
 
 .upload-bottom {
   display: flex;
@@ -200,4 +188,278 @@
   font-size: 30rpx;
   color: #F2F3F5;
   font-style: normal;
+}
+
+.work-note-1{
+  width: 520rpx;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 24rpx;
+  color: #898781;
+  text-align: left;
+  font-style: normal;
+  right: 0; /* 靠右调节 */
+}
+
+.homework-info{
+  display: flex;
+  flex-direction: column;
+}
+
+.input-title {
+  height: 60rpx;
+  text-align: left;
+  padding-bottom: 10rpx;
+  border-bottom: 2rpx solid #F2F3F5;
+  margin-bottom: 10rpx;
+}
+
+.input-intro{
+  width: 100%;
+  height: 146rpx;
+  background: #F2F3F5;
+  border-radius: 20rpx;
+  Vertical-align: top;
+  padding: 15rpx;
+  margin-bottom: 20rpx;
+}
+
+.input-desp {
+  width: 100%;
+  height: 146rpx;
+  border-radius: 20rpx;
+  Vertical-align: top;
+  padding: 15rpx;
+  margin-bottom: 20rpx;  
+  border: 2rpx solid #E6E9EE;
+}
+
+.placeholder-title {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 500;
+  font-size: 36rpx;
+  color: #C9CCD3;
+  font-style: normal;
+}
+
+.placeholder-intro {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 26rpx;
+  color: #898781;
+  line-height: 42rpx;
+  text-align: left;
+  font-style: normal;
+}
+
+.placeholder-other {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 26rpx;
+  color: #C6C8CE;
+  line-height: 26rpx;
+  text-align: right;
+  font-style: normal;
+}
+
+.add-photo {
+  width: 28rpx;
+  height: 28rpx;
+  margin-left: auto;
+  margin-right: 5rpx;
+}
+
+.add-text {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 28rpx;
+  color: #898781;
+  text-align: left;
+  font-style: normal;
+}
+
+.photo-big {
+  width: 100%;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+  border-radius: 20rpx;
+}
+
+.form-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10rpx;
+  background: #fff;
+  border-radius: 16rpx;
+}
+
+.author-label {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 26rpx;
+  color: #898781;
+  line-height: 26rpx;
+  text-align: right;
+  font-style: normal;
+}
+
+.textarea {
+  width: 100%;
+  height: 200rpx;
+  padding: 20rpx;
+  border-radius: 8rpx;
+}
+
+.word-count {
+  text-align: right;
+  color: #999;
+  font-size: 24rpx;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+}
+
+.description {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10rpx;
+}
+
+.d-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.d-title {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 500;
+  font-size: 28rpx;
+  color: #1E0417;
+  text-align: left;
+  font-style: normal;
+  margin-right: 15rpx;
+}
+
+.d-note {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 22rpx;
+  color: #898781;
+  text-align: left;
+  font-style: normal;
+}
+
+.upload-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* 关键调整 */
+  padding: 0  10rpx; /* 添加容器内边距 */
+}
+
+.upload-item {
+  /* 精准计算：总宽度 = (100% - 3*间隙) /4 */
+  width: calc((100% - 12rpx) / 4); /* 4个元素有3个间隙 */
+  margin-bottom: 5rpx; /* 行间距 */
+}
+
+.add-btn {
+  width: 100%; /* 继承父容器宽度 */
+  height: 162rpx;
+  border: 2rpx dashed #ddd;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25rpx;
+  color: #999;
+  flex-direction: column; /* 垂直排列图标和文字 */
+}
+
+/* 处理最后一行元素不足的情况 */
+.upload-section::after {
+  content: "";
+  width: calc((100% - 12rpx) / 4);
+  height: 0;
+  /* 当最后一行不满4个时，添加空元素占位 */
+}
+
+.upload-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10rpx;
+}
+
+.note-word {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 24rpx;
+  color: #898781;
+  line-height: 24rpx;
+  text-align: left;
+  font-style: normal;
+}
+
+.sync-word {
+  margin-left: 10rpx;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 500;
+  font-size: 26rpx;
+  color: #1E0417;
+  text-align: left;
+  font-style: normal;
+}
+
+.sync-option {
+  display: flex;
+  align-items: center;
+  margin-top: 20rpx;
+  color: #666;
+}
+
+.add-hw-area {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.btn-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 30rpx;
+}
+
+.btn-image {
+  height: 72rpx;
+  width: 72rpx;
+}
+
+.text-other {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 22rpx;
+  color: #898781;
+  text-align: right;
+  font-style: normal;
+}
+
+.publish-btn2 {
+  background: #1E0417;
+  text-align: center;
+  padding: 30rpx;
+  border-radius: 50rpx;
+  width: 400rpx;
+  margin: 40rpx 0;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 500;
+  font-size: 30rpx;
+  color: #F2F3F5;
+  font-style: normal;
+  margin-left: auto;
 }
