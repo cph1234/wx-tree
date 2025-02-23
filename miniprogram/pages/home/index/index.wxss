@@ -116,12 +116,15 @@
 
 /* 动态卡片 */
 .post-card {
-  padding: 15px;
+  padding: 30rpx;
   background: #fff;
   margin-bottom: 10px;
   border-bottom: 1px solid #eee;
+  width: 100%;
 }
-
+.content-list{
+  width: 100%;
+}
 .user-info {
   margin-top: 10rpx;
   display: grid;
@@ -300,6 +303,7 @@
 }
 
 .container {
+  width: 100%;
   padding: 10px;
 }
 
@@ -385,6 +389,7 @@ button {
   min-height: 60rpx;
   line-height: 60rpx;
   padding-left: 35rpx;
+  padding-right: 35rpx;
 }
 
 .send_btn {

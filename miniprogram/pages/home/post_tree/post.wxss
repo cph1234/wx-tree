@@ -101,6 +101,7 @@
   transform: translate(-50%, -50%);
   font-size: 32rpx;
   font-weight: 500;
+  font-weight: 600;
 }
 
 .btn-text {
@@ -335,7 +336,7 @@
 
 .d-title {
   font-family: PingFangSC, PingFang SC;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 28rpx;
   color: #1E0417;
   text-align: left;
@@ -363,6 +364,7 @@
   /* 精准计算：总宽度 = (100% - 3*间隙) /4 */
   width: calc((100% - 12rpx) / 4); /* 4个元素有3个间隙 */
   margin-bottom: 5rpx; /* 行间距 */
+  height: auto;
 }
 
 .add-btn {

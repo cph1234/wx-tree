@@ -25,7 +25,9 @@ Page({
       searchValue:''
     },
     getData(condition,page,content=""){
-      console.log(page)
+      wx.showLoading({
+          title: '数据获取中...',
+      });
       wx.cloud.callFunction({
         name:"queryTreeFriendCircle",
         data:{
@@ -41,6 +43,7 @@ Page({
           dataList:newData
         })
         console.log(this.data.dataList)
+        wx.hideLoading()
       })
     },
     getUserInfo(){
@@ -120,12 +123,17 @@ Page({
         this.getUserInfo()
       })
     },
+    hideComment(){
+      this.setData({
+        showInputBox:false
+      })
+    },
     onFilterChange(e) {
       this.setData({
         filterIndex: e.detail.value,
         dataList: []
       })
-      this.getData(e.detail.value,0)
+      this.getData(e.detail.value,0,this.data.searchValue)
     },
     previewImage: function(e) {
       console.log(e)
@@ -144,13 +152,18 @@ Page({
     },
     // 输入框内容变化时触发
     inputComment: function (e) {
+      console.log()
       this.setData({
         inputValue: e.detail.value
       });
     },
+    empty(){
+
+    },
     // 提交评论按钮点击事件
     submitComment: function () {
       const inputValue = this.data.inputValue;
+      
       if (inputValue.trim() === '') {
         wx.showToast({
           title: '评论内容不能为空',
@@ -375,13 +388,20 @@ Page({
         })
     },
 
+
     /**
      * 生命周期函数--监听页面显示
      */
     onShow: function(option) {
-        
+      console.log(this.data)
+      this.setData({
+        dataList:[],
+        searchValue:''
+      })
+      this.getUserInfo()
+      this.getData(0,0)
     },
-
+ 
     /**
      * 显示评论输入框
      */
