@@ -26,6 +26,7 @@ Page({
     images: [],
     syncToHomework: false,
     currentPage: 'postTree',
+    treeContent:'',
     homeworkTags:[
       {type:'周边环境',files:[],text:''},
       {type:'整株树形',files:[],text:''},
@@ -178,14 +179,80 @@ Page({
       });
       // todo
       if(syncToHomework){
+        let homeworkTags=[]
+        tags.forEach((item,index)=>{
+          let info = {}
+          info.type=item.type
+          info.files=[]
+          if(item.imgUrl!==""){
+            info.files.push(item.imgUrl)
+          }
+          info.text=''
+          homeworkTags.push(info)
+        })
         this.setData({
-          postTree:'handInHomework'
+          postTree:'handInHomework',
+          frontContent:this.data.treeContent,
+          homeworkTags:info
         })
       }else{
         wx.switchTab({
           url: '/pages/home/index/index'
         })
       }
+    })
+  },
+  previewHomeworkImage: function(e) {
+    console.log(e)
+    wx.previewImage({
+      current: e.currentTarget.dataset.url, // 当前显示图片的链接
+      urls: e.currentTarget.dataset.urls // 需要预览的图片链接列表（此处仅为示例，实际应用中可能有多个链接）
+    });
+  },
+  addImage(e){
+    let type = e.currentTarget.dataset.type
+    wx.chooseImage({
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success: res => {
+        let tags = this.data.homeworkTags
+        tags.forEach(item => {
+          if (type === item.type) {
+            item.files.push(res.tempFilePaths[0])
+          }
+        });
+        this.setData({
+          homeworkTags:tags
+        })
+        console.log(tags)
+      }
+    });
+  },
+  inputText(e){
+    console.log(e)
+    let tags = this.data.homeworkTags
+    tags.forEach(item => {
+      if (e.currentTarget.dataset.type === item.type) {
+        item.text = e.detail.value
+      }
+    });
+    this.setData({
+      homeworkTags:tags
+    })
+  },
+  inputFrontContent(e){
+    this.setData({
+      homeworkFrontContent:e.detail.value
+    })
+  },
+  inputEndContent(e){
+    this.setData({
+      homeworkEndContent:e.detail.value
+    })
+  },
+  homeworkText(e){
+    this.setData({
+      homeworkTitle:e.detail.value
     })
   },
   previewImage(e) {
@@ -227,6 +294,7 @@ Page({
         item.files = filesID
       }
     }
+    console.log(info)
     db.collection("homeworkInfo")
     .add({
       data:info

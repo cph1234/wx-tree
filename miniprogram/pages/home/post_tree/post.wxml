@@ -138,7 +138,7 @@
             class="input-title" 
             placeholder="请输入题目" 
             placeholder-class="placeholder-title"
-            bindinput="homeworkText"
+            bindblur="homeworkText"
             value="{{homeworkTitle}}"
           />
           <!-- 作者输入 -->
@@ -178,10 +178,12 @@
 
         <!-- 前言  -->
         <textarea
-            name="intro" 
-            class="input-intro" 
-            placeholder="前言" 
-            placeholder-class="placeholder-intro"
+          name="intro" 
+          class="input-intro" 
+          placeholder="前言" 
+          placeholder-class="placeholder-intro"
+          bindblur="inputFrontContent"
+          value="{{homeworkFrontContent}}"
         ></textarea>
 
         <!-- 描述分析区域  -->
@@ -193,14 +195,26 @@
                   <text class="d-title">{{item.type}}</text>
                   <text class="d-note">*最多可传3张图</text>
                   <image src="/image/add-photo.png" class="add-photo"></image>
-                  <text class="add-text">添加</text>
+                  <text class="add-text" bindtap="addImage" data-type="{{item.type}}">添加</text>
               </view>
-              <image class="photo-big"></image>
+              <view class="grid-container">
+                <block wx:for="{{item.files}}" wx:for-item="imageItem" wx:key="index">
+                  <view class="grid-item">
+                    <image class="grid-item-img" src="{{imageItem}}" mode="aspectFill" bindtap="previewHomeworkImage"  data-url="{{imageItem}}" data-urls="{{item.files}}"></image>
+                  </view>
+                </block>
+                <!-- 占位view，用于在图片数量不足时实现布局自适应 -->
+                <view class="grid-item" wx:if="{{item.fileIds.length % 3 === 1 || item.fileIds.length % 3 === 2}}"></view>
+                <view class="grid-item" wx:if="{{item.fileIds.length % 3 === 1}}"></view>
+              </view>
               <textarea
                 name="intro" 
                 class="input-desp" 
                 placeholder="请输入文字描述" 
                 placeholder-class="placeholder-intro"
+                bindblur="inputText"
+                data-type="{{item.type}}"
+                value="{{item.text}}"
               ></textarea>
             </view>
           </view>
@@ -212,6 +226,8 @@
             class="input-intro" 
             placeholder="结语" 
             placeholder-class="placeholder-intro"
+            bindblur="inputEndContent"
+            value="{{homeworkEndContent}}"
         ></textarea>
       </view>
       <!-- 第四部分：保存/提交按钮 -->
