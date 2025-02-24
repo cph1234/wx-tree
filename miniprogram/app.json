@@ -21,7 +21,8 @@
     "pages/home/hand_in_homework/hand_in_homework",
     "pages/personal/add_tree_info/add_tree_info",
     "pages/personal/tree_manage/tree_manage",
-    "pages/personal/my_follow/my_follow"
+    "pages/personal/my_follow/my_follow",
+    "pages/personal/my_fans/my_fans"
   ],
   "window": {
     "backgroundTextStyle": "light",
