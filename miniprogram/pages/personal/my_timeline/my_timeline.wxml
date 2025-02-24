@@ -1,0 +1,36 @@
+<!--pages/personal/my_timeline/my_timeline.wxml-->
+<view class="container">
+  
+  <view class="header">
+    <picker>
+      <view class="picker"><text class="year-title">2024年</text></view>
+    </picker>
+  </view>
+
+  <!-- 时间轴容器 -->
+  <view class="timeline">
+    <block wx:for="{{timeline}}" wx:key="year">
+      <!-- 年份区块 -->
+      <view class="year-group">
+        <text class="year">{{item.year}}年</text>
+        <!-- 记录 -->
+        <view class="records">
+          <block wx:for="{{item.entries}}" wx:for-item="entry" wx:key="date">
+            <view class="record-item">
+              <!-- 左侧时间 -->
+              <view class="time">
+                <text class="day">{{entry.day}}</text>
+                <text class="month">{{entry.month}}月</text>
+              </view>
+              <!-- 右侧内容 -->
+              <view class="content">
+                <image class="tree-image" src="{{entry.image}}"/>
+                <text class="description">{{entry.description}}</text>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

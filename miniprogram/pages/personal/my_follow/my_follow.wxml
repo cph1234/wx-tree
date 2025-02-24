@@ -1,0 +1,29 @@
+<!--pages/personal/my_follow/my_follow.wxml-->
+<view class="container">
+  <view class="list">
+    <block wx:for="{{followList}}" wx:key="index">
+      <view class="list-item">
+        <!-- 左侧用户信息 -->
+        <view class="user-info">
+          <image class="avatar" src="{{item.avatar}}" mode="aspectFill"/>
+          <view class="text-info">
+            <text class="username">{{item.username}}</text>
+            <view class="badges">
+              <text class="badges-text"> 树龄勋章 </text>
+              <block wx:for="{{item.badges}}" wx:key="*this">
+                <image class="badge-icon" src="/image/tree-badge.png" />
+              </block>
+            </view>
+          </view>
+        </view>
+        <!-- 右侧关注按钮 -->
+        <view class="btn-container">
+          <view class="follow-btn {{item.isFollowed ? 'followed' : ''}}">
+            {{item.isFollowed ? '已关注' : '关注'}}
+          </view>
+          <image class="image-sx" src="/image/icon-sx.png"></image>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

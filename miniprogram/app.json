@@ -18,7 +18,12 @@
     "pages/personal/sale_list/sale_list",
     "pages/compare_face/face",
     "pages/home/post_tree/post",
-    "pages/home/hand_in_homework/hand_in_homework"
+    "pages/home/hand_in_homework/hand_in_homework",
+    "pages/personal/tree_manage/tree_manage",
+    "pages/personal/my_follow/my_follow",
+    "pages/personal/my_fans/my_fans",
+    "pages/personal/my_timeline/my_timeline",
+    "pages/common/other_timeline/other_timeline"
   ],
   "window": {
     "backgroundTextStyle": "light",

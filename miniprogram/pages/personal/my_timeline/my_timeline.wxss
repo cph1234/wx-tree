@@ -1,0 +1,147 @@
+/* pages/personal/my_timeline/my_timeline.wxss */
+.container {
+  background: #FFFFFF;
+  min-height: 100vh;
+  padding: 30rpx;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.picker{
+  padding: 20rpx;
+  background: #F2F3F5;
+  width: 690rpx;
+  height: 84rpx;
+  border-radius: 38rpx;
+  text-align: center;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 500;
+  font-size: 30rpx;
+  color: #444243;
+  font-style: normal;
+}
+
+.year-title {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 30rpx;
+  color: #444243;
+  line-height: 30rpx;
+  text-align: left;
+  font-style: normal;
+}
+
+/* 时间轴主线 */
+.timeline {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* .timeline::before {
+  content: '';
+  position: absolute;
+  left: 20rpx;
+  top: 40rpx;
+  width: 2rpx;
+  height: 95%;
+  background: #e0e0e0;
+} */
+
+.year-group {
+  margin-bottom: 60rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.year {
+  font-family: Arial, Arial;
+  font-weight: normal;
+  font-size: 32rpx;
+  color: #1E0417;
+  line-height: 32rpx;
+  text-align: left;
+  font-style: normal;
+  margin-bottom: 20rpx;
+}
+
+.record {
+  width: 100%;
+}
+
+.record-item {
+  margin-bottom: 50rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* 时间标记 */
+.time {
+  width: 170rpx;
+  padding-right: 30rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-bottom: auto;
+}
+
+.day {
+  width: 46rpx;
+  height: 40rpx;
+  display: block;
+  font-size: 36rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.month {
+  width: 50rpx;
+  height: 24rpx;
+  font-family: Arial, Arial;
+  font-weight: normal;
+  font-size: 24rpx;
+  color: #1E0417;
+  line-height: 24rpx;
+  text-align: justify;
+  font-style: normal;
+}
+
+/* 内容区域 */
+.content {
+  width: 100%;
+  background: #fff;
+  border-radius: 12rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.tree-image {
+  height: 200rpx;
+  width: 200rpx;
+  border-radius: 20rpx;
+  margin-right: 20rpx;
+}
+
+.description {
+  width: 320rpx;
+  height: 200rpx;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 28rpx;
+  color: #898781;
+  line-height: 40rpx;
+  text-align: justify;
+  font-style: normal;
+}

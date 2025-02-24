@@ -1,0 +1,72 @@
+<!--pages/personal/tree_manage/tree_manage.wxml-->
+<view class="container">
+
+  <view class="header">
+    <picker>
+      <view class="picker"><text class="year">2024年</text></view>
+    </picker>
+  </view>
+
+  <scroll-view scroll-y class="card-list">
+    
+    <!-- 香樟树卡片 -->
+    <view class="info-card">
+      <image src="/image/card_bg.png"
+             mode="aspectFill" 
+             class="background-image"
+      ></image>
+      <view class="content">
+        <view class="card-header">
+          <text class="tree-name">香樟树</text>
+          <view><text class="contact-leader" style="position: relative; left: -29rpx; top: -4rpx"> 联系组长</text></view>
+        </view>
+        <view class="info-box">
+          <!-- 第一行：树木定位 -->
+          <view class="info-row single-line">
+            <view class="info-item full-width">
+              <text class="label">树木定位</text>
+              <text class="value">{{selectedTree.position || '-'}}</text>
+            </view>
+          </view>
+
+          <!-- 第二行：海拔高度 + 日照情况 -->
+          <view class="info-row">
+            <view class="info-item">
+              <text class="label">海拔高度</text>
+              <text class="value">{{selectedTree.altitude || '-'}}</text>
+            </view>
+            <view class="info-item">
+              <text class="label">日照情况</text>
+              <text class="value">{{selectedTree.sunshine || '-'}}</text>
+            </view>
+          </view>
+
+          <!-- 第三行：土壤类型 + 天气情况 -->
+          <view class="info-row">
+            <view class="info-item">
+              <text class="label">土壤类型</text>
+              <text class="value">{{selectedTree.soil || '-'}}</text>
+            </view>
+            <view class="info-item">
+              <text class="label">天气情况</text>
+              <text class="value">{{selectedTree.weather || '-'}}</text>
+            </view>
+          </view>
+
+          <!-- 第四行：树木规格 -->
+          <view class="info-row">
+            <view class="info-item">
+              <text class="label">树木规格</text>
+              <text class="value">{{selectedTree.treeDimensions || '-'}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 其他树木卡片（银杏树、榕树）结构类似... -->
+    
+  </scroll-view>
+
+  <button class="add-btn">新增树木信息录入</button>
+</view>
