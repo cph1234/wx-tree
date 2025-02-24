@@ -34,7 +34,7 @@
     </view>
   </view>
 
-  <view class="container" style="height: -285rpx; display: flex; box-sizing: border-box">
+  <view class="container" style="height: -285rpx; display: flex; box-sizing: border-box" bindtap="hideComment">
     <!-- 动态列表 -->
     <view class="content-list">
       <!-- 遍历 -->  
@@ -82,12 +82,12 @@
               <text>{{item.likes}}</text>
             </view>
             <view class="comment">
-              <image class="icon" src="/image/comment-icon.png" bindtap="showInput" data-id="{{item._id}}"></image>
+              <image class="icon" src="/image/comment-icon.png" catchtap="showInput" data-id="{{item._id}}"></image>
             </view>
           </view>
           <!-- 评论区 -->
-          <view class="comment-section" >
-            <view class="comment-item" wx:for="{{item.comment}}" wx:for-item="commentItem" wx:key="index" bindtap="showInput" data-id="{{item._id}}" data-id2="{{commentItem.userId}}">
+          <view class="comment-section" wx:if="{{item.comment.length!==0}}">
+            <view class="comment-item" wx:for="{{item.comment}}" wx:for-item="commentItem" wx:key="index" catchtap="showInput" data-id="{{item._id}}" data-id2="{{commentItem.userId}}">
               <text class="comment-user">{{commentItem.userName1}}</text>
               <block wx:if="{{commentItem.userName2!==null&&commentItem.userName2!==''&&commentItem.userName2!==undefined}}">
                 <text>回复 </text>
@@ -98,7 +98,7 @@
           </view>
         </view>
         <view class="input-section" wx:if="{{showInputBox}}" style="bottom:{{bottom}}px;height:{{textareaHeight+10}}px">
-          <textarea class='input_input' value="{{inputContent}}" focus="auto" bindinput="inputComment" show-confirm-bar='{{false}}' auto-height bindlinechange="handleLineChange"></textarea>
+          <textarea class='input_input' value="{{inputContent}}" focus="auto" catchtap="empty" bindinput="inputComment" show-confirm-bar='{{false}}' auto-height bindlinechange="handleLineChange"></textarea>
           <view style="height:60rpx;width:170rpx;">
             <view class="send_btn">
               <text class="send_btn_text" bindtap="submitComment">发送</text>

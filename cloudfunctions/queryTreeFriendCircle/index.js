@@ -23,10 +23,13 @@ exports.main = async (event, context) => {
               regexp: content,
               options: 'i', // 'i' 表示不区分大小写
             })
-          }).skip(page)
+          })
+          .orderBy('create_time', 'desc')
+          .skip(page)
           .limit(3).get()
         }else{
           data = await db.collection("treeFriendsCircleInfo")
+          .orderBy('create_time', 'desc')
           .skip(page)
           .limit(3).get()
         }
@@ -74,6 +77,7 @@ exports.main = async (event, context) => {
             }),
             userId: _.in(attentions)
           })
+          .orderBy('create_time', 'desc')
           .skip(page)
           .limit(3)
           .get()
@@ -82,6 +86,7 @@ exports.main = async (event, context) => {
           .where({
             userId: _.in(attentions)
           })
+          .orderBy('create_time', 'desc')
           .skip(page)
           .limit(3)
           .get();
@@ -129,6 +134,7 @@ exports.main = async (event, context) => {
             }),
             userId: _.in(members)
           })
+          .orderBy('create_time', 'desc')
           .skip(page)
           .limit(3)
           .get();
@@ -137,6 +143,7 @@ exports.main = async (event, context) => {
           .where({
             userId: _.in(members)
           })
+          .orderBy('create_time', 'desc')
           .skip(page)
           .limit(3)
           .get();
@@ -183,6 +190,7 @@ exports.main = async (event, context) => {
           }),
           _id: _.in(likes)
         })
+        .orderBy('create_time', 'desc')
         .skip(page)
         .limit(3)
         .get();
@@ -191,6 +199,7 @@ exports.main = async (event, context) => {
         .where({
           _id: _.in(likes)
         })
+        .orderBy('create_time', 'desc')
         .skip(page)
         .limit(3)
         .get();
