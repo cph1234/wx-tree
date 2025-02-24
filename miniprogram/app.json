@@ -22,7 +22,8 @@
     "pages/personal/tree_manage/tree_manage",
     "pages/personal/my_follow/my_follow",
     "pages/personal/my_fans/my_fans",
-    "pages/personal/my_timeline/my_timeline"
+    "pages/personal/my_timeline/my_timeline",
+    "pages/common/other_timeline/other_timeline"
   ],
   "window": {
     "backgroundTextStyle": "light",
