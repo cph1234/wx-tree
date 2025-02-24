@@ -344,6 +344,12 @@
   margin-right: 15rpx;
 }
 
+.icon {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 8rpx;
+}
+
 .d-note {
   font-family: PingFangSC, PingFang SC;
   font-weight: 400;

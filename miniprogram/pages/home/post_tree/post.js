@@ -1,6 +1,12 @@
 const app = getApp()
 const db = wx.cloud.database()
 const _ = db.command
+
+let QQMapWX = require('./qqmap-wx-jssdk.js');
+let qqmapsdk = new QQMapWX({
+  key: 'UGDBZ-Z3SWW-RHER7-3PAQH-4Y5CH-BEBUJ' // 必填，填自己在腾讯位置服务申请的key
+});
+
 Page({
   data: {
     userInfo:{},
@@ -44,7 +50,10 @@ Page({
     homeworkTitle:'',
     homeworkPosition:'',
     homeworkFrontContent:'',
-    homeworkEndContent:''
+    homeworkEndContent:'',
+    latitude: null,
+    longitude: null,
+    city: '获取位置'
   },
   /**
    * 生命周期函数--监听页面加载
@@ -209,6 +218,11 @@ Page({
       urls: e.currentTarget.dataset.urls // 需要预览的图片链接列表（此处仅为示例，实际应用中可能有多个链接）
     });
   },
+  homeworkTime(e){
+    this.setData({
+      homeworkTime:e.detail.value
+    })
+  },
   addImage(e){
     let type = e.currentTarget.dataset.type
     wx.chooseImage({
@@ -304,5 +318,47 @@ Page({
         url: '/pages/home/index/index'
       })
     })
+  },
+  getLocation() {
+    let that=this
+    wx.getLocation({
+      type: 'wgs84',
+      success :res=> {
+        const latitude = res.latitude
+        const longitude = res.longitude
+        const speed = res.speed
+        const accuracy = res.accuracy
+        console.log(res)
+        that.setData({
+          latitude: res.latitude,
+          longitude: res.longitude
+        })
+        
+        //新增
+        qqmapsdk.reverseGeocoder({
+          //位置坐标，默认获取当前位置，非必须参数 
+          //Object格式
+          location: {
+            latitude: res.latitude,
+            longitude: res.longitude
+          },
+          success: function(res) {//成功后的回调
+            console.log(res.result.ad_info.city);
+            that.setData({
+              city: res.result.ad_info.city
+            })
+            },
+          fail: function(error) {
+            console.error(error);
+          },
+          complete: function(res) {
+            console.log(res);
+          }
+          })
+      },
+      fail: function (errInfo) {
+        console.info(errInfo)
+      }
+     })
   }
 });
