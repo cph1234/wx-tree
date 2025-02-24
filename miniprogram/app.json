@@ -23,7 +23,8 @@
     "pages/personal/my_follow/my_follow",
     "pages/personal/my_fans/my_fans",
     "pages/personal/my_timeline/my_timeline",
-    "pages/common/other_timeline/other_timeline"
+    "pages/common/other_timeline/other_timeline",
+    "pages/personal/my_group/my_group"
   ],
   "window": {
     "backgroundTextStyle": "light",
