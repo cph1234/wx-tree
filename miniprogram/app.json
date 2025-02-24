@@ -18,7 +18,9 @@
     "pages/personal/sale_list/sale_list",
     "pages/compare_face/face",
     "pages/home/post_tree/post",
-    "pages/home/hand_in_homework/hand_in_homework"
+    "pages/home/hand_in_homework/hand_in_homework",
+    "pages/personal/add_tree_info/add_tree_info",
+    "pages/personal/tree_manage/tree_manage"
   ],
   "window": {
     "backgroundTextStyle": "light",
