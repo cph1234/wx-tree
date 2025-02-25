@@ -108,37 +108,9 @@ Page({
   },
   onReady: function () {
   },
-  /**
-   * 进入消息列表
-   */
-  openMessage: function () {
+  treeInfoManage(){
     wx.navigateTo({
-      url: '/pages/personal/message/message?type=0&new_message=0'
+      url: '/pages/personal/tree_manage/tree_manage?userId='+this.data.userInfo._id,
     })
-  },
-
-  /**
-   * 进入话题列表
-   */
-  opendTopicList: function () {
-    wx.navigateTo({
-      url: '/pages/personal/topic_list/topic_list'
-    })
-  },
-  /**
-   * 进入表白墙列表
-   */
-  opendPostList: function () {
-    wx.navigateTo({
-      url: '/pages/personal/post_list/post_list'
-    })
-  },
-  /**
-   * 进入卖舍友列表
-   */
-  openSaleList: function () {
-    wx.navigateTo({
-      url: '/pages/personal/sale_list/sale_list'
-    })
-  },
+  }
 })

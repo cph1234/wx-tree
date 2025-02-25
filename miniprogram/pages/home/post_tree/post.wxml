@@ -155,12 +155,10 @@
           <!-- 所在位置 -->
           <view class="form-item">
             <text class="author-label">所在位置：</text>
-            <input 
-              name="author" 
-              class="input" 
-              placeholder="输入作者昵称" 
-              placeholder-class="placeholder-other"
-            />
+            <view bindtap="getLocation">
+              <image src="/image/定位.png" class="icon"></image>
+              <text>{{city}}</text>
+            </view>
           </view>
 
           <!-- 作业时间 -->
@@ -171,6 +169,8 @@
               class="input" 
               placeholder="输入作业时间(备注节气)" 
               placeholder-class="placeholder-other"
+              value="{{homeworkTime}}"
+              bindblur="homeworkTime"
             />
           </view>
 
@@ -189,7 +189,7 @@
         <!-- 描述分析区域  -->
         <view>
           <!-- 周边环境  -->
-          <view wx:for="{{homeworkTags}}">
+          <view wx:for="{{homeworkTags}}" wx:key="index">
             <view class="description">
               <view class="d-info">
                   <text class="d-title">{{item.type}}</text>

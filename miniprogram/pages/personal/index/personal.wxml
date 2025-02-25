@@ -56,13 +56,13 @@
       <text class="word">我的作业</text>
       <view class="arrow"></view>
     </navigator>
-    <navigator class="menu-item" url="/pages/tree-management/tree-management">
+    <view class="menu-item" bindtap="treeInfoManage">
       <view>
         <image src='/image/personal_icon/list.png' class='item-image' style="background-color: #99AB64;"></image>
       </view>
       <text class="word">树木信息管理</text>
       <view class="arrow"></view>
-    </navigator>
+    </view>
     <navigator class="menu-item" url="/pages/ranking/ranking">
       <view>
         <image src='/image/personal_icon/jiangzhang.png' class='item-image'
