@@ -232,7 +232,7 @@
       </view>
       <!-- 第四部分：保存/提交按钮 -->
       <view class="add-hw-area">
-        <view class = 'btn-area'>
+        <view class = 'btn-area' bindtap="handleDraft">
           <image src="/image/save_script.png" class = "btn-image"></image>
           <text class="text-other">存草稿</text>
         </view>

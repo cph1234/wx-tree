@@ -48,12 +48,12 @@ Page({
       {type:'其它',files:[],text:''}
     ],
     homeworkTitle:'',
-    homeworkPosition:'',
     homeworkFrontContent:'',
     homeworkEndContent:'',
     latitude: null,
     longitude: null,
-    city: '获取位置'
+    city: '获取位置',
+    homeworkTime:''
   },
   /**
    * 生命周期函数--监听页面加载
@@ -65,11 +65,12 @@ Page({
     db.collection("userInfo").where({
       _openid:app.globalData.user_openid
     }).get().then(res=>{
+      let userInfo = res.data[0]
       this.setData({
-        userInfo : res.data[0]
+        userInfo : userInfo
       })
       db.collection("treeInfo").where({
-        userId:res.data[0]._id
+        userId:userInfo._id
       }).get().then(res=>{
         if(res.data.length==0){
           wx.showToast({
@@ -85,6 +86,25 @@ Page({
           treesInfo: res.data,
           trees: trees
         })
+        if(userInfo.draft!==null&&userInfo.draft!==undefined&&userInfo.draft.userId!==''){
+          let draft = userInfo.draft
+          let treeId = draft.treeId
+          let selectedTree = {}
+          res.data.forEach(item=>{
+            if(item._id===treeId){
+              selectedTree = item
+            }
+          })
+          this.setData({
+            homeworkTitle:draft.title,
+            homeworkTime:draft.create_time,
+            city:draft.position,
+            homeworkFrontContent:draft.frontContent,
+            homeworkEndContent:draft.endContent,
+            homeworkTags:draft.details,
+            selectedTree:selectedTree
+          })
+        }
       })
     })
   },
@@ -187,9 +207,9 @@ Page({
         icon: 'success'
       });
       // todo
-      if(syncToHomework){
+      if(this.data.syncToHomework){
         let homeworkTags=[]
-        tags.forEach((item,index)=>{
+        this.data.tags.forEach((item,index)=>{
           let info = {}
           info.type=item.type
           info.files=[]
@@ -200,9 +220,9 @@ Page({
           homeworkTags.push(info)
         })
         this.setData({
-          postTree:'handInHomework',
+          currentPage:'handInHomework',
           frontContent:this.data.treeContent,
-          homeworkTags:info
+          homeworkTags:homeworkTags
         })
       }else{
         wx.switchTab({
@@ -284,10 +304,10 @@ Page({
     // 处理发布逻辑
     let info={}
     info.title=this.data.homeworkTitle
-    info.create_time=wx.cloud.database().serverDate()
+    info.create_time=this.data.homeworkTime
     info.userId=this.data.userInfo._id
     info.treeId=this.data.selectedTree._id
-    info.position=this.data.homeworkPosition
+    info.position=this.data.city
     info.frontContent=this.data.homeworkFrontContent
     info.endContent=this.data.homeworkEndContent
     info.details=this.data.homeworkTags
@@ -295,23 +315,106 @@ Page({
     for(let item of info.details){
       let filesID = [];
       if(item.files.length!==0){
+        let img=[]
         item.files.forEach((iten,indey)=>{
-          let extName = iten.split(".").pop(); // 获取拓展名  
-          let cloudPath = "homework/" + new Date().getTime() + indey + '.' + extName;
-          let promise = wx.cloud.uploadFile({
-            cloudPath: cloudPath,
-            filePath: iten, // 文件路径
-          })
-          filesID.push(promise)
+          console.log(iten)
+          if(iten.startsWith("cloud://")){
+            img.push(iten)
+          }else{
+            let extName = iten.split(".").pop(); // 获取拓展名  
+            let cloudPath = "homework/" + new Date().getTime() + indey + '.' + extName;
+            let promise = wx.cloud.uploadFile({
+              cloudPath: cloudPath,
+              filePath: iten, // 文件路径
+            })
+            filesID.push(promise)
+          }
         })
         filesID = await Promise.all(filesID)
-        item.files = filesID
+        let fileIDs = []
+        filesID.forEach(item=>{
+          fileIDs.push(item.fileID)
+        })
+        img.forEach(item=>{
+          fileIDs.push(item)
+        })
+        item.files = fileIDs
       }
     }
-    console.log(info)
     db.collection("homeworkInfo")
     .add({
       data:info
+    }).then(res=>{
+      let emptyInfo={}
+      emptyInfo.title=''
+      emptyInfo.create_time=''
+      emptyInfo.userId=''
+      emptyInfo.treeId=''
+      emptyInfo.position=''
+      emptyInfo.frontContent=''
+      emptyInfo.endContent=''
+      emptyInfo.details=[]
+      db.collection("userInfo")
+      .doc(this.data.userInfo._id)
+      .update({
+        data:{
+          draft:emptyInfo
+        }
+      }).then(res=>{
+        console.log(res)
+        wx.switchTab({
+          url: '/pages/home/index/index'
+        })
+      })
+    })
+  },
+  async handleDraft(){
+    // 处理发布逻辑
+    let info={}
+    info.title=this.data.homeworkTitle
+    info.create_time=this.data.homeworkTime
+    info.userId=this.data.userInfo._id
+    info.treeId=this.data.selectedTree._id
+    info.position=this.data.city
+    info.frontContent=this.data.homeworkFrontContent
+    info.endContent=this.data.homeworkEndContent
+    info.details=this.data.homeworkTags
+    for(let item of info.details){
+      let filesID = [];
+      if(item.files.length!==0){
+        let img=[]
+        item.files.forEach((iten,indey)=>{
+          console.log(iten)
+          if(iten.startsWith("cloud://")){
+            img.push(iten)
+          }else{
+            let extName = iten.split(".").pop(); // 获取拓展名  
+            let cloudPath = "homework/" + new Date().getTime() + indey + '.' + extName;
+            let promise = wx.cloud.uploadFile({
+              cloudPath: cloudPath,
+              filePath: iten, // 文件路径
+            })
+            filesID.push(promise)
+          }
+        })
+        filesID = await Promise.all(filesID)
+        let fileIDs = []
+        filesID.forEach(item=>{
+          fileIDs.push(item.fileID)
+        })
+        img.forEach(item=>{
+          fileIDs.push(item)
+        })
+        item.files = fileIDs
+      }
+    }
+    console.log(info)
+    db.collection("userInfo")
+    .doc(this.data.userInfo._id)
+    .update({
+      data:{
+        draft:info
+      }
     }).then(res=>{
       console.log(res)
       wx.switchTab({
@@ -345,7 +448,7 @@ Page({
           success: function(res) {//成功后的回调
             console.log(res.result.ad_info.city);
             that.setData({
-              city: res.result.ad_info.city
+              city: res.result.ad_info.city + '('+longitude.toString().split('.')[0]+'°,'+latitude.toString().split('.')[0]+'°)'
             })
             },
           fail: function(error) {
