@@ -1,0 +1,58 @@
+<!--pages/personal/rank/rank.wxml-->
+<view class="container">
+  <!-- 前3名区域 -->
+  <view class="avatar-group">
+    <!-- 左侧头像 -->
+    <view class="avatar-item">
+      <view class="avatar-container">
+        <image class="avatar-img" src="/image/boy.png"/>
+        <image class="medal-image" src="/image/silver_medal.png" />
+      </view>
+      <view class="detail-text">
+        <text class="avatar-name">巴伦亚娜</text>
+        <text class="observation-count">今年观察62次</text>
+      </view>
+    </view>
+
+    <!-- 中间放大头像 -->
+    <view class="avatar-item center-item">
+      <view class="avatar-container">
+        <image class="avatar-img-large" src="/image/girl.png"/>
+        <image class="medal-image" src="/image/gold_medal.png" />
+      </view>
+      <view class="detail-text">
+        <text class="avatar-name">软萌的小猫</text>
+        <text class="observation-count">今年观察78次</text>
+      </view>
+    </view>
+
+    <!-- 右侧头像 -->
+    <view class="avatar-item">
+      <view class="avatar-container">
+        <image class="avatar-img" src="/image/boy-icon.png"/>
+        <image class="medal-image" src="/image/bronze_medal.png" />
+      </view>
+      <view class="detail-text">
+        <text class="avatar-name">艾拉娜扎</text>
+        <text class="observation-count">今年观察49次</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 4-9名区域 -->
+  <view class="other-group">
+      <view class = 'other-item'>
+        <text class="rank-text">04</text>
+        <image class="rank-avator" src="/image/boy.png"/>
+        <text class="rank-name">不知名网友</text>
+        <text class="rank-observation-count">今年观察62次</text>
+      </view>
+      <view class = 'other-item'>
+        <text class="rank-text">05</text>
+        <image class="rank-avator" src="/image/boy.png"/>
+        <text class="rank-name">亮仔牛奶</text>
+        <text class="rank-observation-count">今年观察52次</text>
+      </view>
+  </view>
+
+</view>

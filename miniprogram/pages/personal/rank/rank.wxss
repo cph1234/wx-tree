@@ -1,0 +1,154 @@
+/* pages/personal/rank/rank.wxss */
+.container{
+  background-color: #FFFFFF;
+  min-height: 100vh;
+  padding: 30rpx;
+}
+
+.avatar-container {
+  position: relative;
+  margin-bottom: 60rpx;
+}
+
+.avatar-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+.detail-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.avatar-name {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 500;
+  font-size: 30rpx;
+  color: #1E0417;
+  line-height: 30rpx;
+  text-align: left;
+  font-style: normal;
+  margin-bottom: 10rpx;
+}
+
+.observation-count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #E8EFF9;
+  border-radius: 18rpx;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 24rpx;
+  color: #898781;
+  line-height: 24rpx;
+  text-align: left;
+  font-style: normal;
+  width: 192rpx;
+  height: 36rpx;
+}
+
+.medal-image {
+  position: absolute;
+  width: 40rpx;
+  height: 56rpx;
+  bottom: -50rpx;  /* 调整奖章垂直位置 */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.avatar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 230rpx;
+}
+
+.avatar-img {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  box-shadow: 0 8rpx 20rpx rgba(0,0,0,0.1);
+}
+
+.avatar-img-large{
+  width: 194rpx;
+  height: 194rpx;
+  border-radius: 50%;
+  box-shadow: 0 8rpx 20rpx rgba(0,0,0,0.1);
+}
+
+.medal-image {
+  transition: transform 0.3s;
+}
+
+.medal-image:hover {
+  transform: translateX(-50%) rotate(15deg);
+}
+
+.other-group {
+  margin-top: 40rpx;
+  display: flex;
+  flex-direction: column;
+  background: #F2F3F5;
+  border-radius: 30rpx;
+  width: 690rpx;
+}
+
+.other-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.rank-text {
+  font-family: Arial, Arial;
+  font-weight: normal;
+  font-size: 24rpx;
+  color: #3D4154;
+  text-align: left;
+  font-style: normal;
+  margin-right: 20rpx;
+  margin-left: 30rpx;
+}
+
+.rank-avator {
+  width: 82rpx;
+  height: 82rpx;
+}
+
+.rank-name {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 500;
+  font-size: 28rpx;
+  color: #1E0417;
+  text-align: left;
+  font-style: normal;
+  margin-right: auto;
+  margin-left: 30rpx;
+}
+
+.rank-observation-count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #E8EFF9;
+  border-radius: 18rpx;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 24rpx;
+  color: #898781;
+  text-align: left;
+  font-style: normal;
+  margin-right: 30rpx;
+  width: 192rpx;
+  height: 36rpx;
+}
