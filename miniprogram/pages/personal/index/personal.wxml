@@ -26,15 +26,15 @@
 
     <!-- 数据统计 -->
   <view class="stats-grid">
-    <view class="stat-item">
+    <view class="stat-item" bindtap="my_follow">
       <text class="stat-num">{{userInfo.my_attention.length}}</text>
       <text class="stat-label">我的关注</text>
     </view>
-    <view class="stat-item">
+    <view class="stat-item" bindtap="my_fans">
       <text class="stat-num">{{userInfo.my_fans.length}}</text>
       <text class="stat-label">我的粉丝</text>
     </view>
-    <view class="stat-item">
+    <view class="stat-item" bindtap="my_group">
       <text class="stat-num">{{userInfo.my_team_member.length}}</text>
       <text class="stat-label">我的组员</text>
     </view>
@@ -42,20 +42,20 @@
 
   <!-- 功能列表 -->
   <view class="menu-list">
-    <navigator class="menu-item" url="/pages/observation/observation">
+    <view class="menu-item" bindtap="observation">
       <view>
         <image src='/image/personal_icon/guancha.png' class='item-image' style="background-color: #99AB64;"></image>
       </view>
       <text class="word">我的观察</text>
       <view class="arrow"></view>
-    </navigator>
-    <navigator class="menu-item" url="/pages/homework/homework">
+    </view>
+    <view class="menu-item" bindtap="homework">
       <view>
         <image src='/image/personal_icon/zuoye.png' class='item-image' style="background-color: #F5D867;"></image>
       </view>
       <text class="word">我的作业</text>
       <view class="arrow"></view>
-    </navigator>
+    </view>
     <view class="menu-item" bindtap="treeInfoManage">
       <view>
         <image src='/image/personal_icon/list.png' class='item-image' style="background-color: #99AB64;"></image>
@@ -63,28 +63,28 @@
       <text class="word">树木信息管理</text>
       <view class="arrow"></view>
     </view>
-    <navigator class="menu-item" url="/pages/ranking/ranking">
+    <view class="menu-item" bindtap="ranking">
       <view>
         <image src='/image/personal_icon/jiangzhang.png' class='item-image'
         style="background-color: #F5BADC;"></image>
       </view>
       <text class="word">勤学榜</text>
       <view class="arrow"></view>
-    </navigator>
-    <navigator class="menu-item" url="/pages/ranking/ranking">
+    </view>
+    <view class="menu-item" bindtap="customerService">
       <view>
         <image src='/image/personal_icon/kefu.png' class='item-image' style="background-color: #F5D867;"></image>
       </view>
       <text class="word">客服</text>
       <view class="arrow"></view>
-    </navigator>
-    <navigator class="menu-item" url="/pages/ranking/ranking">
+    </view>
+    <view class="menu-item" bindtap="out">
       <view>
         <image src='/image/personal_icon/tuichu.png' class='item-image' style="background-color: #B5CAEB;"></image>
       </view>
       <text class="word">退出</text>
       <view class="arrow"></view>
-    </navigator>
+    </view>
   </view>
   
 

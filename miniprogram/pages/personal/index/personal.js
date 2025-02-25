@@ -112,5 +112,45 @@ Page({
     wx.navigateTo({
       url: '/pages/personal/tree_manage/tree_manage?userId='+this.data.userInfo._id,
     })
-  }
+  },
+  observation(){
+    wx.navigateTo({
+      url: '/pages/personal/my_timeline/my_timeline?userId='+this.data.userInfo._id,
+    })
+  },
+  homework(){
+    wx.navigateTo({
+      url: '/pages/personal/tree_manage/tree_manage?userId='+this.data.userInfo._id,
+    })
+  },
+  customerService(){
+    wx.navigateTo({
+      url: '/pages/personal/tree_manage/tree_manage?userId='+this.data.userInfo._id,
+    })
+  },
+  ranking(){
+    wx.navigateTo({
+      url: '/pages/personal/tree_manage/tree_manage?userId='+this.data.userInfo._id,
+    })
+  },
+  out(){
+    wx.navigateTo({
+      url: '/pages/personal/tree_manage/tree_manage?userId='+this.data.userInfo._id,
+    })
+  },
+  my_group(){
+    wx.navigateTo({
+      url: '/pages/personal/my_group/my_group?userId='+this.data.userInfo._id,
+    })
+  },
+  my_follow(){
+    wx.navigateTo({
+      url: '/pages/personal/my_follow/my_follow?userId='+this.data.userInfo._id,
+    })
+  },
+  my_fans(){
+    wx.navigateTo({
+      url: '/pages/personal/my_fans/my_fans?userId='+this.data.userInfo._id,
+    })
+  },
 })
