@@ -1,0 +1,71 @@
+/* components/custom-tabbar/index.wxss */
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120rpx;
+  background: #1E0417;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 40rpx;
+  box-shadow: 0 -4rpx 20rpx rgba(0,0,0,0.1);
+  z-index: 999;
+  margin: 30rpx;
+  margin-bottom: 46rpx;
+  border-radius: 36rpx;
+}
+
+.tab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 150rpx;
+}
+
+.center-tab {
+  position: absolute;
+  bottom: 40rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120rpx;
+  height: 120rpx;
+  background: #1E0417;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.2);
+}
+
+.camera-icon {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.tab-icon {
+  width: 50rpx;
+  height: 50rpx;
+  margin-bottom: 8rpx;
+}
+
+.tab-text {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 24rpx;
+  text-align: left;
+  font-style: normal;
+  font-size: 24rpx;
+  color: #7D8185;
+}
+
+.tab-text.active {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 500;
+  font-size: 24rpx;
+  color: #F5BADC;
+  line-height: 24rpx;
+  text-align: left;
+  font-style: normal;
+}

@@ -19,7 +19,8 @@
     "pages/common/other_timeline/other_timeline",
     "pages/personal/my_group/my_group",
     "pages/personal/tree_manage/tree_info_add/tree_info_add",
-    "pages/personal/rank/rank"
+    "pages/personal/rank/rank",
+    "components/custom-tabbar/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
