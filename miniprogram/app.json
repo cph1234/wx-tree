@@ -8,12 +8,8 @@
     "pages/home/post_detail/post_detail",
     "pages/home/topic_comment/topic_comment",
     "pages/home/topic_detail/topic_detail",
-    "pages/sale/comment_sale/comment_sale",
     "pages/personal/index/personal",
     "pages/personal/message/message",
-    "pages/personal/post_list/post_list",
-    "pages/personal/topic_list/topic_list",
-    "pages/personal/sale_list/sale_list",
     "pages/home/post_tree/post",
     "pages/home/hand_in_homework/hand_in_homework",
     "pages/personal/tree_manage/tree_manage",
@@ -21,7 +17,10 @@
     "pages/personal/my_fans/my_fans",
     "pages/personal/my_timeline/my_timeline",
     "pages/common/other_timeline/other_timeline",
-    "pages/personal/my_group/my_group"
+    "pages/personal/my_group/my_group",
+    "pages/personal/tree_manage/tree_info_add/tree_info_add",
+    "pages/personal/rank/rank",
+    "components/custom-tabbar/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -31,10 +30,13 @@
   },
   "permission": {
     "scope.userLocation": {
-        "desc": "初始化时获取用户的位置信息用于外出打卡定位" 
+      "desc": "初始化时获取用户的位置信息用于外出打卡定位"
     }
   },
-  "requiredPrivateInfos": ["getLocation", "chooseLocation"],
+  "requiredPrivateInfos": [
+    "getLocation",
+    "chooseLocation"
+  ],
   "tabBar": {
     "color": "#515151",
     "selectedColor": "#66CDAA",
