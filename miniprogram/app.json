@@ -8,18 +8,8 @@
     "pages/home/post_detail/post_detail",
     "pages/home/topic_comment/topic_comment",
     "pages/home/topic_detail/topic_detail",
-<<<<<<< HEAD
     "pages/personal/index/personal",
     "pages/personal/message/message",
-    "pages/compare_face/face",
-=======
-    "pages/sale/comment_sale/comment_sale",
-    "pages/personal/index/personal",
-    "pages/personal/message/message",
-    "pages/personal/post_list/post_list",
-    "pages/personal/topic_list/topic_list",
-    "pages/personal/sale_list/sale_list",
->>>>>>> 6e2bfb851d4b0f63b635f87f9d6d308e964ba35b
     "pages/home/post_tree/post",
     "pages/home/hand_in_homework/hand_in_homework",
     "pages/personal/tree_manage/tree_manage",
