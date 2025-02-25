@@ -1,0 +1,69 @@
+<!--pages/personal/tree_manage/tree_info_add/tree_info_add.wxml-->
+<form bindsubmit="formSubmit" class="container">
+  <!-- 树木名称 -->
+  <view class="form-item">
+    <text class="required">*</text>
+    <text class="label">树木名称</text>
+    <input name="treeName" placeholder="请输入" class="input" />
+  </view>
+
+  <!-- 树木规格 -->
+  <view class="form-item">
+    <text class="label" decode>&nbsp;树木规格</text>
+    <input name="altitude" placeholder="胸径" class="input" />
+    <input name="altitude" placeholder="树高" class="input" />
+    <input name="altitude" placeholder="冠幅" class="input" />
+  </view>
+
+  <!-- 树木定位 -->
+  <view class="form-item">
+    <text class="required">*</text>
+    <text class="label">树木定位</text>
+    <input name="location" placeholder="某某市" class="input" />
+  </view>
+
+  <!-- 海拔高度 -->
+  <view class="form-item">
+    <text class="required">*</text>
+    <text class="label">海拔高度</text>
+    <input name="altitude" placeholder="请输入" class="input" />
+  </view>
+
+  <!-- 日照情况 -->
+  <view class="form-item">
+    <text class="required">*</text>
+    <text class="label">日照情况</text>
+    <radio-group bindchange="radioChange" name="sunlight" class="radio-group">
+      <label class="custom-radio" wx:for="{{radioListSunlight}}" wx:key="value">
+        <radio value="{{item.value}}" checked="{{item.checked}}" />
+        <!-- 自定义图标部分 -->
+        <image 
+          class="custom-icon"
+          src="{{item.checked ? selectedIcon : unselectedIcon}}"
+          mode="aspectFit"
+        />
+        <text class="radio-label">{{item.label}}</text>
+      </label>
+    </radio-group>
+  </view>
+
+  <!-- 土壤类型 -->
+  <view class="form-item">
+    <text class="label" decode>&nbsp;土壤类型</text>
+    <radio-group bindchange="radioChange2" name="soilType" class="radio-group">
+      <label class="custom-radio" wx:for="{{radioListSoilType}}" wx:key="value">
+        <radio value="{{item.value}}" checked="{{item.checked}}" />
+        <!-- 自定义图标部分 -->
+        <image 
+          class="custom-icon"
+          src="{{item.checked ? selectedIcon : unselectedIcon}}"
+          mode="aspectFit"
+        />
+        <text class="radio-label">{{item.label}}</text>
+      </label>
+    </radio-group>
+  </view>
+
+  <!-- 提交按钮 -->
+  <button form-type="submit" class="submit-btn">提交</button>
+</form>
