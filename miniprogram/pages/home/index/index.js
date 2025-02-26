@@ -765,5 +765,19 @@ Page({
      */
     onShareAppMessage: function() {
 
+    },
+
+    // tab切换处理器
+    handleTabChange(e) {
+      const path = e.detail.path;
+      if (path === this.data.activeTab) return;
+      
+      // 执行页面切换
+      wx.switchTab({
+        url: `/pages/${path}/index`,
+        success: () => {
+          this.setData({ activeTab: path });
+        }
+      });
     }
 })
