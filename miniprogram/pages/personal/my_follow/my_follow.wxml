@@ -1,13 +1,21 @@
 <!--pages/personal/my_follow/my_follow.wxml-->
+<wxs module="tools">
+  var includes = function (array, searchElement) {
+    return array.indexOf(searchElement) !== -1
+  }
+  module.exports = {
+    includes:includes
+  }
+</wxs>
 <view class="container">
   <view class="list">
     <block wx:for="{{followList}}" wx:key="index">
       <view class="list-item">
         <!-- 左侧用户信息 -->
         <view class="user-info">
-          <image class="avatar" src="{{item.avatar}}" mode="aspectFill"/>
+          <image class="avatar" src="{{item.avatar_url}}" mode="aspectFill"/>
           <view class="text-info">
-            <text class="username">{{item.username}}</text>
+            <text class="username">{{item.name}}</text>
             <view class="badges">
               <text class="badges-text"> 树龄勋章 </text>
               <block wx:for="{{item.badges}}" wx:key="*this">
@@ -18,8 +26,8 @@
         </view>
         <!-- 右侧关注按钮 -->
         <view class="btn-container">
-          <view class="follow-btn {{item.isFollowed ? 'followed' : ''}}">
-            {{item.isFollowed ? '已关注' : '关注'}}
+          <view class="follow-btn" bindtap="attention" data-id="{{item._id}}">
+            {{tools.includes(userInfo.my_attention,item._id) ? '已关注' : '关注'}}
           </view>
           <image class="image-sx" src="/image/icon-sx.png"></image>
         </view>

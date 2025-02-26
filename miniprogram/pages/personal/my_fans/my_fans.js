@@ -1,26 +1,56 @@
-// pages/personal/my_fans/my_fans.js
+// pages/personal/my_follow/my_follow.js
+const app = getApp()
+const db = wx.cloud.database()
+const _ = db.command
 Page({
   data: {
-    followList: [
-      {
-        avatar: '/image/girl.png',
-        username: '软萌的小猫',
-        badges: ['tree','tree','tree'],
-        isFollowed: false
-      },
-      {
-        avatar: '/image/boy.png',
-        username: '爱德华',
-        badges: ['tree'],
-        isFollowed: true
-      },
-      {
-        avatar: '/image/boy.png',
-        username: '巴伦亚na',
-        badges: ['tree', 'tree'],
-        isFollowed: true
-      },
-      // 其他关注项...
-    ]
+    userInfo:{},
+    followList: []
+  },
+  onLoad(option){
+    let userId = option.userId
+    db.collection("userInfo")
+    .doc(userId).get().then(res=>{
+      this.setData({
+        userInfo : res.data
+      })
+      console.log(res)
+      let attention = res.data.my_attention
+      if(attention.length!==0){
+        db.collection("userInfo")
+        .where({my_attention:res.data._id})
+        .get().then(res=>{
+          this.setData({
+            followList:res.data
+          })
+        })
+      }else{
+        wx.showToast({
+          title: '不存在粉丝用户！',
+          icon: 'none'
+        })
+      }
+    })
+  },
+  attention(e){
+    let my_attention = this.data.userInfo.my_attention
+    let index = my_attention.indexOf(e.currentTarget.dataset.id);
+    if (index > -1) {
+      my_attention.splice(index, 1);
+    }else{
+      my_attention.push(e.currentTarget.dataset.id)
+    }
+    let userInfo = this.data.userInfo
+    userInfo.my_attention = my_attention
+    this.setData({
+      userInfo:userInfo
+    })
+    db.collection("userInfo")
+    .doc(userInfo._id).update({
+      data:{
+        my_attention:my_attention
+      }
+    })
+    console.log(userInfo)
   }
 })

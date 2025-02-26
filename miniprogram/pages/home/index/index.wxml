@@ -45,10 +45,11 @@
           <view class="user-info">
             <image class="avatar" src="{{item.data.avatar_url}}"></image>
             <text class="username">{{item.data.name}}</text>
-            <view class="avatar" bindtap="getAttention" data-userId="{{item.userId}}">
+            <view class="avatar" bindtap="getAttention" data-userId="{{item.userId}}" wx:if="{{userInfo._id!==item.userId}}">
               <image class="icon" src="/image/我的关注.png" wx:if="{{tools.includes(userInfo.my_attention,item.userId)}}"></image>
               <image class="icon" src="/image/关注.png" wx:else></image>
             </view>
+            <view class="avatar" wx:else></view>
             <image class="image-sx" src="/image/comment.png"></image>
           </view>
           <!-- 动态内容 -->

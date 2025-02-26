@@ -2,8 +2,8 @@
 <view class="container">
   
   <view class="header">
-    <picker>
-      <view class="picker"><text class="year-title">2024年</text></view>
+    <picker wx:for="{{year}}">
+      <view class="picker"><text class="year-title">{{item}}</text></view>
     </picker>
   </view>
 

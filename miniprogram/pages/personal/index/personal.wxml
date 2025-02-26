@@ -31,7 +31,7 @@
       <text class="stat-label">我的关注</text>
     </view>
     <view class="stat-item" bindtap="my_fans">
-      <text class="stat-num">{{userInfo.my_fans.length}}</text>
+      <text class="stat-num">{{likes}}</text>
       <text class="stat-label">我的粉丝</text>
     </view>
     <view class="stat-item" bindtap="my_group">

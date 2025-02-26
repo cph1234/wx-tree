@@ -1,6 +1,10 @@
 // pages/personal/my_timeline/my_timeline.js
+const app = getApp()
+const db = wx.cloud.database()
+const _ = db.command
 Page({
   data: {
+    userInfo:{},
     timeline: [
       {
         year: 2024,
@@ -42,6 +46,33 @@ Page({
           }
         ]
       }
-    ]
+    ],
+    year:['2025','2026','2027','2028','2029','2030','2031','2032','2033','2034','2035',]
+  },
+  onLoad(){
+    db.collection("userInfo").where({
+      _openid:app.globalData.user_openid
+    }).get().then(res=>{
+      this.setData({
+        userInfo:res.data
+      })
+      console.log(res.data[0]._id)
+      const currentYear = new Date().getFullYear()
+      const nextYear = new Date().getFullYear() + 1
+      const startDate = new Date(currentYear + '-01-01T00:00:00.000Z')
+      const endDate = new Date(nextYear + '-01-01T00:00:00.000Z')
+      db.collection("treeFriendsCircleInfo")
+      .where({
+          userId:res.data[0]._id,
+          create_time:_.and(
+            _.gte(startDate),
+            _.lt(endDate)
+          )
+      }).get().then(res=>{
+        let treeCircle = res.data
+        console.log(treeCircle)
+      })
+    })
+    
   }
 })

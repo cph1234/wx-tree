@@ -11,7 +11,8 @@ Page({
     serviceId: '',
     param: app.globalData.param,
     inputValue:40,
-    isDisabled:true
+    isDisabled:true,
+    likes:0
   },
   onLoad: function () {
     console.log(app.globalData)
@@ -23,6 +24,15 @@ Page({
         userInfo : res.data[0],
         inputContent:res.data[0].name
       })
+      db.collection("userInfo")
+      .where({my_attention:res.data[0]._id})
+      .get().then(res=>{
+        console.log(res)
+        this.setData({
+          likes:res.data.length
+        })
+      })
+      
       const width = res.data[0].name.length * 36; // 假设每个字符宽度为 36rpx
       console.log(width)
       this.setData({

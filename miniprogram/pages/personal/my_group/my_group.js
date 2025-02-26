@@ -1,26 +1,38 @@
 // pages/personal/my_group/my_group.js
+const app = getApp()
+const db = wx.cloud.database()
+const _ = db.command
 Page({
   data: {
-    followList: [
-      {
-        avatar: '/image/girl.png',
-        username: '软萌的小猫',
-        submitted: true,
-        unsubmittedCount: 0
-      },
-      {
-        avatar: '/image/boy.png',
-        username: '爱德华',
-        submitted: false,
-        unsubmittedCount: 3
-      },
-      {
-        avatar: '/image/boy.png',
-        username: '巴伦亚na',
-        submitted: true,
-        unsubmittedCount: 4
-      },
-      // 其他关注项...
-    ]
+    userInfo:{},
+    followList: []
+  },
+  onLoad(option){
+    let userId = option.userId
+    db.collection("userInfo")
+    .doc(userId).get().then(res=>{
+      this.setData({
+        userInfo : res.data
+      })
+      console.log(res)
+      let my_team_member = res.data.my_team_member
+      if(my_team_member.length!==0){
+        db.collection("userInfo")
+        .where({_id:_.in(my_team_member)})
+        .get().then(res=>{
+          this.setData({
+            followList:res.data
+          })
+        })
+      }else{
+        wx.showToast({
+          title: '不存在组员用户！',
+          icon: 'none'
+        })
+      }
+    })
+  },
+  homework(){
+    
   }
 })
