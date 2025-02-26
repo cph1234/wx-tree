@@ -1,3 +1,4 @@
+
 <!-- pages/index/index.wxml -->
 <wxs module="tools">
   var includes = function (array, searchElement) {

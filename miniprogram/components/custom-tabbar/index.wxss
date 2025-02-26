@@ -7,7 +7,7 @@
   height: 120rpx;
   background: #1E0417;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   padding: 0 40rpx;
   box-shadow: 0 -4rpx 20rpx rgba(0,0,0,0.1);
@@ -21,7 +21,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 150rpx;
+  width: 180rpx;
 }
 
 .center-tab {
@@ -34,9 +34,41 @@
   background: #1E0417;
   border-radius: 50%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.2);
+}
+
+.center-container {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+}
+
+.center-label {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 24rpx;
+  text-align: left;
+  font-style: normal;
+  font-size: 24rpx;
+  color: #7D8185;
+  position: relative;
+  transform: translateY(-15rpx);
+}
+
+.center-label::after {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 100%;
+  vertical-align: bottom;
 }
 
 .camera-icon {
@@ -58,6 +90,8 @@
   font-style: normal;
   font-size: 24rpx;
   color: #7D8185;
+  margin-top: 1rpx
+  ;
 }
 
 .tab-text.active {

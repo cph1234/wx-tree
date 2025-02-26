@@ -7,8 +7,11 @@
   </view>
 
   <!-- 中间特殊按钮 -->
-  <view class="center-tab" bindtap="switchTab" data-index="1">
+  <view class="center-container">
+    <view class="center-tab" bindtap="switchTab" data-index="1">
     <image class="camera-icon" src="{{activeIndex === 1 ? '/image/camera.png' : '/image/camera.png'}}" />
+  </view>
+    <text class="center-label" style="position: relative; left: 3rpx; top: -4rpx">观察壹棵树</text>
   </view>
 
   <!-- 右侧按钮 -->
