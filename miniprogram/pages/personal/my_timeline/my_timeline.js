@@ -5,6 +5,7 @@ const _ = db.command
 Page({
   data: {
     userInfo:{},
+    selectedYear:new Date().getFullYear(),
     timeline: [
       {
         year: 2024,
@@ -74,5 +75,12 @@ Page({
       })
     })
     
-  }
+  },
+  bindYearChange(e) {
+    console.log(e)
+    this.setData({
+      index: e.detail.value,
+      selectedYear: this.data.year[e.detail.value]
+    })
+  },
 })

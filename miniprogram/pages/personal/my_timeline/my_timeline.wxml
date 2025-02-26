@@ -2,8 +2,10 @@
 <view class="container">
   
   <view class="header">
-    <picker wx:for="{{year}}">
-      <view class="picker"><text class="year-title">{{item}}</text></view>
+    <picker range="{{year}}" value="{{index}}" bindchange="bindYearChange">
+      <view class="picker">
+        <text class="year-title">{{selectedYear}}</text>
+      </view>
     </picker>
   </view>
 
