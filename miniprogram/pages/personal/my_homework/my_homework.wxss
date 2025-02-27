@@ -63,14 +63,24 @@
   bottom: -30rpx;
   width: 2rpx;
   border: 2rpx solid #D1D4D5;
+  border-style: dashed;
+}
+
+.image-timeline-dot {
+  width: 28rpx;
+  height: 28rpx;
+  position: absolute;
+  left: 8rpx;
+  top: 10rpx;
+  z-index: 2;
 }
 
 .timeline-dot {
   position: absolute;
-  left: 10rpx;
+  left: 12.5rpx;
   top: 20rpx;
-  width: 20rpx;
-  height: 20rpx;
+  width: 15rpx;
+  height: 15rpx;
   background: #99AB64;
   border-radius: 50%;
   z-index: 2;
