@@ -22,7 +22,7 @@
   color: #1E0417;
   text-align: left;
   font-style: normal;
-  margin-bottom: 100rpx;
+  margin-bottom: 120rpx;
 }
 
 .role-selection {
