@@ -21,7 +21,8 @@
     "pages/personal/tree_manage/tree_info_add/tree_info_add",
     "pages/personal/rank/rank",
     "components/custom-tabbar/index",
-    "pages/personal/my_homework/my_homework"
+    "pages/personal/my_homework/my_homework",
+    "pages/home/message/message"
   ],
   "window": {
     "backgroundTextStyle": "light",
