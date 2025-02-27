@@ -10,29 +10,31 @@ Page({
     year:[]
   },
   onLoad(){
+    let year=[]
+    for (let i = -10; i <= 10; i++) {
+      year.push(new Date().getFullYear() + i);
+    }
+    this.setData({
+      year:year
+    })
     db.collection("userInfo").where({
       _openid:app.globalData.user_openid
     }).get().then(res=>{
       this.setData({
-        userInfo:res.data
+        userInfo:res.data[0]
       })
-      console.log(res.data[0]._id)
+      console.log(res.data)
       this.getData(new Date().getFullYear())
     })
     
   },
   getData(y){
     const currentYear = y
-    const nextYear = new Date().getFullYear() + 1
+    const nextYear = y + 1
     const startDate = new Date(currentYear + '-01-01T00:00:00.000Z')
     const endDate = new Date(nextYear + '-01-01T00:00:00.000Z')
-    let year=[]
-    for (let i = -10; i <= 10; i++) {
-      year.push(currentYear + i);
-    }
-    this.setData({
-      year:year
-    })
+    console.log(startDate)
+    console.log(endDate)
     db.collection("treeFriendsCircleInfo")
     .where({
         userId:this.data.userInfo._id,
@@ -40,7 +42,8 @@ Page({
           _.gte(startDate),
           _.lt(endDate)
         )
-    }).skip(this.data.timeline.length)
+    }).orderBy('create_time', 'desc')
+    .skip(this.data.timeline.length)
     .limit(5)
     .get()
     .then(res=>{
@@ -66,12 +69,17 @@ Page({
   bindYearChange(e) {
     console.log(e)
     this.setData({
-      index: e.detail.value,
       selectedYear: this.data.year[e.detail.value]
     })
     this.setData({
       timeline:[]
     })
     this.getData(this.data.year[e.detail.value])
+  },
+  /**
+   * 上拉加载更多
+   */
+  onReachBottom: function() {
+    this.getData(this.data.selectedYear)
   },
 })

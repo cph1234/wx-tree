@@ -4,29 +4,36 @@
   <view class="form-item">
     <text class="required">*</text>
     <text class="label">树木名称</text>
-    <input name="treeName" placeholder="请输入" class="input" />
+    <input name="treeType" placeholder="请输入" class="input" bindblur="treeType" />
   </view>
 
   <!-- 树木规格 -->
   <view class="form-item">
     <text class="label" decode>&nbsp;树木规格</text>
-    <input name="altitude" placeholder="胸径" class="input" />
-    <input name="altitude" placeholder="树高" class="input" />
-    <input name="altitude" placeholder="冠幅" class="input" />
+    <input name="treeDimensions1" placeholder="胸径" class="input"  bindblur="treeDimensions1"/>
+    <input name="treeDimensions2" placeholder="树高" class="input"  bindblur="treeDimensions2"/>
+    <input name="treeDimensions3" placeholder="冠幅" class="input"  bindblur="treeDimensions3"/>
   </view>
 
   <!-- 树木定位 -->
   <view class="form-item">
     <text class="required">*</text>
     <text class="label">树木定位</text>
-    <input name="location" placeholder="某某市" class="input" />
+    <input name="position" placeholder="某某市" class="input" bindblur="position"/>
   </view>
 
   <!-- 海拔高度 -->
   <view class="form-item">
     <text class="required">*</text>
     <text class="label">海拔高度</text>
-    <input name="altitude" placeholder="请输入" class="input" />
+    <input name="altitude" placeholder="请输入" class="input" bindblur="altitude"/>
+  </view>
+
+  <!-- 天气情况 -->
+  <view class="form-item">
+    <text class="required">*</text>
+    <text class="label">天气情况</text>
+    <input name="weather" placeholder="请输入" class="input" bindblur="weather"/>
   </view>
 
   <!-- 日照情况 -->
@@ -65,5 +72,5 @@
   </view>
 
   <!-- 提交按钮 -->
-  <button form-type="submit" class="submit-btn">提交</button>
+  <button form-type="submit" class="submit-btn" bindtap="addTree">提交</button>
 </form>

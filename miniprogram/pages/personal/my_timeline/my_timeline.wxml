@@ -2,7 +2,7 @@
 <view class="container">
   
   <view class="header">
-    <picker range="{{year}}" value="{{index}}" bindchange="bindYearChange">
+    <picker range="{{year}}" value="{{selectedYear}}" bindchange="bindYearChange">
       <view class="picker">
         <text class="year-title">{{selectedYear}}</text>
       </view>
@@ -24,7 +24,7 @@
               </view>
               <!-- 右侧内容 -->
               <view class="content">
-                <image class="tree-image" src="{{entry.url}}"/>
+                <image class="tree-image" src="{{entry.url}}" mode="aspectFill"/>
                 <text class="description">{{entry.content}}</text>
               </view>
             </view>

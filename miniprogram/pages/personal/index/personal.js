@@ -130,7 +130,7 @@ Page({
   },
   homework(){
     wx.navigateTo({
-      url: '/pages/personal/tree_manage/tree_manage?userId='+this.data.userInfo._id,
+      url: '/pages/personal/my_homework/my_homework?userId='+this.data.userInfo._id,
     })
   },
   customerService(){
@@ -140,7 +140,7 @@ Page({
   },
   ranking(){
     wx.navigateTo({
-      url: '/pages/personal/tree_manage/tree_manage?userId='+this.data.userInfo._id,
+      url: '/pages/personal/rank/rank?userId='+this.data.userInfo._id,
     })
   },
   out(){
