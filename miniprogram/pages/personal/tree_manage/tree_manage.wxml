@@ -68,5 +68,5 @@
     
   </scroll-view>
 
-  <button class="add-btn">新增树木信息录入</button>
+  <button class="add-btn" bindtap="addTree">新增树木信息录入</button>
 </view>

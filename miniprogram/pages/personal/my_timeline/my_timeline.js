@@ -48,7 +48,7 @@ Page({
         ]
       }
     ],
-    year:['2025','2026','2027','2028','2029','2030','2031','2032','2033','2034','2035',]
+    year:[]
   },
   onLoad(){
     db.collection("userInfo").where({
@@ -62,6 +62,13 @@ Page({
       const nextYear = new Date().getFullYear() + 1
       const startDate = new Date(currentYear + '-01-01T00:00:00.000Z')
       const endDate = new Date(nextYear + '-01-01T00:00:00.000Z')
+      let year=[]
+      for (let i = -10; i <= 10; i++) {
+        year.push(currentYear + i);
+      }
+      this.setData({
+        year:year
+      })
       db.collection("treeFriendsCircleInfo")
       .where({
           userId:res.data[0]._id,
@@ -69,9 +76,26 @@ Page({
             _.gte(startDate),
             _.lt(endDate)
           )
-      }).get().then(res=>{
+      }).skip(this.data.timeline.length)
+      .limit(5)
+      .get()
+      .then(res=>{
         let treeCircle = res.data
-        console.log(treeCircle)
+        let timeline = this.data.timeline
+        for(let item of treeCircle){
+          let info={}
+          date = new Date(item.create_time);
+          info.year = date.getFullYear();
+          info.month = date.getMonth() + 1;
+          info.day = date.getDate();
+          info.url = item.files[0]
+          info.content = item.content
+          info._id = item._id
+          timeline.push(info)
+        }
+        this.setData({
+          timeline:timeline
+        })
       })
     })
     
@@ -81,6 +105,21 @@ Page({
     this.setData({
       index: e.detail.value,
       selectedYear: this.data.year[e.detail.value]
+    })
+    const currentYear = this.data.year[e.detail.value]
+    const nextYear = currentYear + 1
+    const startDate = new Date(currentYear + '-01-01T00:00:00.000Z')
+    const endDate = new Date(nextYear + '-01-01T00:00:00.000Z')
+    db.collection("treeFriendsCircleInfo")
+    .where({
+        userId:this.data.userInfo._id,
+        create_time:_.and(
+          _.gte(startDate),
+          _.lt(endDate)
+        )
+    }).get().then(res=>{
+      let treeCircle = res.data
+      console.log(treeCircle)
     })
   },
 })

@@ -7,7 +7,11 @@ Page({
   data: {
 
   },
-
+  addTree(){
+    wx.navigateTo({
+      url: '/pages/personal/my_timeline/my_timeline?userId='+this.data.userInfo._id,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
