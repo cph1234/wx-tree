@@ -11,13 +11,11 @@
 
   <!-- 时间轴容器 -->
   <view class="timeline">
-    <block wx:for="{{timeline}}" wx:key="year">
       <!-- 年份区块 -->
       <view class="year-group">
-        <text class="year">{{item.year}}年</text>
         <!-- 记录 -->
         <view class="records">
-          <block wx:for="{{item.entries}}" wx:for-item="entry" wx:key="date">
+          <block wx:for="{{timeline}}" wx:for-item="entry" wx:key="date">
             <view class="record-item">
               <!-- 左侧时间 -->
               <view class="time">
@@ -26,13 +24,12 @@
               </view>
               <!-- 右侧内容 -->
               <view class="content">
-                <image class="tree-image" src="{{entry.image}}"/>
-                <text class="description">{{entry.description}}</text>
+                <image class="tree-image" src="{{entry.url}}"/>
+                <text class="description">{{entry.content}}</text>
               </view>
             </view>
           </block>
         </view>
       </view>
-    </block>
   </view>
 </view>
