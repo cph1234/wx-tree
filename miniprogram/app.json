@@ -20,7 +20,9 @@
     "pages/personal/my_group/my_group",
     "pages/personal/tree_manage/tree_info_add/tree_info_add",
     "pages/personal/rank/rank",
-    "components/custom-tabbar/index"
+    "components/custom-tabbar/index",
+    "pages/personal/my_homework/my_homework",
+    "pages/home/message/message"
   ],
   "window": {
     "backgroundTextStyle": "light",

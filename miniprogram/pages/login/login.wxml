@@ -5,12 +5,16 @@
  
 
   <view class="role-selection">
-    <radio-group>
-      <label class="role">
-        <radio value="observer"/> 观察者
-      </label>
-      <label class="role">
-        <radio value="leader" checked /> 组长
+    <radio-group bindchange="radioChange" name="user" class="radio-group">
+      <label class="custom-radio" wx:for="{{radioListUser}}" wx:key="value">
+        <radio value="{{item.value}}" checked="{{item.checked}}" />
+        <!-- 自定义图标部分 -->
+        <image 
+          class="custom-icon"
+          src="{{item.checked ? selectedIcon : unselectedIcon}}"
+          mode="aspectFit"
+        />
+        <text class="radio-label">{{item.label}}</text>
       </label>
     </radio-group>
   </view>

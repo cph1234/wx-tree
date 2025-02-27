@@ -3,7 +3,13 @@ const app = getApp()
 Page({
   data: {
     selectedRole: null,
-    userInfo: null
+    userInfo: null,
+    selectedIcon: '/image/radio-selected.png', // 选中图标路径
+    unselectedIcon: '/image/radio-normal.png', // 未选中图标路径
+    radioListUser: [
+      { value: 'obeserver', label: '观察者', checked: true },
+      { value: 'teamleader', label: '组长', checked: false }
+    ]
   },
   login() {
     wx.getUserProfile({
@@ -70,6 +76,15 @@ Page({
   selectRole(e) {
     const role = e.currentTarget.dataset.role;
     this.setData({ selectedRole: role });
+  },
+
+  radioChange(e) {
+    const value = e.detail.value;
+    const radioListUser = this.data.radioListUser.map(item => ({
+      ...item,
+      checked: item.value === value
+    }));
+    this.setData({radioListUser});
   },
 
   getPhoneNumber(e) {
