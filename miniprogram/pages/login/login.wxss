@@ -1,23 +1,28 @@
 /* login.wxss */
 .container {
-  padding: 40rpx;
+  padding: 30rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #FFFFFF;
+  min-height: 100vh;
 }
 
 .login-img {
-  width: 130px;
-  height: 127px;
+  width: 260rpx;
+  height: 254rpx;
   margin-top: 20%;
   margin-bottom: 10%;
 }
 
 .title {
-  font-size: 16pt;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 600;
+  font-size: 32rpx;
   color: #1E0417;
-  margin: 80rpx 0 120rpx;
-  font-weight: Semibold;
+  text-align: left;
+  font-style: normal;
+  margin-bottom: 100rpx;
 }
 
 .role-selection {
@@ -32,13 +37,19 @@
 }
 
 .login-btn {
-  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 650rpx;
   height: 90rpx;
-  line-height: 90rpx;
   background: #1E0417;
-  color: white;
   border-radius: 45rpx;
   font-size: 30rpx;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 500;
+  font-size: 28rpx;
+  color: #FFFFFF;
+  font-style: normal;
 }
 
 .agreement {
@@ -53,4 +64,48 @@
 .link {
   color: #576b95;
   margin: 0 10rpx;
+}
+
+.radio-group {
+  width: 400rpx;
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-radius: 16rpx;
+}
+
+.radio-item {
+  display: block;
+  margin: 15rpx 0;
+}
+
+/* 自定义图标样式 */
+.custom-radio {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+}
+
+.custom-icon {
+  width: 28rpx;  /* 图标尺寸 */
+  height: 28rpx;
+  margin-right: 20rpx;
+}
+
+.radio-label {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 500;
+  font-size: 28rpx;
+  color: #1E0417;
+  text-align: left;
+  font-style: normal;
+}
+
+/* 隐藏原生radio */
+radio {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
