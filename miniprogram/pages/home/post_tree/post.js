@@ -245,6 +245,7 @@ Page({
           homeworkTags:homeworkTags
         })
       }else{
+        
         wx.switchTab({
           url: '/pages/home/index/index'
         })
