@@ -364,6 +364,7 @@
   flex-wrap: wrap;
   justify-content: space-between; /* 关键调整 */
   padding: 0  10rpx; /* 添加容器内边距 */
+  width: 100%;
 }
 
 .upload-item {
@@ -371,6 +372,7 @@
   width: calc((100% - 12rpx) / 4); /* 4个元素有3个间隙 */
   margin-bottom: 5rpx; /* 行间距 */
   height: auto;
+  min-height: 166rpx;
 }
 
 .add-btn {

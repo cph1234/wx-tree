@@ -1,0 +1,9 @@
+{
+  "triggers": [
+    {
+      "name": "resetCountTrigger",
+      "type": "timer",
+      "config": "0 0 16 31 12 *"
+    }
+  ]
+}

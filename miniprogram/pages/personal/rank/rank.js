@@ -1,10 +1,16 @@
 // pages/personal/rank/rank.js
+const app = getApp()
+const db = wx.cloud.database()
+const _ = db.command
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    firstOne:{},
+    secondOne:{},
+    thirdOne:{},
     userInfoList:[]
   },
 
@@ -16,8 +22,15 @@ Page({
     .orderBy('tree_circle_count', 'desc')
     .limit(10)
     .get().then(res=>{
+      let list = res.data
+      let firstOne = list.shift()
+      let secondOne = list.shift()
+      let thirdOne = list.shift()
       this.setData({
-        userInfoList:res.data
+        firstOne:firstOne,
+        secondOne:secondOne,
+        thirdOne:thirdOne,
+        userInfoList:list
       })
     })
   },

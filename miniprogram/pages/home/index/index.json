@@ -3,8 +3,5 @@
   "backgroundTextStyle": "dark",
   "onReachBottomDistance": 50,
   "usingComponents": {
-    "get-more-loading": "/components/get-more-loading/get-more-loading",
-    "not-more": "/components/not-more-tip/not-more-tip",
-    "custom-tab": "/components/custom-tabbar/index"
   }
 }

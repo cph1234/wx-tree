@@ -145,22 +145,33 @@ Page({
 
   chooseImage(e) {
     let item = e.currentTarget.dataset.item
-    wx.chooseImage({
-      count: 9 - this.data.images.length,
-      sizeType: ['original', 'compressed'],
-      sourceType: ['album', 'camera'],
-      success: res => {
-        let tags = this.data.tags
-        tags.forEach(iten => {
-          if (iten.type === item.type) {
-            iten.imgUrl = res.tempFilePaths[0];
-          }
-        });
-        this.setData({
-          tags:tags
-        })
-      }
-    });
+    const validUrls = this.data.tags.filter(item => item.imgUrl);
+    const count = validUrls.length;
+    if(count>=9){
+      wx.showToast({
+        title: '最多选择9张图片',
+        icon: 'warning'
+      });
+    }else{
+      wx.chooseImage({
+        count: 1,
+        sizeType: ['original', 'compressed'],
+        sourceType: ['album', 'camera'],
+        success: res => {
+          let tags = this.data.tags
+          tags.forEach(iten => {
+            if (iten.type === item.type) {
+              iten.imgUrl = res.tempFilePaths[0];
+            }
+          });
+          console.log(tags)
+          this.setData({
+            tags:tags
+          })
+        }
+      });
+    }
+
   },
   async publishCircle(){
     // const currentDate = new Date();
@@ -254,22 +265,37 @@ Page({
   },
   addImage(e){
     let type = e.currentTarget.dataset.type
-    wx.chooseImage({
-      sizeType: ['original', 'compressed'],
-      sourceType: ['album', 'camera'],
-      success: res => {
-        let tags = this.data.homeworkTags
-        tags.forEach(item => {
-          if (type === item.type) {
-            item.files.push(res.tempFilePaths[0])
-          }
-        });
-        this.setData({
-          homeworkTags:tags
-        })
-        console.log(tags)
+    let flag = true
+    this.data.homeworkTags.forEach(item => {
+      if (type === item.type) {
+        if(item.files.length>=3){
+          flag = false
+        }
       }
     });
+    if(!flag){
+      wx.showToast({
+        title: '最多选择3张图片',
+        icon: 'warning'
+      });
+    }else{
+      wx.chooseImage({
+        sizeType: ['original', 'compressed'],
+        sourceType: ['album', 'camera'],
+        success: res => {
+          let tags = this.data.homeworkTags
+          tags.forEach(item => {
+            if (type === item.type) {
+              item.files.push(res.tempFilePaths[0])
+            }
+          });
+          this.setData({
+            homeworkTags:tags
+          })
+          console.log(tags)
+        }
+      });
+    }
   },
   inputText(e){
     console.log(e)
