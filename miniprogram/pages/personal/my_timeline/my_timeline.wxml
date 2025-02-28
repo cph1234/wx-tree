@@ -5,6 +5,7 @@
     <picker range="{{year}}" value="{{selectedYear}}" bindchange="bindYearChange">
       <view class="picker">
         <text class="year-title">{{selectedYear}}</text>
+        <image src="/image/arrow_down.png" class="arrow-down"></image>
       </view>
     </picker>
   </view>

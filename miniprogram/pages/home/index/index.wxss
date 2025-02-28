@@ -1,38 +1,54 @@
 /* pages/index/index.wxss */
-/* WXSS */
+
+.container {
+  background-color: #FFFFFF;
+  padding: 30rpx;
+}
+
 .search-container {
   display: flex;
   align-items: center;
-  padding: 20rpx 32rpx;
-  background: #fff;
+  padding: 30rpx 30rpx;
+  background: #FFFFFF;
 }
 
 .search-box {
   flex: 1;
   display: flex;
   align-items: center;
+  justify-content: center;
   background: #f5f5f5;
   border-radius: 30rpx;
   margin-right: 30rpx;
 }
 
-.search-box image{
-  width: 48rpx;
-  height: 48rpx;
-  margin-right: 10rpx;
-}
-
 .filter-picker {
-  position: relative;
-  padding: 12rpx 24rpx;
+  display: flex;
+  flex-direction: row;
+  width: 160rpx;
+  height: 68rpx;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   margin-right: 24rpx;
   border-radius: 30rpx 0 0 30rpx; 
   background: #F6DB74; 
 }
 
 .filter-text {
-  font-size: 36rpx;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 28rpx;
   color: #444243;
+  text-align: center;
+  font-style: normal;
+  margin-right: 15rpx;
+}
+
+.arrow-top {
+  width: 22rpx;
+  height: 14rpx;
+  margin-bottom: 5rpx;
 }
 
 .search-input {
@@ -134,20 +150,27 @@
 }
 
 .avatar {
-  width: 40px;
-  height: 40px;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
   display: flex;
   align-items: center;
 }
 
 .image-sx {
-  width: 40rpx;
-  height: 40rpx;
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 20rpx;
 }
 
 .username {
-  font-weight: bold;
-  margin-right: 10px;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 500;
+  font-size: 30rpx;
+  color: #1E0417;
+  text-align: left;
+  font-style: normal;
+  margin-right: 10rpx;
 }
 
 .time {
@@ -342,9 +365,6 @@
   display: block;
 }
 
-.container {
-  padding: 20px;
-}
  
 .comment-icon {
   width: 50px;

@@ -29,6 +29,10 @@
   font-size: 30rpx;
   color: #444243;
   font-style: normal;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .year-title {
@@ -39,7 +43,14 @@
   line-height: 30rpx;
   text-align: left;
   font-style: normal;
+  margin-right: 20rpx;
 }
+
+.arrow-down {
+  width: 20rpx;
+  height: 18rpx;  
+}
+
 
 /* 时间轴主线 */
 .timeline {

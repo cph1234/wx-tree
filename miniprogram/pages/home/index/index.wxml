@@ -15,8 +15,9 @@
     <view class="search-box">
       <picker class="filter-picker" mode="selector" range="{{filterList}}" value="{{filterIndex}}" bindchange="onFilterChange">
         <text class="filter-text">{{filterList[filterIndex]}}</text>
+        <image src="/image/arrow_top.png" class="arrow-top" style="position: relative; left: 0rpx; top: -10rpx"></image>
       </picker>
-      <image src="/image/sousuo.png"></image>
+      <image class="image-sx" src="/image/sousuo.png"></image>
       <input 
         class="search-input" 
         placeholder="搜索" 
