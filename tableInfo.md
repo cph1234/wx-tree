@@ -10,6 +10,8 @@ userInfo表
 * name：微信名
 * registration_time：首次登陆时间
 * my_likes：我赞过的帖子id
+* tree_citcle_count：当前年发表数量
+* tree_homework_count：当前年发表数量
 
 
 
@@ -32,15 +34,26 @@ treeFriendsCircleInfo表
 treeInfo表
 
 * _id：主键
+
 * treeType：树类型
+
 * position：定位
+
 * altitude：海拔
+
 * sunshine：日照情况
+
 * soil：土壤
+
 * weather：天气
+
 * treeDimensions：树木规格
+
 * createTime：登记时间
+
 * userId：登记用户
+
+  
 
 
 homeworkInfo表
@@ -57,3 +70,4 @@ homeworkInfo表
   * files：图片url
   * text：文字描述
 * endContent：结语
+* treeName：树木种类

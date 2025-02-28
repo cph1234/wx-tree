@@ -174,6 +174,7 @@ Page({
     info.create_time=wx.cloud.database().serverDate()
     info.userId=this.data.userInfo._id
     info.treeId=this.data.selectedTree._id
+    info.treeType = this.data.selectedTree.treeType
     info.fileIds=[]
     info.likes=0
     this.data.tags.forEach(iten => {
@@ -206,6 +207,14 @@ Page({
         title: '发布成功',
         icon: 'success'
       });
+      db.collection("userInfo")
+      .doc(this.data.userInfo._id)
+      .update({
+        data: {
+          // 如果存在 year，则 count +1
+          tree_circle_count: _.inc(1) ,
+        }
+      })
       // todo
       if(this.data.syncToHomework){
         let homeworkTags=[]
@@ -307,6 +316,7 @@ Page({
     info.create_time=this.data.homeworkTime
     info.userId=this.data.userInfo._id
     info.treeId=this.data.selectedTree._id
+    info.treeType=this.data.selectedTree.treeType
     info.position=this.data.city
     info.frontContent=this.data.homeworkFrontContent
     info.endContent=this.data.homeworkEndContent
@@ -358,7 +368,8 @@ Page({
       .doc(this.data.userInfo._id)
       .update({
         data:{
-          draft:emptyInfo
+          draft:emptyInfo,
+          tree_circle_count: _.inc(1) ,
         }
       }).then(res=>{
         console.log(res)

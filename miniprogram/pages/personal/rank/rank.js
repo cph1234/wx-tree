@@ -5,14 +5,21 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    userInfoList:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    db.collection('userInfo')
+    .orderBy('tree_circle_count', 'desc')
+    .limit(10)
+    .get().then(res=>{
+      this.setData({
+        userInfoList:res.data
+      })
+    })
   },
 
   /**
