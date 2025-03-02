@@ -71,3 +71,12 @@ homeworkInfo表
   * text：文字描述
 * endContent：结语
 * treeName：树木种类
+
+
+chatContent表
+* _id：主键
+* userId：对话人list
+* message: 聊天记录
+  * sendId：发送人id
+  * timestamp：时间
+  * content: 聊天内容

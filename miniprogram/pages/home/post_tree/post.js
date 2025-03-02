@@ -340,7 +340,7 @@ Page({
     // 处理发布逻辑
     let info={}
     info.title=this.data.homeworkTitle
-    info.create_time=this.data.homeworkTime
+    info.create_time=wx.cloud.database().serverDate()
     info.userId=this.data.userInfo._id
     info.treeId=this.data.selectedTree._id
     info.treeType=this.data.selectedTree.treeType
@@ -348,6 +348,7 @@ Page({
     info.frontContent=this.data.homeworkFrontContent
     info.endContent=this.data.homeworkEndContent
     info.details=this.data.homeworkTags
+    info.homeworkTime=this.data.homeworkTime
     console.log(info)
     for(let item of info.details){
       let filesID = [];
