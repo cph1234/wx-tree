@@ -14,11 +14,8 @@
     "pages/personal/rank/rank",
     "pages/personal/my_homework/my_homework",
     "pages/personal/index/personal",
-<<<<<<< HEAD
-    "pages/personal/chat/chat"
-=======
+    "pages/personal/chat/chat",
     "pages/chat/chat"
->>>>>>> 175b9ea5f37d55f44398149f88c34178d5e7563d
   ],
   "window": {
     "backgroundTextStyle": "light",
