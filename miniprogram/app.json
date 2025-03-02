@@ -13,7 +13,8 @@
     "pages/personal/tree_manage/tree_info_add/tree_info_add",
     "pages/personal/rank/rank",
     "pages/personal/my_homework/my_homework",
-    "pages/personal/index/personal"
+    "pages/personal/index/personal",
+    "pages/personal/chat/chat"
   ],
   "window": {
     "backgroundTextStyle": "light",

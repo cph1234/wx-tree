@@ -1,0 +1,41 @@
+<!--pages/personal/chat/chat.wxml-->
+<view class="container">
+  <!-- 聊天内容区域 -->
+  <scroll-view class="chat-area" scroll-y scroll-into-view="bottom">
+    <view class="message-container">
+      <!-- 接收消息 -->
+      <view class="message left">
+        <image class="avator" src="/image/tree-1.png"></image>
+        <view class="content-box">
+          <text class="content">您好，组长，我是开发人员亮仔牛奶</text>
+          <text class="time">今天12:20</text>
+        </view>
+      </view>
+
+      <!-- 发送消息 -->
+      <view class="message right">
+        <view class="content-box sender">
+          <text class="content">好的有什么需要我帮你解答吗</text>
+          <text class="time">今天12:21</text>
+        </view>
+        <image class="avator" src="/image/tree-2.png"></image>
+      </view>
+    </view>
+    <view id="bottom"></view>
+  </scroll-view>
+
+  <!-- 输入区域 -->
+  <view class="input-area">
+    <view class="input-box">
+      <image src="/image/voice.png" class="icon emoji"></image>
+      <input 
+        placeholder="请您输入" 
+        placeholder-class="placeholder"
+        bindinput="onInput"
+        value="{{inputValue}}"
+      />
+      <image src="/image/emoji.png" class="icon emoji"></image>
+      <image src="/image/add.png" class="icon emoji"></image>
+    </view>
+  </view>
+</view>
