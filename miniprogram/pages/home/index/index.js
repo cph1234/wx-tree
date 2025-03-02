@@ -38,7 +38,11 @@ Page({
         }
       }).then(res=>{
         let oldData = this.data.dataList
-        let newData = oldData.concat(res.result)
+        let data = res.result
+        data.forEach(item=>{
+          item.create_time = this.checkDateAndTime(item.create_time)
+        })
+        let newData = oldData.concat(data)
         this.setData({
           dataList:newData
         })
@@ -159,6 +163,12 @@ Page({
     },
     empty(){
 
+    },
+    chat(e){
+      let userId = e.currentTarget.dataset.userid
+      wx.navigateTo({
+        url: '/pages/chat/chat?sendUserId='+this.data.userInfo._id+'&receiveUserId='+userId // 目标页面路径，支持传递参数
+      });
     },
     // 提交评论按钮点击事件
     submitComment: function () {
@@ -779,5 +789,12 @@ Page({
           this.setData({ activeTab: path });
         }
       });
-    }
+    },
+    checkDateAndTime(e){
+      let date = new Date(e);
+      let ymd = date.toISOString().substring(0,10);//年-月-日
+      let time = date.toTimeString().substring(0,8);//时：分：秒
+      let resDate = ymd + ' ' + time;
+      return resDate
+    },
 })

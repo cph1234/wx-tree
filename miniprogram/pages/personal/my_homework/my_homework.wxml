@@ -11,7 +11,7 @@
   <view class="timeline-container">
 
       <view>
-        <scroll-view scroll-y style="height: auto;max-height: 984rpx;" class="content">
+        <scroll-view scroll-y style="height: auto;max-height: 690rpx;" class="content">
           <view class="card-header">
             <text class="tree-name">香樟树</text>
             <text class="post-info">未交5次</text>
@@ -66,6 +66,19 @@
                   <text class="month">11月</text>
               </view>
               <image class="homework-image" src="/image/tree-1.png"></image>
+            </view>
+          </view>
+          <view class="timeline-item">
+            <view class="timeline-line"></view>
+            <view class="timeline-dot"></view>
+            <view class="timeline-card">
+              <view class="time">
+                <text class="day">17</text>
+                <text class="month">11月</text>
+              </view>
+              <image class="homework-image" src="/image/tree-2.png"></image>
+              <view class="info-box">
+              </view>
             </view>
           </view>
           <view class="timeline-item">

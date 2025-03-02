@@ -52,7 +52,7 @@
               <image class="icon" src="/image/关注.png" wx:else></image>
             </view>
             <view class="avatar" wx:else></view>
-            <image class="image-sx" src="/image/comment.png"></image>
+            <image class="image-sx" src="/image/comment.png" wx:if="{{userInfo._id!==item.userId}}" bindtap="chat" data-userId="{{item.userId}}"></image>
           </view>
           <!-- 动态内容 -->
           <view class="post-content">
