@@ -138,9 +138,11 @@
   border-bottom: 1px solid #eee;
   width: 100%;
 }
+
 .content-list{
   width: 100%;
 }
+
 .user-info {
   margin-top: 10rpx;
   display: grid;

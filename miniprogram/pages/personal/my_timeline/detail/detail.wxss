@@ -1,0 +1,199 @@
+/* pages/personal/my_timeline/detail/detail.wxss */
+.container {
+  min-height: 100vh;
+  background-color: #FFFFFF;
+  padding: 30rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.post-card {
+  background: #fff;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  width: 100%;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 24rpx;
+}
+
+.text-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.username {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 500;
+  font-size: 30rpx;
+  color: #1E0417;
+  line-height: 30rpx;
+  text-align: left;
+  font-style: normal;
+  margin-bottom: 10rpx;
+}
+
+.badges {
+  display: flex;
+  align-items: center;
+}
+
+.badge-icon {
+  width: 28rpx;
+  height: 28rpx;
+  margin-right: 10rpx;
+}
+
+.badges-text {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 24rpx;
+  color: #898781;
+  line-height: 24rpx;
+  text-align: left;
+  font-style: normal;
+  margin-right: 10rpx;
+}
+
+.time {
+  color: #999;
+  font-size: 12px;
+  flex-grow: 1;
+}
+
+.follow-status {
+  color: #07c160;
+  font-size: 12px;
+}
+
+.post-content {
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+/* 互动区域 */
+.interaction {
+  display: flex;
+  align-items: center;
+  color: #666;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 5px;
+}
+
+.like {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.comment {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+/* 九宫格图片展示 */
+/* 容器基础样式 */
+.grid-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4rpx; /* 图片间距 */
+  margin-top: 20rpx;
+}
+
+/* 单张图片样式 */
+.single-image {
+  width: 300rpx;
+  height: 300rpx;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+
+/* 多张图片通用样式 */
+.grid-image {
+  position: relative;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+
+/* 不同数量图片的尺寸计算 */
+.grid-image.two-columns {
+  width: calc((100% - 4rpx) / 2);
+  height: calc((100% - 4rpx) / 2);
+}
+
+.grid-image.three-columns {
+  width: calc((100% - 8rpx) / 3);
+  height: calc((100% - 8rpx) / 3);
+}
+
+/* 图片通用样式 */
+.grid-image image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* 超过9张的遮罩层 */
+.image-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+}
+
+/* 评论区 */
+.comment-section {
+  margin-top: 15px;
+  background: #F2F3F5;
+  border-radius: 20rpx;
+  padding: 10px;
+}
+
+.comment-item {
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 4px;
+  margin-top: 4px;
+}
+
+.comment-content {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 26rpx;
+  color: #898781;
+  font-style: normal;
+}
+
+.comment-user {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 26rpx;
+  color: #1E0417;
+  font-style: normal;
+  margin-right: 5rpx;
+}
+
+.reply {
+  margin-left: 20px;
+}
