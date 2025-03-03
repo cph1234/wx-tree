@@ -118,14 +118,14 @@
 .single-image {
   width: 300rpx;
   height: 300rpx;
-  border-radius: 8rpx;
+  border-radius: 32rpx;
   overflow: hidden;
 }
 
 /* 多张图片通用样式 */
 .grid-image {
   position: relative;
-  border-radius: 8rpx;
+  border-radius: 32rpx;
   overflow: hidden;
 }
 

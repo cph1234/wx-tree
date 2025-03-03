@@ -130,41 +130,30 @@
   border-bottom: 2px solid #07c160;
 }
 
-/* 动态卡片 */
-.post-card {
-  padding: 30rpx;
-  background: #fff;
-  margin-bottom: 10px;
-  border-bottom: 1px solid #eee;
-  width: 100%;
-}
-
-.content-list{
-  width: 100%;
-}
-
-.user-info {
-  margin-top: 10rpx;
-  display: grid;
-  align-items: center;
-  grid-template-columns: 100rpx auto 100rpx 70rpx;
-  margin-bottom: 20rpx;
-}
-
-.avatar {
-  width: 80rpx;
-  height: 80rpx;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-}
-
 .image-sx {
   width: 32rpx;
   height: 32rpx;
   margin-right: 20rpx;
 }
 
+.post-card {
+  background: #fff;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  width: 100%;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 24rpx;
+}
 
 .text-info {
   display: flex;
@@ -258,14 +247,14 @@
 .single-image {
   width: 300rpx;
   height: 300rpx;
-  border-radius: 8rpx;
+  border-radius: 32rpx;
   overflow: hidden;
 }
 
 /* 多张图片通用样式 */
 .grid-image {
   position: relative;
-  border-radius: 8rpx;
+  border-radius: 32rpx;
   overflow: hidden;
 }
 
@@ -305,8 +294,8 @@
 /* 评论区 */
 .comment-section {
   margin-top: 15px;
-  background: #f5f5f5;
-  border-radius: 8px;
+  background: #F2F3F5;
+  border-radius: 20rpx;
   padding: 10px;
 }
 
@@ -316,14 +305,22 @@
   margin-bottom: 4px;
   margin-top: 4px;
 }
+
 .comment-content {
-  word-break: break-word;
-  word-wrap: break-word;
-  white-space: normal;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 26rpx;
+  color: #898781;
+  font-style: normal;
 }
+
 .comment-user {
-  color: #07c160;
-  margin-right: 5px;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 26rpx;
+  color: #1E0417;
+  font-style: normal;
+  margin-right: 5rpx;
 }
 
 .reply {
