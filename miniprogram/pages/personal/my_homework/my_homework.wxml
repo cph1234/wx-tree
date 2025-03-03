@@ -12,19 +12,18 @@
   </view>
 
   <view class="timeline-container">
-
-      <view>
+      <view wx:for="{{treeInfo}}" wx:key="index">
         <scroll-view scroll-y style="height: auto;max-height: 984rpx;" class="content">
           <view class="card-header">
-            <text class="tree-name">香樟树</text>
-            <text class="post-info">未交5次</text>
+            <text class="tree-name">{{item.treeType}}</text>
+            <text class="post-info">已交{{item.list.length}}次</text>
           </view>
           <view class="info-box">
             <!-- 第一行：树木定位 -->
             <view class="info-row single-line">
               <view class="info-item full-width">
                 <text class="label">树木定位</text>
-                <text class="value">{{selectedTree.position || '-'}}</text>
+                <text class="value">{{item.position || '-'}}</text>
               </view>
             </view>
 
@@ -32,11 +31,11 @@
             <view class="info-row">
               <view class="info-item">
                 <text class="label">海拔高度</text>
-                <text class="value">{{selectedTree.altitude || '-'}}</text>
+                <text class="value">{{item.altitude || '-'}}</text>
               </view>
               <view class="info-item">
                 <text class="label">日照情况</text>
-                <text class="value">{{selectedTree.sunshine || '-'}}</text>
+                <text class="value">{{item.sunshine || '-'}}</text>
               </view>
             </view>
 
@@ -44,11 +43,11 @@
             <view class="info-row">
               <view class="info-item">
                 <text class="label">土壤类型</text>
-                <text class="value">{{selectedTree.soil || '-'}}</text>
+                <text class="value">{{item.soil || '-'}}</text>
               </view>
               <view class="info-item">
                 <text class="label">天气情况</text>
-                <text class="value">{{selectedTree.weather || '-'}}</text>
+                <text class="value">{{item.weather || '-'}}</text>
               </view>
             </view>
 
@@ -56,122 +55,21 @@
             <view class="info-row">
               <view class="info-item">
                 <text class="label">树木规格</text>
-                <text class="value">{{selectedTree.treeDimensions || '-'}}</text>
+                <text class="value">{{item.treeDimensions || '-'}}</text>
               </view>
             </view>
           </view>
-          <view class="timeline-item">
-            <view class="timeline-line"></view>
-            <image src="/image/radio-selected.png"  class = "image-timeline-dot"></image>
-            <view class="timeline-card">
-              <view class="time">
-                  <text class="day">18</text>
-                  <text class="month">11月</text>
-              </view>
-              <image class="homework-image" src="/image/tree-1.png"></image>
-            </view>
-          </view>
-          <view class="timeline-item">
-            <view class="timeline-line"></view>
-            <view class="timeline-dot"></view>
-            <view class="timeline-card">
-              <view class="time">
-                <text class="day">17</text>
-                <text class="month">11月</text>
-              </view>
-              <image class="homework-image" src="/image/tree-2.png"></image>
-              <view class="info-box">
-              </view>
-            </view>
-          </view>
-          <view class="timeline-item">
-            <view class="timeline-line"></view>
-            <view class="timeline-dot"></view>
-            <view class="timeline-card">
-              <view class="time">
-                <text class="day">17</text>
-                <text class="month">11月</text>
-              </view>
-              <image class="homework-image" src="/image/tree-2.png"></image>
-              <view class="info-box">
-              </view>
-            </view>
-          </view>
-        </scroll-view>
-        <view class="load-more">
-            <text>下滑查看更多</text><ion-icon name="arrow-down" size="16"></ion-icon>
-        </view>
-      </view>
-
-
-      <view>
-        <scroll-view scroll-y style="height: auto;max-height: 984rpx;" class="content">
-          <view class="card-header">
-            <text class="tree-name">银杏树</text>
-            <text class="post-info">未交5次</text>
-          </view>
-          <view class="info-box">
-            <!-- 第一行：树木定位 -->
-            <view class="info-row single-line">
-              <view class="info-item full-width">
-                <text class="label">树木定位</text>
-                <text class="value">{{selectedTree.position || '-'}}</text>
-              </view>
-            </view>
-
-            <!-- 第二行：海拔高度 + 日照情况 -->
-            <view class="info-row">
-              <view class="info-item">
-                <text class="label">海拔高度</text>
-                <text class="value">{{selectedTree.altitude || '-'}}</text>
-              </view>
-              <view class="info-item">
-                <text class="label">日照情况</text>
-                <text class="value">{{selectedTree.sunshine || '-'}}</text>
-              </view>
-            </view>
-
-            <!-- 第三行：土壤类型 + 天气情况 -->
-            <view class="info-row">
-              <view class="info-item">
-                <text class="label">土壤类型</text>
-                <text class="value">{{selectedTree.soil || '-'}}</text>
-              </view>
-              <view class="info-item">
-                <text class="label">天气情况</text>
-                <text class="value">{{selectedTree.weather || '-'}}</text>
-              </view>
-            </view>
-
-            <!-- 第四行：树木规格 -->
-            <view class="info-row">
-              <view class="info-item">
-                <text class="label">树木规格</text>
-                <text class="value">{{selectedTree.treeDimensions || '-'}}</text>
-              </view>
-            </view>
-          </view>
-          <view class="timeline-item">
-            <view class="timeline-line"></view>
-            <image src="/image/radio-selected.png"  class = "image-timeline-dot"></image>
-            <view class="timeline-card">
-              <view class="time">
-                  <text class="day">18</text>
-                  <text class="month">11月</text>
-              </view>
-              <image class="homework-image" src="/image/tree-1.png"></image>
-            </view>
-          </view>
-          <view class="timeline-item">
-            <view class="timeline-line"></view>
-            <view class="timeline-dot"></view>
-            <view class="timeline-card">
-              <view class="time">
-                <text class="day">17</text>
-                <text class="month">11月</text>
-              </view>
-              <image class="homework-image" src="/image/tree-2.png"></image>
-              <view class="info-box">
+          <view wx:for="{{item.list}}"  wx:key="index" wx:for-item="imageItem">
+            <view class="timeline-item">
+              <view class="timeline-line"></view>
+              <image src="/image/radio-selected.png"  class = "image-timeline-dot" wx:if="{{index==0}}"></image>
+              <view class = "timeline-dot" wx:if="{{index!=0}}"></view>
+              <view class="timeline-card">
+                <view class="time">
+                    <text class="day">{{imageItem.day}}</text>
+                    <text class="month">{{imageItem.month}}月</text>
+                </view>
+                <image class="homework-image" src="{{imageItem.url}}"></image>
               </view>
             </view>
           </view>
