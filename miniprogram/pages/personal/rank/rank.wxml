@@ -40,14 +40,15 @@
   </view>
 
   <!-- 4-9名区域 -->
-  <view class="other-group" wx:for="{{userInfoList}}" wx:key="index">
+  <view class="other-group">
+    <view wx:for="{{userInfoList}}" wx:key="index">
       <view class = 'other-item'>
         <text class="rank-text">0{{index+4}}</text>
         <image class="rank-avator" src="{{item.avatar_url}}"/>
         <text class="rank-name">{{item.name}}</text>
         <text class="rank-observation-count">今年观察{{item.tree_circle_count}}次</text>
       </view>
-    
+    </view>
   </view>
 
 </view>

@@ -15,7 +15,8 @@
     "pages/personal/my_homework/my_homework",
     "pages/personal/index/personal",
     "pages/personal/chat/chat",
-    "pages/chat/chat"
+    "pages/chat/chat",
+    "pages/personal/my_timeline/detail/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

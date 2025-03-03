@@ -3,7 +3,10 @@
 
   <view class="header">
     <picker>
-      <view class="picker"><text class="year">2024年</text></view>
+      <view class="picker">
+        <text class="year">2024年</text>
+        <image src="/image/arrow_down.png" class="arrow-down"></image>
+      </view>
     </picker>
   </view>
 

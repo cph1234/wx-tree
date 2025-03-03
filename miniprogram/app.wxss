@@ -107,6 +107,12 @@
   font-weight: 300;
 }
 
+.arrow-down {
+  width: 20rpx;
+  height: 18rpx;  
+  margin-left: 10rpx;
+}
+
 .container {
   display: flex;
   flex-direction: column;
