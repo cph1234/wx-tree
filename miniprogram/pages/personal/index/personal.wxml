@@ -16,9 +16,11 @@
           <input type="nickname" disabled="{{isDisabled}}" class="username" value="{{inputContent}}" style="width: {{inputWidth}}rpx" bindinput="onInput" id="inputField"  focus="{{!isDisabled}}" bindblur="onInputBlur"/>
           <image class="icon" src="/image/修改.png" bindtap="enableInput"></image>
         </view>
-        <!-- 仅保留树龄勋章 -->
         <view class="badges">
-          <text class="badge">树龄勋章</text>
+          <text class="badges-text"> 树龄勋章 </text>
+          <block wx:for="{{item.badges}}" wx:key="*this">
+            <image class="badge-icon" src="/image/tree-badge.png" />
+          </block>
         </view>
       </view>
     </view>

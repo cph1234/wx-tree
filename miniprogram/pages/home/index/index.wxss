@@ -88,7 +88,7 @@
 }
 
 .container {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -163,11 +163,40 @@
   margin-right: 20rpx;
 }
 
+
+.text-info {
+  display: flex;
+  flex-direction: column;
+}
+
 .username {
   font-family: PingFangSC, PingFang SC;
   font-weight: 500;
   font-size: 30rpx;
   color: #1E0417;
+  line-height: 30rpx;
+  text-align: left;
+  font-style: normal;
+  margin-bottom: 10rpx;
+}
+
+.badges {
+  display: flex;
+  align-items: center;
+}
+
+.badge-icon {
+  width: 28rpx;
+  height: 28rpx;
+  margin-right: 10rpx;
+}
+
+.badges-text {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 24rpx;
+  color: #898781;
+  line-height: 24rpx;
   text-align: left;
   font-style: normal;
   margin-right: 10rpx;
