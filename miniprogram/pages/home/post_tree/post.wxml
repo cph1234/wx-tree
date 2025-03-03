@@ -3,7 +3,7 @@
   <!-- 第一部分：选择树木 -->
   <view class="section">
     <picker bindchange="bindTreeChange" value="{{index}}" range="{{trees}}">
-      <view class="picker">当前选择：{{selectedTree.treeType || '请选择树种'}}</view>
+      <view class="picker">{{selectedTree.treeType || '请选择树种'}}</view>
     </picker>
     
     <!-- 树木信息展示 -->

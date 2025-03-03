@@ -2,7 +2,7 @@
 
 .container {
   background-color: #FFFFFF;
-  padding: 30rpx;
+  padding: 0rpx 30rpx 0rpx 30rpx;
 }
 
 .search-container {
@@ -138,14 +138,14 @@
 
 .post-card {
   background: #fff;
-  margin-bottom: 10px;
-  border-bottom: 1px solid #eee;
-  width: 100%;
+  margin-bottom: 40rpx;
 }
 
 .user-info {
   display: flex;
   align-items: center;
+  flex-direction: row;
+  margin-bottom: 10rpx;
 }
 
 .avatar {
@@ -158,6 +158,7 @@
 .text-info {
   display: flex;
   flex-direction: column;
+  width: 400rpx;
 }
 
 .username {
@@ -193,10 +194,57 @@
   margin-right: 10rpx;
 }
 
+.icon-sx {
+  width: 52rpx;
+  height: 52rpx;
+}
+
 .time {
   color: #999;
   font-size: 12px;
   flex-grow: 1;
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.image-sx {
+  width: 52rpx;
+  height: 52rpx;
+}
+
+.follow-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120rpx;
+  height: 52rpx;
+  background: #F1B1DF;
+  box-shadow: 0rpx 8rpx 14rpx 0rpx rgba(241,177,223,0.5);
+  border-radius: 30rpx;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 24rpx;
+  color: #1E0417;
+  font-style: normal;
+  margin-right: 10rpx;
+}
+
+.follow-btn.followed {
+  background: none;
+  color: #999;
+  border: 1rpx solid #cccccc;
+  width: 120rpx;
+  height: 52rpx;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 24rpx;
+  color: #1E0417;
+  font-style: normal;
+  box-shadow: none;
 }
 
 .follow-status {
@@ -205,8 +253,13 @@
 }
 
 .post-content {
-  line-height: 1.5;
-  margin-bottom: 15px;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 28rpx;
+  color: #898781;
+  line-height: 42rpx;
+  text-align: justify;
+  font-style: normal;
 }
 
 /* 互动区域 */
@@ -214,12 +267,21 @@
   display: flex;
   align-items: center;
   color: #666;
+  margin-bottom: 10rpx;
 }
 
 .icon {
-  width: 18px;
-  height: 18px;
-  margin-right: 5px;
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 10rpx;
+  margin-left: 10rpx;
+}
+
+.icon-gz {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 10rpx;
+  margin-left: 10rpx;
 }
 
 .like {
@@ -247,7 +309,6 @@
 .single-image {
   width: 300rpx;
   height: 300rpx;
-  border-radius: 32rpx;
   overflow: hidden;
 }
 
@@ -274,6 +335,7 @@
   width: 100%;
   height: 100%;
   display: block;
+  border-radius: 32rpx;
 }
 
 /* 超过9张的遮罩层 */
@@ -296,7 +358,7 @@
   margin-top: 15px;
   background: #F2F3F5;
   border-radius: 20rpx;
-  padding: 10px;
+  padding: 5rpx 15rpx 5rpx 15rpx;
 }
 
 .comment-item {
@@ -304,6 +366,16 @@
   line-height: 1.4;
   margin-bottom: 4px;
   margin-top: 4px;
+}
+
+.comment-text {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 28rpx;
+  color: #1E0417;
+  line-height: 40rpx;
+  text-align: left;
+  font-style: normal;
 }
 
 .comment-content {
@@ -353,11 +425,6 @@
   margin-bottom: 3px;
 }
 
-.container {
-  width: 100%;
-  padding: 10px;
-}
-
 .grid {
   display: flex;
   flex-wrap: wrap;
@@ -382,15 +449,18 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
+
 .grid-item {
-  width: 30%;
+  width: 32%;
   box-sizing: border-box;
-  padding: 3rpx;
+  padding: 1rpx;
 }
+
 .grid-item image {
   width: 100%;
   height: 200rpx;
   display: block;
+  border-radius: 20rpx;
 }
 
  
@@ -420,7 +490,7 @@ button {
   position: fixed;
   display: flex;
   align-items: center;
-  min-height: 80rpx;
+  min-height: 100rpx;
   bottom: 0;
   left: 0rpx;
   right: 0rpx;
@@ -431,13 +501,15 @@ button {
 .input_input {
   background: #fff;
   margin-top: 4rpx;
-  margin-left: 8rpx;
+  margin-left: 10rpx;
+  margin-bottom: 20rpx;
   z-index: 500;
   width: 580rpx;
   min-height: 60rpx;
   line-height: 60rpx;
-  padding-left: 35rpx;
-  padding-right: 35rpx;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+  border-radius: 10rpx;
 }
 
 .send_btn {
@@ -446,7 +518,7 @@ button {
   position: absolute;
   top: 12rpx;
   right: 30rpx;
-  background: rgb(47, 80, 19);
+  background: rgb(50, 80, 24);
   z-index: 550;
   border-radius: 10rpx;
   display: flex;

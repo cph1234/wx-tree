@@ -4,14 +4,17 @@
   
   <view class="header">
     <picker>
-      <view class="picker"><text class="year-title">2024年</text></view>
+      <view class="picker">
+      <text class="year-title">2024年</text>
+      <image src="/image/arrow_down.png" class="arrow-down"></image>
+      </view>
     </picker>
   </view>
 
   <view class="timeline-container">
 
       <view>
-        <scroll-view scroll-y style="height: auto;max-height: 690rpx;" class="content">
+        <scroll-view scroll-y style="height: auto;max-height: 984rpx;" class="content">
           <view class="card-header">
             <text class="tree-name">香樟树</text>
             <text class="post-info">未交5次</text>
