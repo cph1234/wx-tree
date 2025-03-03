@@ -22,7 +22,7 @@ Page({
 		let ymd = date.toISOString().substring(0,10);//年-月-日
 		let hms = date.toTimeString().substring(0,8);//小时-分钟-秒钟
 		console.log(ymd + "-" + hms);
-		return ymd + "-" + hms;//拼接
+		return ymd + " " + hms;//拼接
 	},
  
   //“发送”
@@ -31,7 +31,7 @@ Page({
     let info = {
       sendId : this.data.sendUser._id,
       content : this.data.mess,
-      timestamp : wx.cloud.database().serverDate()
+      timestamp : this.getFormatTime()
     }
     db.collection('chatContent')
       .doc(this.data.currentId)
@@ -76,6 +76,8 @@ Page({
         .get({
           success:function(res){
             console.log("查询成功！",res);
+            console.log("查询成功！",res.data[0].message[0].timestamp);
+            console.log("查询成功！",new Date(res.data[0].message[0].timestamp));
             if(res.data.length == 0){
               that.initChatContent();//初始化数据库字段
             }

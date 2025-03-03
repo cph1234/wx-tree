@@ -1,29 +1,41 @@
 <!--pages/chat/chat.wxml-->
-<view class="root">
-	<scroll-view class="sv" scroll-y scroll-into-view="{{toBottom}}">
- 
-		<view class="box" wx:for="{{content}}" id="item{{index}}">
-			<view class="item" wx:if="{{item.sendId == receiveUser._id}}">
-				<image src="{{receiveUser.avatar_url}}" class="mineAvatorSrc"></image>
-				<view class="mineTextBox">
-					<text class="mineText">{{item.content}}</text>
-				</view>
-			</view>
- 
-			<view class="item" wx:if="{{item.sendId == sendUser._id}}">
-				<view class="himTextBox">
-					<text class="himText">{{item.content}}</text>
-				</view>
-				<image src="{{sendUser.avatar_url}}" class="himAvatorSrc"></image>
-			</view>
-		</view>
- 
-	</scroll-view>
- 
-	<view class="sendBar">
-		<input type="text" model:value="{{mess}}" class="input"/>
-		<view class="button" bindtap="sendMess">
-			<text class="buttonText">发送</text>
-		</view>
-	</view>
+<view class="container">
+  <!-- 聊天内容区域 -->
+  <scroll-view class="chat-area" scroll-y scroll-into-view="{{toBottom}}">
+    <view class="message-container" wx:for="{{content}}" id="item{{index}}">
+      <!-- 接收消息 -->
+      <view class="message left" wx:if="{{item.sendId == receiveUser._id}}">
+        <image class="avator" src="{{receiveUser.avatar_url}}"></image>
+        <view class="content-box">
+          <text class="content">{{item.content}}</text>
+          <text class="time">{{item.timestamp}}</text>
+        </view>
+      </view>
+
+      <!-- 发送消息 -->
+      <view class="message right" wx:if="{{item.sendId == sendUser._id}}">
+        <view class="content-box sender">
+          <text class="content">{{item.content}}</text>
+          <text class="time">{{item.timestamp}}</text>
+        </view>
+        <image class="avator" src="{{sendUser.avatar_url}}"></image>
+      </view>
+    </view>
+    <view id="bottom"></view>
+  </scroll-view>
+
+  <!-- 输入区域 -->
+  <view class="input-area">
+    <view class="input-box">
+      <image src="/image/voice.png" class="icon emoji"></image>
+      <input 
+        placeholder="请您输入" 
+        placeholder-class="placeholder"
+        bindinput="onInput"
+        model:value="{{mess}}"
+      />
+      <image src="/image/emoji.png" class="icon emoji"></image>
+      <image src="/image/add.png" class="icon emoji" bindtap="sendMess"></image>
+    </view>
+  </view>
 </view>
