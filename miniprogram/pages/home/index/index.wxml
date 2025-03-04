@@ -91,7 +91,7 @@
           <!-- 互动区域 -->
           <view class="interaction">
             <text class="time">{{item.create_time}}</text>
-            <view class="like" bindtap="thumbsUp" data-id="{{item._id}}">
+            <view class="like" bindtap="thumbsUp" data-id="{{item._id}}" data-userId="{{item.userId}}">
               <image class="icon" src="/image/like-after.png" wx:if="{{tools.includes(userInfo.my_likes,item._id)}}"></image>
               <image class="icon" src="/image/like-before.png" wx:else></image>
               <text class="comment-text">{{item.likes}}</text>

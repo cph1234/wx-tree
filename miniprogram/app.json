@@ -16,7 +16,8 @@
     "pages/personal/index/personal",
     "pages/personal/chat/chat",
     "pages/chat/chat",
-    "pages/personal/my_timeline/detail/detail"
+    "pages/personal/my_timeline/detail/detail",
+    "pages/home/message/message"
   ],
   "window": {
     "backgroundTextStyle": "light",

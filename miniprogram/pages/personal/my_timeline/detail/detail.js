@@ -1,20 +1,41 @@
 // pages/personal/my_timeline/detail/detail.js
+const app = getApp()
+const db = wx.cloud.database()
+const _ = db.command
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    treeCircle:{},
+    userInfo:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    console.log(options)
+    this.getData(options.id)
   },
 
+  getData(id){
+    db.collection("treeFriendsCircleInfo")
+    .doc(id)
+    .get().then(res=>{
+      this.setData({
+        treeCircle:res.data
+      })
+      db.collection("userInfo")
+        .doc(res.data.userId)
+        .get().then(res=>{
+          this.setData({
+            userInfo:res.data
+          })
+        })
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -10,7 +10,9 @@ Page({
    */
   data: {
     userInfo:{},
-    treeInfo:[]
+    treeInfo:[],
+    selectedYear:new Date().getFullYear(),
+    year:[]
   },
   addTree(){
     wx.navigateTo({
@@ -21,6 +23,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    let year=[]
+    for (let i = -10; i <= 10; i++) {
+      year.push(new Date().getFullYear() + i);
+    }
+    this.setData({
+      year:year
+    })
+    this.getData(new Date().getFullYear())
+  },
+  getData(y){
+    const currentYear = y
+    const nextYear = y + 1
+    const startDate = new Date(currentYear + '-01-01T00:00:00.000Z')
+    const endDate = new Date(nextYear + '-01-01T00:00:00.000Z')
     db.collection("userInfo").where({
       _openid:app.globalData.user_openid
     }).get().then(res=>{
@@ -28,7 +44,11 @@ Page({
         userInfo:res.data[0]
       })
       db.collection("treeInfo").where({
-        userId:res.data[0]._id
+        userId:res.data[0]._id,
+        createTime:_.and(
+          _.gte(startDate),
+          _.lt(endDate)
+        )
       }).get().then(res=>{
         this.setData({
           treeInfo:res.data
@@ -36,7 +56,16 @@ Page({
       })
     })
   },
-
+  bindYearChange(e) {
+    console.log(e)
+    this.setData({
+      selectedYear: this.data.year[e.detail.value]
+    })
+    this.setData({
+      timeline:[]
+    })
+    this.getData(this.data.year[e.detail.value])
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

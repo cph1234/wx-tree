@@ -24,7 +24,7 @@
                 <text class="month">{{entry.month}}月</text>
               </view>
               <!-- 右侧内容 -->
-              <view class="content">
+              <view class="content" bindtap="detail" data-id="{{entry._id}}">
                 <image class="tree-image" src="{{entry.url}}" mode="aspectFill"/>
                 <text class="description">{{entry.content}}</text>
               </view>

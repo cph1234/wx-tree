@@ -11,7 +11,20 @@ userInfo表
 * registration_time：首次登陆时间
 * my_likes：我赞过的帖子id
 * tree_citcle_count：当前年发表数量
-* tree_homework_count：当前年发表数量
+* tree_homework_count：当前年作业数量
+* current_likes：距离上次查看，点赞的人
+  * userId：点赞人
+  * treeCircleId：点赞的树友圈id
+  * Time：点赞时间
+
+* current_comments：距离上次查看，评论的人
+  * userId：评论人
+  * treeCircleId：评论的树友圈id
+  * Time：评论时间
+  * content：评论内容
+* current_fans：距离上次查看，新增的粉丝
+  * userId：粉丝
+  * Time：加粉时间
 
 
 

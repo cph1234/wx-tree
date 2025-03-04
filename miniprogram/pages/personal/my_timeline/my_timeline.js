@@ -82,4 +82,9 @@ Page({
   onReachBottom: function() {
     this.getData(this.data.selectedYear)
   },
+  detail(e){
+    wx.navigateTo({
+      url: '/pages/personal/my_timeline/detail/detail?id='+e.currentTarget.dataset.id,
+    })
+  }
 })

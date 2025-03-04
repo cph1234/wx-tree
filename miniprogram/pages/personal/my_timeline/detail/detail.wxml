@@ -4,12 +4,12 @@
 
     <!-- 用户信息 -->
     <view class="user-info">
-      <image class="avatar" src="/image/tree-1.png" mode="aspectFill"/>
+      <image class="avatar" src="{{userInfo.avatar_url}}" mode="aspectFill"/>
       <view class="text-info">
-        <text class="username">软萌的小猫</text>
+        <text class="username">{{userInfo.name}}</text>
         <view class="badges">
           <text class="badges-text"> 树龄勋章 </text>
-          <block wx:for="{{item.badges}}" wx:key="*this">
+          <block wx:for="{{treeCircle.badges}}" wx:key="*this">
             <image class="badge-icon" src="/image/tree-badge.png" />
           </block>
         </view>
@@ -18,40 +18,35 @@
 
     <!-- 动态内容 -->
     <view class="post-content">
-      <text>{{item.content}}</text>
-        <view class="grid">
-          <block wx:for="{{item.fileIds}}" wx:for-item="imageItem" wx:key="index">
-            <image class="grid-item" src="{{imageItem}}" mode="aspectFill"></image>
-          </block>
-        </view>
+      <text>{{treeCircle.content}}</text>
     </view>
     <view class="grid-container">
-      <block wx:for="{{item.fileIds}}" wx:for-item="imageItem" wx:key="index">
+      <block wx:for="{{treeCircle.fileIds}}" wx:for-item="imageItem" wx:key="index">
         <view class="grid-item">
-          <image src="{{imageItem}}" mode="aspectFill" bindtap="previewImage"  data-url="{{imageItem}}" data-urls="{{item.fileIds}}"></image>
+          <image src="{{imageItem}}" mode="aspectFill" bindtap="previewImage"  data-url="{{imageItem}}" data-urls="{{treeCircle.fileIds}}"></image>
         </view>
       </block>
       <!-- 占位view，用于在图片数量不足时实现布局自适应 -->
-      <view class="grid-item" wx:if="{{item.fileIds.length % 3 === 1 || item.fileIds.length % 3 === 2}}"></view>
-      <view class="grid-item" wx:if="{{item.fileIds.length % 3 === 1}}"></view>
+      <view class="grid-item" wx:if="{{treeCircle.fileIds.length % 3 === 1 || treeCircle.fileIds.length % 3 === 2}}"></view>
+      <view class="grid-item" wx:if="{{treeCircle.fileIds.length % 3 === 1}}"></view>
     </view>
 
     <!-- 互动区域 -->
     <view class="interaction">
-      <text class="time">{{item.create_time}}</text>
-      <view class="like" bindtap="thumbsUp" data-id="{{item._id}}">
-        <image class="icon" src="/image/like-after.png" wx:if="{{tools.includes(userInfo.my_likes,item._id)}}"></image>
+      <text class="time">{{treeCircle.create_time}}</text>
+      <view class="like" bindtap="thumbsUp" data-id="{{treeCircle._id}}">
+        <image class="icon" src="/image/like-after.png" wx:if="{{tools.includes(userInfo.my_likes,treeCircle._id)}}"></image>
         <image class="icon" src="/image/like-before.png" wx:else></image>
-        <text>{{item.likes}}</text>
+        <text>{{treeCircle.likes}}</text>
       </view>
       <view class="comment">
-        <image class="icon" src="/image/comment-icon.png" catchtap="showInput" data-id="{{item._id}}"></image>
+        <image class="icon" src="/image/comment-icon.png" catchtap="showInput" data-id="{{treeCircle._id}}"></image>
       </view>
     </view>
     
     <!-- 评论区 -->
-    <view class="comment-section" wx:if="{{item.comment.length!==0}}">
-      <view class="comment-item" wx:for="{{item.comment}}" wx:for-item="commentItem" wx:key="index" catchtap="showInput" data-id="{{item._id}}" data-id2="{{commentItem.userId}}">
+    <view class="comment-section" wx:if="{{treeCircle.comment.length!==0}}">
+      <view class="comment-item" wx:for="{{treeCircle.comment}}" wx:for-item="commentItem" wx:key="index" catchtap="showInput" data-id="{{treeCircle._id}}" data-id2="{{commentItem.userId}}">
         <text class="comment-user">{{commentItem.userName1}}</text>
         <block wx:if="{{commentItem.userName2!==null&&commentItem.userName2!==''&&commentItem.userName2!==undefined}}">
           <text>回复 </text>

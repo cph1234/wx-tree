@@ -69,9 +69,30 @@ Page({
       if(likes.includes(treeId)){
         //取消点赞、点赞数减一
         newArr = likes.filter((item) => item !== treeId);
+        db.collection("userInfo")
+        .doc(e.currentTarget.dataset.userId)
+        .update({
+          data:{
+            current_likes:_.pull({
+              userId: this.data.userInfo._id,
+              treeCircleId:treeId
+            })
+          }
+        })
       }else{
         newArr.push(treeId)
         num=1
+        db.collection("userInfo")
+        .doc(e.currentTarget.dataset.userId)
+        .update({
+          data:{
+            current_likes:_.push({
+              userId: this.data.userInfo._id,
+              treeCircleId:treeId,
+              time:wx.cloud.database().serverDate()
+            })
+          }
+        })
       }
       db.collection("userInfo").where({
         _openid:app.globalData.user_openid
@@ -181,6 +202,18 @@ Page({
         });
         return;
       }
+      db.collection("userInfo")
+        .doc(this.data.commentUserId)
+        .update({
+          data:{
+            current_likes:_.push({
+              userId: this.data.userInfo._id,
+              treeCircleId:this.data.commentTreeId,
+              time:wx.cloud.database().serverDate(),
+              content:inputValue
+            })
+          }
+        })
       const newComment = {
         userId: this.data.userInfo._id,
         userId2: this.data.commentUserId || "",
