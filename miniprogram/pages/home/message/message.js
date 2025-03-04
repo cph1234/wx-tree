@@ -1,7 +1,13 @@
 // pages/home/message/message.js
+const app = getApp()
+const db = wx.cloud.database()
+const _ = db.command
 Page({
   data: {
-    currentTab: 1,
+    currentTab: 0,
+    userInfo:{},
+    current_likes:[],
+    current_comments:[],
     counts: {
       like: 3,
       comment: 2,
@@ -47,11 +53,60 @@ Page({
       }
     ]
   },
-
+  onLoad(options){
+    this.getData(options.userId)
+  },
   switchTab(e) {
     const index = parseInt(e.currentTarget.dataset.index)
     this.setData({
       currentTab: index
     })
-  }
+  },
+  async getData(id){
+    let userInfo = await db.collection("userInfo")
+    .doc(id)
+    .get()
+    let current_likes = userInfo.data.current_likes
+    if(current_likes==undefined||current_likes.length==0){
+      current_likes = []
+    }else{
+      for(let item of current_likes){
+        let like = await db.collection("userInfo")
+        .doc(item.userId)
+        .get()
+        item.avatar_url = like.data.avatar_url
+        item.name = like.data.name
+        item.time = this.checkDateAndTime(item.time)
+      }
+      console.log(current_likes)
+      this.setData({
+        current_likes:current_likes
+      })
+    }
+
+    let current_comments = userInfo.data.current_comments
+    if(current_comments==undefined||current_comments.length==0){
+      current_comments = []
+    }else{
+      for(let item of current_comments){
+        let like = await db.collection("userInfo")
+        .doc(item.userId)
+        .get()
+        item.avatar_url = like.data.avatar_url
+        item.name = like.data.name
+        item.time = this.checkDateAndTime(item.time)
+      }
+      console.log(current_comments)
+      this.setData({
+        current_comments:current_comments
+      })
+    }
+  },
+  checkDateAndTime(e){
+    let date = new Date(e);
+    let ymd = date.toISOString().substring(0,10);//年-月-日
+    let time = date.toTimeString().substring(0,8);//时：分：秒
+    let resDate = ymd + ' ' + time;
+    return resDate
+  },
 })

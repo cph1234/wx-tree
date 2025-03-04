@@ -22,7 +22,8 @@ Page({
       commentTreeId:'',
       commentUserId:'',
       textareaHeight:30,
-      searchValue:''
+      searchValue:'',
+      commentUrl:''
     },
     getData(condition,page,content=""){
       wx.showLoading({
@@ -70,7 +71,7 @@ Page({
         //取消点赞、点赞数减一
         newArr = likes.filter((item) => item !== treeId);
         db.collection("userInfo")
-        .doc(e.currentTarget.dataset.userId)
+        .doc(e.currentTarget.dataset.userid)
         .update({
           data:{
             current_likes:_.pull({
@@ -83,13 +84,14 @@ Page({
         newArr.push(treeId)
         num=1
         db.collection("userInfo")
-        .doc(e.currentTarget.dataset.userId)
+        .doc(e.currentTarget.dataset.userid)
         .update({
           data:{
             current_likes:_.push({
               userId: this.data.userInfo._id,
               treeCircleId:treeId,
-              time:wx.cloud.database().serverDate()
+              time:wx.cloud.database().serverDate(),
+              url:e.currentTarget.dataset.url
             })
           }
         })
@@ -172,7 +174,8 @@ Page({
       this.setData({
         showInputBox: !this.data.showInputBox,
         commentTreeId: e.currentTarget.dataset.id,
-        commentUserId: e.currentTarget.dataset.id2
+        commentUserId: e.currentTarget.dataset.id2,
+        commentUrl: e.currentTarget.dataset.url
       });
     },
     // 输入框内容变化时触发
@@ -206,11 +209,12 @@ Page({
         .doc(this.data.commentUserId)
         .update({
           data:{
-            current_likes:_.push({
+            current_comments:_.push({
               userId: this.data.userInfo._id,
               treeCircleId:this.data.commentTreeId,
               time:wx.cloud.database().serverDate(),
-              content:inputValue
+              content:inputValue,
+              url:this.data.commentUrl
             })
           }
         })
@@ -628,7 +632,11 @@ Page({
             }
         })
     },
-
+    notificate(e){
+      wx.navigateTo({
+        url: '/pages/home/message/message?userId='+this.data.userInfo._id,
+      })
+    },
     // 赞、取消赞
     zan: function(e) {
         // iszan为true,代表已经点赞，可取消赞

@@ -8,7 +8,7 @@
       data-index="0"
     >
       赞
-      <text class="badge">{{counts.like}}</text>
+      <text class="badge">{{current_likes.length}}</text>
     </view>
     <view 
       class="tab-item {{currentTab === 1 ? 'active' : ''}}" 
@@ -16,7 +16,7 @@
       data-index="1"
     >
       评论
-      <text class="badge">{{counts.comment}}</text>
+      <text class="badge">{{current_comments.length}}</text>
     </view>
     <view 
       class="tab-item {{currentTab === 2 ? 'active' : ''}}" 
@@ -32,14 +32,14 @@
   <view class="content">
     <!-- 点赞列表 -->
     <block wx:if="{{currentTab === 0}}">
-      <view class="item" wx:for="{{likeList}}" wx:key="index">
-        <image class="avatar" src="{{item.avatar}}"></image>
+      <view class="item" wx:for="{{current_likes}}" wx:key="index">
+        <image class="avatar" src="{{item.avatar_url}}"></image>
         <view class="info">
-          <view class="username">{{item.username}}</view>
-          <view class="action">赞了你的{{item.content}}</view>
+          <view class="username">{{item.name}}</view>
+          <view class="action">赞了你的树友圈</view>
           <view class="time">{{item.time}}</view>
         </view>
-        <image class="preview" src="{{item.previewImage}}"></image>
+        <image class="preview" src="{{item.url}}"></image>
         <!-- 分割线 -->
         <view class="divider"></view>
       </view>
@@ -47,14 +47,14 @@
 
     <!-- 评论列表（结构示例） -->
     <block wx:if="{{currentTab === 1}}">
-      <view class="item" wx:for="{{commentList}}" wx:key="index">
-        <image class="avatar" src="{{item.avatar}}"></image>
+      <view class="item" wx:for="{{current_comments}}" wx:key="index">
+        <image class="avatar" src="{{item.avatar_url}}"></image>
         <view class="info">
-          <view class="username">{{item.username}}</view>
+          <view class="username">{{item.name}}</view>
           <view class="action">{{item.content}}</view>
           <view class="time">{{item.time}}</view>
         </view>
-        <image class="preview" src="{{item.previewImage}}"></image>
+        <image class="preview" src="{{item.url}}"></image>
         <!-- 分割线 -->
         <view class="divider"></view>
       </view>

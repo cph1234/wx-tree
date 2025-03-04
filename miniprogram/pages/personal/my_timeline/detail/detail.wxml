@@ -1,4 +1,12 @@
 <!--pages/personal/my_timeline/detail/detail.wxml-->
+<wxs module="tools">
+  var includes = function (array, searchElement) {
+    return array.indexOf(searchElement) !== -1
+  }
+  module.exports = {
+    includes:includes
+  }
+</wxs>
 <view class="container">
   <view class="post-card">
 
@@ -34,13 +42,13 @@
     <!-- 互动区域 -->
     <view class="interaction">
       <text class="time">{{treeCircle.create_time}}</text>
-      <view class="like" bindtap="thumbsUp" data-id="{{treeCircle._id}}">
+      <view class="like" bindtap="thumbsUp" data-id="{{treeCircle._id}}" data-userId="{{treeCircle.userId}}" data-url="{{treeCircle.fileIds[0]}}">
         <image class="icon" src="/image/like-after.png" wx:if="{{tools.includes(userInfo.my_likes,treeCircle._id)}}"></image>
         <image class="icon" src="/image/like-before.png" wx:else></image>
         <text>{{treeCircle.likes}}</text>
       </view>
       <view class="comment">
-        <image class="icon" src="/image/comment-icon.png" catchtap="showInput" data-id="{{treeCircle._id}}"></image>
+        <image class="icon" src="/image/comment-icon.png" catchtap="showInput" data-id="{{item._id}}" data-id2="{{item.userId}}" data-url="{{item.fileIds[0]}}"></image>
       </view>
     </view>
     
