@@ -17,7 +17,6 @@
 
 .chat-area {
   height: calc(100vh - 220rpx);
-  padding: 20rpx 30rpx;
 }
 
 .message-container {

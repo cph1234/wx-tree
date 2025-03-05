@@ -96,8 +96,8 @@
               <image class="icon" src="/image/like-before.png" wx:else></image>
               <text class="comment-text">{{item.likes}}</text>
             </view>
-            <view class="comment">
-              <image class="icon" src="/image/comment-icon.png" catchtap="showInput" data-id="{{item._id}}" data-id2="{{item.userId}}" data-url="{{item.fileIds[0]}}"></image>
+            <view class="comment" catchtap="showInput" data-id="{{item._id}}" data-id2="{{item.userId}}" data-url="{{item.fileIds[0]}}" >
+              <image class="icon" src="/image/comment-icon.png"></image>
               <text class="comment-text">评论</text>
             </view>
           </view>

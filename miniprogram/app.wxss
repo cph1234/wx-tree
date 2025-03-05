@@ -119,6 +119,7 @@
   align-items: center;
   background-color: #FFFFFF;
   padding: 30rpx;
+  min-height: 100vh;
 } 
 
 button {
