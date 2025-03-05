@@ -23,7 +23,8 @@ Page({
       commentUserId:'',
       textareaHeight:30,
       searchValue:'',
-      commentUrl:''
+      commentUrl:'',
+      sendCommentUserId:''
     },
     getData(condition,page,content=""){
       wx.showLoading({
@@ -201,10 +202,12 @@ Page({
     },
     // 显示输入框
     showInput: function(e) {
+      console.log(e.currentTarget.dataset)
       this.setData({
         showInputBox: !this.data.showInputBox,
         commentTreeId: e.currentTarget.dataset.id,
         commentUserId: e.currentTarget.dataset.id2,
+        sendCommentUserId: e.currentTarget.dataset.id3,
         commentUrl: e.currentTarget.dataset.url
       });
     },
@@ -236,7 +239,7 @@ Page({
         return;
       }
       db.collection("userInfo")
-        .doc(this.data.commentUserId)
+        .doc(this.data.sendCommentUserId)
         .update({
           data:{
             current_comments:_.push({
@@ -781,7 +784,8 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function() {
-
+      this.getData(this.data.filterIndex,0)
+      this.getUserInfo()
     },
     /** 
      * 进入发表页面

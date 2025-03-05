@@ -48,19 +48,28 @@
         <text>{{treeCircle.likes}}</text>
       </view>
       <view class="comment">
-        <image class="icon" src="/image/comment-icon.png" catchtap="showInput" data-id="{{item._id}}" data-id2="{{item.userId}}" data-url="{{item.fileIds[0]}}"></image>
+        <image class="icon" src="/image/comment-icon.png" catchtap="showInput" data-id="{{treeCircle._id}}" data-id3="{{treeCircle.userId}}" data-url="{{treeCircle.fileIds[0]}}"></image>
       </view>
     </view>
     
     <!-- 评论区 -->
     <view class="comment-section" wx:if="{{treeCircle.comment.length!==0}}">
-      <view class="comment-item" wx:for="{{treeCircle.comment}}" wx:for-item="commentItem" wx:key="index" catchtap="showInput" data-id="{{treeCircle._id}}" data-id2="{{commentItem.userId}}">
+      <view class="comment-item" wx:for="{{treeCircle.comment}}" wx:for-item="commentItem" wx:key="index" catchtap="showInput" data-id="{{treeCircle._id}}" data-id3="{{commentItem.userId}}" data-id2="{{commentItem.userId}}" data-url="{{item.fileIds[0]}}">
         <text class="comment-user">{{commentItem.userName1}}</text>
         <block wx:if="{{commentItem.userName2!==null&&commentItem.userName2!==''&&commentItem.userName2!==undefined}}">
           <text>回复 </text>
           <text class="comment-user">{{commentItem.userName2}}</text>
         </block>
         <text class="comment-content">: {{commentItem.content}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- 输入区域 -->
+  <view class="input-section" wx:if="{{showInputBox}}" style="height:{{textareaHeight+10}}rpx">
+    <textarea class='input_input' value="{{inputContent}}" focus="auto" catchtap="empty" bindinput="inputComment" show-confirm-bar='{{false}}' :adjust-position="false" auto-height bindlinechange="handleLineChange"></textarea>
+    <view style="height:60rpx;width:170rpx;">
+      <view class="send_btn">
+        <text class="send_btn_text" bindtap="submitComment">发送</text>
       </view>
     </view>
   </view>

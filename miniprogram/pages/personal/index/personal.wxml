@@ -12,9 +12,9 @@
         <text class="avatar-badge" wx:if="{{userInfo.identity=='teamleader'}}">香樟组长</text>
       </view>
       <view class="user-detail">
-        <view style="display: flex;align-content: flex-start;">
+        <view style="display: flex;align-content: flex-start;" bindtap="enableInput">
           <input type="nickname" disabled="{{isDisabled}}" class="username" value="{{inputContent}}" style="width: {{inputWidth}}rpx" bindinput="onInput" id="inputField"  focus="{{!isDisabled}}" bindblur="onInputBlur"/>
-          <image class="icon" src="/image/修改.png" bindtap="enableInput"></image>
+          <image class="icon" src="/image/修改.png"></image>
         </view>
         <view class="badges">
           <text class="badges-text"> 树龄勋章 </text>

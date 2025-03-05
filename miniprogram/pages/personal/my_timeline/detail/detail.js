@@ -9,7 +9,20 @@ Page({
    */
   data: {
     treeCircle:{},
-    userInfo:{}
+    filterIndex: 0,
+    hasNotification: true,
+    dataList:[],
+    showInputBox: false,
+    comment: '',
+    inputContent: '',
+    userInfo:{},
+    bottom:0,
+    commentTreeId:'',
+    commentUserId:'',
+    textareaHeight:30,
+    searchValue:'',
+    commentUrl:'',
+    sendCommentUserId:''
   },
 
   /**
@@ -122,6 +135,101 @@ Page({
     let time = date.toTimeString().substring(0,8);//时：分：秒
     let resDate = ymd + ' ' + time;
     return resDate
+  },
+  hideComment(){
+    this.setData({
+      showInputBox:false
+    })
+  },
+  previewImage: function(e) {
+    console.log(e)
+    wx.previewImage({
+      current: e.currentTarget.dataset.url, // 当前显示图片的链接
+      urls: e.currentTarget.dataset.urls // 需要预览的图片链接列表（此处仅为示例，实际应用中可能有多个链接）
+    });
+  },
+  showInput: function(e) {
+    console.log(e.currentTarget.dataset)
+    this.setData({
+      showInputBox: !this.data.showInputBox,
+      commentTreeId: e.currentTarget.dataset.id,
+      commentUserId: e.currentTarget.dataset.id2,
+      sendCommentUserId: e.currentTarget.dataset.id3,
+      commentUrl: e.currentTarget.dataset.url
+    });
+  },
+  inputComment: function (e) {
+    console.log()
+    this.setData({
+      inputValue: e.detail.value
+    });
+  },
+  handleLineChange(e) {
+    // 获取当前textarea的高度
+    const height = e.detail.height;
+    this.setData({
+      textareaHeight: height
+    });
+  },
+  // 提交评论按钮点击事件
+  submitComment: function () {
+    const inputValue = this.data.inputValue;
+    
+    if (inputValue.trim() === '') {
+      wx.showToast({
+        title: '评论内容不能为空',
+        icon: 'none'
+      });
+      return;
+    }
+    db.collection("userInfo")
+      .doc(this.data.sendCommentUserId)
+      .update({
+        data:{
+          current_comments:_.push({
+            userId: this.data.userInfo._id,
+            treeCircleId:this.data.commentTreeId,
+            time:wx.cloud.database().serverDate(),
+            content:inputValue,
+            url:this.data.commentUrl
+          })
+        }
+      })
+    const newComment = {
+      userId: this.data.userInfo._id,
+      userId2: this.data.commentUserId || "",
+      content: inputValue
+    };
+    db.collection("treeFriendsCircleInfo")
+      .doc(this.data.commentTreeId)
+      .update({
+        data:{
+          comment:_.push(newComment)
+        }
+      }).then(res=>{
+        let treeCircle = this.data.treeCircle
+        newComment.userName1 = this.data.userInfo.name
+        if(this.data.commentUserId!==null&&this.data.commentUserId!==""&&this.data.commentUserId!==undefined){
+          db.collection("userInfo").doc(this.data.commentUserId).get()
+          .then(res=>{
+            newComment.userName2 = res.data.name
+            treeCircle.comment.push(newComment);
+            this.setData({
+              treeCircle : treeCircle,
+              showInputBox : false,
+              inputValue: ''
+            })
+          })
+        }else{
+          treeCircle.comment.push(newComment);
+          this.setData({
+            treeCircle : treeCircle,
+            showInputBox : false,
+            inputValue: ''
+          })
+        }
+        console.log(treeCircle)
+      })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

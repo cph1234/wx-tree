@@ -135,8 +135,8 @@ Page({
   },
   customerService(){
     wx.navigateTo({
-      url: '/pages/personal/tree_manage/tree_manage?userId='+this.data.userInfo._id,
-    })
+      url: '/pages/chat/chat?sendUserId='+this.data.userInfo._id+'&receiveUserId=11ad502367b8192b02f91dcd1b8c0e58' // 目标页面路径，支持传递参数
+    });
   },
   ranking(){
     wx.navigateTo({
@@ -145,7 +145,7 @@ Page({
   },
   out(){
     wx.navigateTo({
-      url: '/pages/personal/tree_manage/tree_manage?userId='+this.data.userInfo._id,
+      url: '/pages/login/login',
     })
   },
   my_group(){
