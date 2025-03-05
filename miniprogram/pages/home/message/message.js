@@ -8,6 +8,7 @@ Page({
     userInfo:{},
     current_likes:[],
     current_comments:[],
+    current_fans:[],
     counts: {
       like: 3,
       comment: 2,
@@ -99,6 +100,24 @@ Page({
       console.log(current_comments)
       this.setData({
         current_comments:current_comments
+      })
+    }
+
+    let current_fans = userInfo.data.current_fans
+    if(current_fans==undefined||current_fans.length==0){
+      current_fans = []
+    }else{
+      for(let item of current_fans){
+        let like = await db.collection("userInfo")
+        .doc(item.userId)
+        .get()
+        item.avatar_url = like.data.avatar_url
+        item.name = like.data.name
+        item.time = this.checkDateAndTime(item.time)
+      }
+      console.log(current_fans)
+      this.setData({
+        current_fans:current_fans
       })
     }
   },

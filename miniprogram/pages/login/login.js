@@ -43,7 +43,10 @@ Page({
                   my_attention:[],
                   my_fans:[],
                   my_team_member:[],
-                  my_likes:[]
+                  my_likes:[],
+                  current_likes:[],
+                  current_comments:[],
+                  current_fans:[]
                 },
                 success: res => {
                   wx.showToast({

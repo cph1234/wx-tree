@@ -45,7 +45,7 @@
         <view class="post-card">
           <!-- 用户信息 -->
           <view class="user-info">
-            <image class="avatar" src="{{item.data.avatar_url}}"></image>
+            <image class="avatar" src="{{item.data.avatar_url}}" data-id="{{item.userId}}" bindtap="observation"></image>
             <view class="text-info">
               <text class="username">{{item.data.name}}</text>
               <view class="badges">

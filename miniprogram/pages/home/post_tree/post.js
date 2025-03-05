@@ -245,7 +245,7 @@ Page({
           homeworkTags:homeworkTags
         })
       }else{
-        
+        app.globalData.refresh = true
         wx.switchTab({
           url: '/pages/home/index/index'
         })
@@ -401,6 +401,7 @@ Page({
         }
       }).then(res=>{
         console.log(res)
+        app.globalData.refresh = true
         wx.switchTab({
           url: '/pages/home/index/index'
         })
@@ -456,6 +457,7 @@ Page({
       }
     }).then(res=>{
       console.log(res)
+      app.globalData.refresh = true
       wx.switchTab({
         url: '/pages/home/index/index'
       })

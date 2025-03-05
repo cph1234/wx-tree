@@ -175,6 +175,9 @@ Page({
       sendUser:sendUser.data,
       receiveUser:receiveUser.data
     })
+    wx.setNavigationBarTitle({
+      title: receiveUser.data.name
+    })
     await this.queryChat();
     await this.dbWatcher();
   },

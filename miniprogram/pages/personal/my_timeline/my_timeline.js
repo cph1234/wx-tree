@@ -9,7 +9,8 @@ Page({
     timeline: [],
     year:[]
   },
-  onLoad(){
+  onLoad(options){
+    console.log(options)
     let year=[]
     for (let i = -10; i <= 10; i++) {
       year.push(new Date().getFullYear() + i);
@@ -17,11 +18,11 @@ Page({
     this.setData({
       year:year
     })
-    db.collection("userInfo").where({
-      _openid:app.globalData.user_openid
-    }).get().then(res=>{
+    db.collection("userInfo")
+    .doc(options.userId)
+    .get().then(res=>{
       this.setData({
-        userInfo:res.data[0]
+        userInfo:res.data
       })
       console.log(res.data)
       this.getData(new Date().getFullYear())

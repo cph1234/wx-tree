@@ -24,7 +24,7 @@
       data-index="2"
     >
       新增粉丝
-      <text class="badge">{{counts.fans}}</text>
+      <text class="badge">{{current_fans.length}}</text>
     </view>
   </view>
 
@@ -63,6 +63,16 @@
     <!-- 新增粉丝列表（结构示例） -->
     <block wx:if="{{currentTab === 2}}">
       <!-- 粉丝项结构 -->
+      <view class="item" wx:for="{{current_fans}}" wx:key="index">
+        <image class="avatar" src="{{item.avatar_url}}"></image>
+        <view class="info">
+          <view class="username">{{item.name}}</view>
+          <view class="action">成为了你的粉丝</view>
+          <view class="time">{{item.time}}</view>
+        </view>
+        <!-- 分割线 -->
+        <view class="divider"></view>
+      </view>
     </block>
   </view>
 </view>

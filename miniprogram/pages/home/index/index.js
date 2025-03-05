@@ -57,6 +57,17 @@ Page({
       db.collection("userInfo").where({
         _openid:user_openid
       }).get().then(res=>{
+        if((res.data[0].current_comments==undefined||res.data[0].current_comments.length==0)&&
+        (res.data[0].current_likes==undefined||res.data[0].current_likes.length==0)&&
+        (res.data[0].current_fans==undefined||res.data[0].current_fans.length==0)){
+          this.setData({
+            hasNotification:false
+          })
+        }else{
+          this.setData({
+            hasNotification:true
+          })
+        }
         this.setData({
           userInfo : res.data[0]
         })
@@ -137,8 +148,27 @@ Page({
       if(attention.includes(userId)){
         //取消关注
         newArr = attention.filter((item) => item !== userId);
+        db.collection("userInfo")
+        .doc(userId)
+        .update({
+          data:{
+            current_fans:_.pull({
+              userId: this.data.userInfo._id
+            })
+          }
+        })
       }else{
         newArr.push(userId)
+        db.collection("userInfo")
+        .doc(userId)
+        .update({
+          data:{
+            current_fans:_.push({
+              userId: this.data.userInfo._id,
+              time:wx.cloud.database().serverDate()
+            })
+          }
+        })
       }
       db.collection("userInfo").where({
         _openid:app.globalData.user_openid
@@ -440,13 +470,16 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function(option) {
-      console.log(this.data)
-      this.setData({
-        dataList:[],
-        searchValue:''
-      })
-      this.getUserInfo()
-      this.getData(0,0)
+      if(app.globalData.refresh!=undefined&&app.globalData.refresh == true){
+        this.setData({
+          dataList:[],
+          searchValue:''
+        })
+        this.getUserInfo()
+        console.log('here')
+        this.getData(0,0)
+        app.globalData.refresh = false
+      }
     },
  
     /**
@@ -837,5 +870,10 @@ Page({
       let time = date.toTimeString().substring(0,8);//时：分：秒
       let resDate = ymd + ' ' + time;
       return resDate
+    },
+    observation(e){
+      wx.navigateTo({
+        url: '/pages/personal/my_timeline/my_timeline?userId='+e.currentTarget.dataset.id,
+      })
     },
 })
