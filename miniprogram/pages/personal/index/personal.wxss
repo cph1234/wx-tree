@@ -99,7 +99,18 @@ page{
   margin-left: 5%;
   margin-right: 5%;
 }
-
+.stats-grid2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background: #fff;
+  border-radius: 30rpx;
+  padding: 32rpx 0;
+  margin-bottom: 20rpx;
+  position: relative;
+  background-color: #99AB64;
+  margin-left: 5%;
+  margin-right: 5%;
+}
 .stat-item {
   text-align: center;
   position: relative;

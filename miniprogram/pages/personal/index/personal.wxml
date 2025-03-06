@@ -9,12 +9,11 @@
           <image class="avatar" src="{{userInfo.avatar_url}}"></image>
         </button>
         <!-- <image class="avatar" src="{{userInfo.avatar_url}}"></image> -->
-        <text class="avatar-badge" wx:if="{{userInfo.identity=='teamleader'}}">香樟组长</text>
+        <text class="avatar-badge" wx:if="{{ifTL}}">{{treeType}}组长</text>
       </view>
       <view class="user-detail">
         <view style="display: flex;align-content: flex-start;" bindtap="enableInput">
           <input type="nickname" disabled="{{isDisabled}}" class="username" value="{{inputContent}}" style="width: {{inputWidth}}rpx" bindinput="onInput" id="inputField"  focus="{{!isDisabled}}" bindblur="onInputBlur"/>
-          <image class="icon" src="/image/修改.png"></image>
         </view>
         <view class="badges">
           <text class="badges-text"> 树龄勋章 </text>
@@ -27,7 +26,7 @@
   </view>
 
     <!-- 数据统计 -->
-  <view class="stats-grid">
+  <view class="stats-grid" wx:if="{{ifTL}}">
     <view class="stat-item" bindtap="my_follow">
       <text class="stat-num">{{userInfo.my_attention.length}}</text>
       <text class="stat-label">我的关注</text>
@@ -39,6 +38,18 @@
     <view class="stat-item" bindtap="my_group">
       <text class="stat-num">{{userInfo.my_team_member.length}}</text>
       <text class="stat-label">我的组员</text>
+    </view>
+  </view>
+
+    <!-- 数据统计 -->
+  <view class="stats-grid2" wx:else>
+    <view class="stat-item" bindtap="my_follow">
+      <text class="stat-num">{{userInfo.my_attention.length}}</text>
+      <text class="stat-label">我的关注</text>
+    </view>
+    <view class="stat-item" bindtap="my_fans">
+      <text class="stat-num">{{likes}}</text>
+      <text class="stat-label">我的粉丝</text>
     </view>
   </view>
 

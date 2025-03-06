@@ -504,5 +504,5 @@ Page({
         console.info(errInfo)
       }
      })
-  }
+  },
 });

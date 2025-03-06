@@ -12,7 +12,9 @@ Page({
     param: app.globalData.param,
     inputValue:40,
     isDisabled:true,
-    likes:0
+    likes:0,
+    ifTL:true,
+    treeType:''
   },
   onLoad: function () {
     console.log(app.globalData)
@@ -24,6 +26,21 @@ Page({
         userInfo : res.data[0],
         inputContent:res.data[0].name
       })
+      db.collection("treeManage").where({
+        teamLeader:res.data[0]._id
+      }).get().then(res=>{
+        if(res.data.length==0){
+          this.setData({
+            ifTL:false
+          })
+        }else{
+          this.setData({
+            ifTL:true,
+            treeType:res.data[0].treeType
+          })
+        }
+      })
+      
       db.collection("userInfo")
       .where({my_attention:res.data[0]._id})
       .get().then(res=>{
@@ -135,7 +152,7 @@ Page({
   },
   customerService(){
     wx.navigateTo({
-      url: '/pages/chat/chat?sendUserId='+this.data.userInfo._id+'&receiveUserId=11ad502367b8192b02f91dcd1b8c0e58' // 目标页面路径，支持传递参数
+      url: '/pages/chat/chat?sendUserId='+this.data.userInfo._id+'&receiveUserId=b834edac67b4175902cbe76e210c0bab' // 目标页面路径，支持传递参数
     });
   },
   ranking(){

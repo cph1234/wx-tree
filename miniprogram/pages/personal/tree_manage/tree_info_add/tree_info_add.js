@@ -109,7 +109,7 @@ Page({
       treeDimensions3 : e.detail.value
     })
   },
-  addTree(){
+  async addTree(){
     let info = {}
     info.altitude = this.data.altitude
     info.createTime = wx.cloud.database().serverDate()
@@ -128,6 +128,19 @@ Page({
         info.sunshine = item.label
       }
     })
+    let treeManage = await db.collection("treeManage")
+    .where({
+      treeType:this.data.treeType
+    }).get()
+    if(treeManage.data.length!==0){
+      let teamLeader = await db.collection("userInfo")
+      .doc(treeManage.data[0].teamLeader)
+      .update({
+        data:{
+          my_team_member:_.push(this.data.userInfo._id)
+        }
+      })
+    }
     db.collection("treeInfo")
     .add({
       data:info

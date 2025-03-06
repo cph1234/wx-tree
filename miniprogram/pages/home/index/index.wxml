@@ -4,8 +4,19 @@
   var includes = function (array, searchElement) {
     return array.indexOf(searchElement) !== -1
   }
+  var arrayFilter = function(array, flag) {
+    if (array.length >3 && flag == false) {
+      return array.slice(0, 3)
+    }
+    return array
+  }
+  var ifShow = function(array, flag){
+    return flag==false&&array.length>3
+  }
   module.exports = {
-    includes:includes
+    includes:includes,
+    arrayFilter:arrayFilter,
+    ifShow:ifShow
   }
 </wxs>
 
@@ -103,7 +114,7 @@
           </view>
           <!-- 评论区 -->
           <view class="comment-section" wx:if="{{item.comment.length!==0}}">
-            <view class="comment-item" wx:for="{{item.comment}}" wx:for-item="commentItem" wx:key="index" catchtap="showInput" data-id="{{item._id}}" data-id3="{{commentItem.userId}}" data-id2="{{commentItem.userId}}" data-url="{{item.fileIds[0]}}">
+            <view class="comment-item" wx:for="{{tools.arrayFilter(item.comment,item.showmore)}}" wx:for-item="commentItem" wx:key="index" catchtap="showInput" data-id="{{item._id}}" data-id3="{{commentItem.userId}}" data-id2="{{commentItem.userId}}" data-url="{{item.fileIds[0]}}">
               <text class="comment-user">{{commentItem.userName1}}</text>
               <block wx:if="{{commentItem.userName2!==null&&commentItem.userName2!==''&&commentItem.userName2!==undefined}}">
                 <text>回复 </text>
@@ -111,6 +122,9 @@
               </block>
               <text class="comment-content">: {{commentItem.content}}</text>
             </view>
+          </view>
+          <view class="load-more" bindtap="loadmore" data-index="{{index}}" wx:if="{{tools.ifShow(item.comment,item.showmore)}}">
+            <text>点击查看更多</text><ion-icon name="arrow-down" size="16"></ion-icon>
           </view>
         </view>
         

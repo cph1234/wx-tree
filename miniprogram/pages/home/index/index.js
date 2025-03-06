@@ -24,7 +24,8 @@ Page({
       textareaHeight:30,
       searchValue:'',
       commentUrl:'',
-      sendCommentUserId:''
+      sendCommentUserId:'',
+      isRefresh:true
     },
     getData(condition,page,content=""){
       wx.showLoading({
@@ -43,6 +44,7 @@ Page({
         let data = res.result
         data.forEach(item=>{
           item.create_time = this.checkDateAndTime(item.create_time)
+          item.showmore = false
         })
         let newData = oldData.concat(data)
         this.setData({
@@ -479,7 +481,7 @@ Page({
           searchValue:''
         })
         this.getUserInfo()
-        console.log('here')
+        console.log('onShow')
         this.getData(0,0)
         app.globalData.refresh = false
       }
@@ -777,15 +779,24 @@ Page({
      * 上拉加载更多
      */
     onReachBottom: function() {
+      console.log('onReachBottom')
+      // if(this.data.isRefresh){
         let page = this.data.dataList.length
         this.getData(this.data.filterIndex,page)
+      // }else{
+      //   this.setData({
+      //     isRefresh:true
+      //   })
+      // }
     },
     /**
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function() {
+      console.log('onPullDownRefresh')
       this.getData(this.data.filterIndex,0)
       this.getUserInfo()
+      wx.stopPullDownRefresh();
     },
     /** 
      * 进入发表页面
@@ -880,4 +891,14 @@ Page({
         url: '/pages/personal/my_timeline/my_timeline?userId='+e.currentTarget.dataset.id,
       })
     },
+    loadmore(e){
+      console.log(e.currentTarget.dataset.index)
+      let index = e.currentTarget.dataset.index
+      let dataList = this.data.dataList
+      dataList[index].showmore = true
+      this.setData({
+        dataList:dataList,
+        isRefresh:false
+      })
+    }
 })
