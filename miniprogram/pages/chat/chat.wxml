@@ -27,15 +27,16 @@
   <!-- 输入区域 -->
   <view class="input-area">
     <view class="input-box">
-      <image src="/image/voice.png" class="icon emoji"></image>
+      <!-- <image src="/image/voice.png" class="icon emoji"></image> -->
       <input 
         placeholder="请您输入" 
         placeholder-class="placeholder"
         bindinput="onInput"
         model:value="{{mess}}"
       />
-      <image src="/image/emoji.png" class="icon emoji"></image>
-      <image src="/image/add.png" class="icon emoji" bindtap="sendMess"></image>
+      <!-- <image src="/image/emoji.png" class="icon emoji"></image> -->
+      <image src="/image/add.png" class="icon emoji"></image>
+      <button class="send-btn" bindtap="sendMessage">发送</button>
     </view>
   </view>
 </view>
