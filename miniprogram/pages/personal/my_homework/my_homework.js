@@ -9,7 +9,7 @@ Page({
     treeInfo: [],
     year:[]
   },
-  onLoad(){
+  onLoad(options){
     let year=[]
     for (let i = -10; i <= 10; i++) {
       year.push(new Date().getFullYear() + i);
@@ -17,13 +17,13 @@ Page({
     this.setData({
       year:year
     })
-    db.collection("userInfo").where({
-      _openid:app.globalData.user_openid
-    }).get().then(res=>{
+    db.collection("userInfo").doc(options.userId).get().then(res=>{
       this.setData({
-        userInfo:res.data[0]
+        userInfo:res.data
       })
-      console.log(res.data)
+      wx.setNavigationBarTitle({
+        title: res.data.name+'的作业'
+      })
       this.getData(new Date().getFullYear())
     })
     

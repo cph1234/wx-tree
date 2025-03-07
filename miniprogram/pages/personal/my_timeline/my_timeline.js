@@ -24,7 +24,9 @@ Page({
       this.setData({
         userInfo:res.data
       })
-      console.log(res.data)
+      wx.setNavigationBarTitle({
+        title: res.data.name+'的观察'
+      })
       this.getData(new Date().getFullYear())
     })
     

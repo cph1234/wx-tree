@@ -25,7 +25,7 @@
         </view>
 
         <!-- 右侧关注按钮 -->
-        <view class="btn-container">
+        <view class="btn-container" bindtap="homework" data-id="{{item._id}}">
           <view class="home-btn">
                 查看作业
           </view>

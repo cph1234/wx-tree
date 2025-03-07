@@ -93,3 +93,8 @@ chatContent表
   * sendId：发送人id
   * timestamp：时间
   * content: 聊天内容
+
+treeManage
+  * _id：主键
+  * treeType：树类型
+  * teamLeader：组长id

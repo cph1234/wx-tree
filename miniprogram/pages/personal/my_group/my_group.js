@@ -32,7 +32,9 @@ Page({
       }
     })
   },
-  homework(){
-    
+  homework(e){
+    wx.navigateTo({
+      url: '/pages/personal/my_homework/my_homework?userId='+e.currentTarget.dataset.id,
+    })
   }
 })
