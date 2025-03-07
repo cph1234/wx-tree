@@ -60,6 +60,7 @@ Page({
    */
   onLoad: function(e) {
     this.getData()
+    this.getDate()
   },
   getData(){
     db.collection("userInfo").where({
@@ -505,4 +506,51 @@ Page({
       }
      })
   },
+  getDate(){
+    let year = new Date().getFullYear();
+    wx.cloud.downloadFile({
+      fileID: 'cloud://dev-9gwar4qf4378940c.6465-dev-9gwar4qf4378940c-1342595866/date_json/'+year+'.json', // 云存储中的 JSON 文件路径
+      success: res => {
+        const tempFilePath = res.tempFilePath; // 获取临时文件路径
+        this.readJSONFile(tempFilePath); // 读取文件内容
+      },
+      fail: err => {
+        console.error('下载文件失败', err);
+      }
+    });
+  },
+  getCurrentTime() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  },
+  readJSONFile(tempFilePath) {
+    const fs = wx.getFileSystemManager();
+    fs.readFile({
+      filePath: tempFilePath,
+      encoding: 'utf8', // 指定编码为 UTF-8
+      success: res => {
+        const jsonData = JSON.parse(JSON.parse(res.data)); // 解析 JSON 数据
+        const currentTime = this.getCurrentTime();
+        for (const jieqi of jsonData) {
+          if (jieqi.time > currentTime) {
+            console.log(jieqi)
+            this.setData({
+              jieqi: jieqi, // 更新页面数据
+            });
+            break;
+          }
+        }
+      },
+      fail: err => {
+        console.error('读取文件失败', err);
+      }
+    });
+
+  }
 });

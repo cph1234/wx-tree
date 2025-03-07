@@ -36,7 +36,7 @@
       />
       <!-- <image src="/image/emoji.png" class="icon emoji"></image> -->
       <image src="/image/add.png" class="icon emoji"></image>
-      <button class="send-btn" bindtap="sendMessage">发送</button>
+      <button class="send-btn" bindtap="sendMess">发送</button>
     </view>
   </view>
 </view>
