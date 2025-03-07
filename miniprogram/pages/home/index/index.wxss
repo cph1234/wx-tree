@@ -35,6 +35,89 @@
   background: #F6DB74; 
 }
 
+/* 新增样式 */
+.custom-select {
+  display: flex;
+  flex-direction: row;
+  width: 160rpx;
+  height: 68rpx;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-right: 24rpx;
+  border-radius: 30rpx 0 0 30rpx; 
+  background: #F6DB74; 
+  z-index: 10;
+}
+
+.selected-text {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.arrow-icon {
+  width: 24rpx;
+  height: 24rpx;
+  margin-left: 10rpx;
+  transition: transform 0.3s;
+}
+
+.arrow-icon.rotate {
+  transform: rotate(180deg);
+}
+
+.dropdown-box {
+  position: absolute;
+  top: 100rpx;
+  left: 30rpx;
+  width: 160rpx;
+  background: #F2F3F5;
+  box-shadow: 0rpx 10rpx 20rpx 0rpx rgba(162,162,162,0.53);
+  border-radius: 16rpx;
+  z-index: 100;
+}
+
+.dropdown-list {
+  max-height: 400rpx;
+}
+
+.dropdown-item {
+  padding: 20rpx;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 24rpx;
+  color: #898781;
+  line-height: 24rpx;
+  text-shadow: 0px 10px 20px rgba(162,162,162,0.53);
+  text-align: center;
+  font-style: normal;
+}
+
+.dropdown-item.selected {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 500;
+  font-size: 24rpx;
+  color: #1E0417;
+  text-shadow: 0px 10px 20px rgba(162,162,162,0.53);
+  text-align: center;
+  font-style: normal;
+  background: #FFFFFF;
+}
+
+.dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.dropdown-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  z-index: 90;
+}
+
 .filter-text {
   font-family: PingFangSC, PingFang SC;
   font-weight: 400;

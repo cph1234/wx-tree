@@ -188,6 +188,27 @@ Page({
         showInputBox:false
       })
     },
+    // 切换下拉框显示
+    toggleDropdown() {
+      this.setData({ showDropdown: !this.data.showDropdown })
+    },
+
+    // 选择选项
+    selectItem(e) {
+      const index = e.currentTarget.dataset.index
+      this.setData({
+        filterIndex: index,
+        showDropdown: false
+      })
+      // 原有筛选逻辑
+      this.onFilterChange({ detail: { value: index } })
+    },
+
+    // 关闭下拉
+    closeDropdown() {
+      this.setData({ showDropdown: false })
+    },
+    
     onFilterChange(e) {
       this.setData({
         filterIndex: e.detail.value,
