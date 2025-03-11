@@ -84,7 +84,7 @@
             </view>
             <view bindtap="getAttention" data-userId="{{item.userId}}" wx:if="{{userInfo._id!==item.userId}}">
               <view class="btn-container">
-                <view class="follow-btn" bindtap="attention" data-id="{{item._id}}">
+                <view class="follow-btn {{tools.includes(userInfo.my_attention, item.userId) ? 'followed' : ''}}"  bindtap="attention" data-id="{{item._id}}">
                   {{tools.includes(userInfo.my_attention,item.userId) ? '已关注' : '关注'}}
                 </view>
               </view>

@@ -39,11 +39,13 @@ page{
   position: absolute;
   bottom: 16rpx;
   left: 50%;
-  transform: translateX(-50%);
-  background: #fff;
-  color: #43a047;
-  padding: 4rpx 16rpx;
-  border-radius: 32rpx;
+  transform:
+   translate(-50%) 
+   skewX(-15deg);
+  background: #f1d744;
+  color: #615007;
+  padding: 4rpx 16rpx; 
+  border-radius: 16rpx;
   font-size: 20rpx;
   box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.1);
   border: 1rpx solid #e0e0e0;

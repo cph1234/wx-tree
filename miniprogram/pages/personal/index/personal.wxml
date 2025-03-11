@@ -9,7 +9,7 @@
           <image class="avatar" src="{{userInfo.avatar_url}}"></image>
         </button>
         <!-- <image class="avatar" src="{{userInfo.avatar_url}}"></image> -->
-        <text class="avatar-badge" wx:if="{{ifTL}}">{{treeType}}组长</text>
+        <view class="avatar-badge" wx:if="{{ifTL}}">{{treeType}}组长</view>
       </view>
       <view class="user-detail">
         <view style="display: flex;align-content: flex-start;" bindtap="enableInput">
