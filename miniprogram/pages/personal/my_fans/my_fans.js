@@ -52,5 +52,12 @@ Page({
       }
     })
     console.log(userInfo)
-  }
+  },
+  chat(e){
+    console.log(this.data)
+    let userId = e.currentTarget.dataset.userid
+    wx.navigateTo({
+      url: '/pages/chat/chat?sendUserId='+this.data.userInfo._id+'&receiveUserId='+userId // 目标页面路径，支持传递参数
+    });
+  },
 })

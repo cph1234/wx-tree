@@ -43,14 +43,12 @@
   <view class="form-item">
     <text class="required">*</text>
     <text class="label">海拔高度</text>
-    <input name="altitude" placeholder="请输入" class="input" bindblur="altitude"/>
-  </view>
-
-  <!-- 天气情况 -->
-  <view class="form-item">
-    <text class="required">*</text>
-    <text class="label">天气情况</text>
-    <input name="weather" placeholder="请输入" class="input" bindblur="weather"/>
+    <view class="input">
+      <!-- 实际输入框（去除默认样式） -->
+      <input name="altitude" placeholder="请输入" bindblur="altitude"/>
+      <!-- 固定单位显示 -->
+      <text class="unit-text">cm</text>
+    </view>
   </view>
 
   <!-- 日照情况 -->

@@ -29,7 +29,7 @@
           <view class="follow-btn" bindtap="attention" data-id="{{item._id}}">
             {{tools.includes(userInfo.my_attention,item._id) ? '已关注' : '关注'}}
           </view>
-          <image class="image-sx" src="/image/icon-sx.png"></image>
+          <image class="image-sx" src="/image/icon-sx.png" bindtap="chat" data-userId="{{item._id}}"></image>
         </view>
       </view>
     </block>

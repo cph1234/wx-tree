@@ -111,10 +111,10 @@ Page({
   },
   async addTree(){
     let info = {}
-    info.altitude = this.data.altitude
+    info.altitude = this.data.altitude+'cm'
     info.createTime = wx.cloud.database().serverDate()
     info.position = this.data.position
-    info.treeDimensions = '胸径'+this.data.treeDimensions1+' 树高'+this.data.treeDimensions2+' 冠幅'+this.data.treeDimensions3
+    info.treeDimensions = '胸径'+this.data.treeDimensions1+'cm 树高'+this.data.treeDimensions2+'cm 冠幅'+this.data.treeDimensions3+'cm'
     info.treeType = this.data.treeType
     info.userId = this.data.userInfo._id
     info.weather = this.data.weather
@@ -128,6 +128,7 @@ Page({
         info.sunshine = item.label
       }
     })
+    info.homework=[]
     let treeManage = await db.collection("treeManage")
     .where({
       treeType:this.data.treeType

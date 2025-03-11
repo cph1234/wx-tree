@@ -55,7 +55,8 @@ Page({
     city: '获取位置',
     homeworkTime:'',
     canPublish:true,
-    reason:''
+    reason:'',
+    jieqi:{}
   },
   /**
    * 生命周期函数--监听页面加载
@@ -122,6 +123,19 @@ Page({
       index: e.detail.value,
       selectedTree: this.data.treesInfo[e.detail.value]
     })
+    if(this.data.canPublish){
+      db.collection("treeInfo")
+      .doc(this.data.selectedTree._id)
+      .get().then(res=>{
+        const hasElement = res.data.homework.some(item => item.name === this.data.jieqi.name && item.year === this.data.jieqi.time.split('/')[0]);
+        if(hasElement){
+          this.setData({
+            reason:"该节气作业已发布",
+            canPublish:false
+          })
+        }
+      })
+    }
   },
 
   bindTextAreaInput(e) {
@@ -249,6 +263,7 @@ Page({
         })
       }else{
         app.globalData.refresh = true
+        this.resetData()
         wx.switchTab({
           url: '/pages/home/index/index'
         })
@@ -386,6 +401,16 @@ Page({
     .add({
       data:info
     }).then(res=>{
+      let treeInfo={}
+      treeInfo.name = this.data.jieqi.name
+      treeInfo.year = this.data.jieqi.time.split('/')[0]
+      db.collection("treeInfo")
+      .doc(this.data.selectedTree._id)
+      .update({
+        data:{
+          homework:_.push(treeInfo)
+        }
+      })
       let emptyInfo={}
       emptyInfo.title=''
       emptyInfo.create_time=''
@@ -405,6 +430,7 @@ Page({
       }).then(res=>{
         console.log(res)
         app.globalData.refresh = true
+        this.resetData()
         wx.switchTab({
           url: '/pages/home/index/index'
         })
@@ -461,6 +487,7 @@ Page({
     }).then(res=>{
       console.log(res)
       app.globalData.refresh = true
+      this.resetData()
       wx.switchTab({
         url: '/pages/home/index/index'
       })
@@ -547,19 +574,25 @@ Page({
     } else {
       result = nextJieqi;
     }
+    let time = result.time.split(" ")[0]
     result.time = new Date(result.time).setHours(0, 0, 0, 0)
     timeDiffInDays = Math.floor((new Date().setHours(0, 0, 0, 0) - result.time) / (1000 * 60 * 60 * 24));
     let flag = Math.abs(timeDiffInDays) <= 3;
+    result.time = time
+    console.log(flag)
     if(!flag){
       let reason = "当前时间距离"+result.name+"还有"+Math.abs(timeDiffInDays)+"天"
       this.setData({
-        reason:reason
+        jieqi:result,
+        reason:reason,
+        canPublish:flag
+      })
+    }else{
+      this.setData({
+        jieqi:result,
+        canPublish:flag
       })
     }
-    this.setData({
-      jieqi:result,
-      canPublish:flag
-    })
   },
   getCurrentTime() {
     const now = new Date();
@@ -581,5 +614,57 @@ Page({
         fail: (err) => reject(err),
       });
     });
-  }
+  },
+  resetData() {
+    this.setData({
+      userInfo:{},
+      trees: [],
+      treesInfo:[],
+      selectedTree: {},
+      wordCount: 0,
+      tags: [
+        {type:'周边环境',imgUrl:''},
+        {type:'整株树形',imgUrl:''},
+        {type:'根茎',imgUrl:''},
+        {type:'树叶',imgUrl:''},
+        {type:'花（含孢子）',imgUrl:''},
+        {type:'果（含种子）',imgUrl:''},
+        {type:'树栖动物',imgUrl:''},
+        {type:'树生植物',imgUrl:''},
+        {type:'病虫害',imgUrl:''},
+        {type:'特殊性状',imgUrl:''},
+        {type:'人文资料',imgUrl:''},
+        {type:'其它',imgUrl:''},
+      ],
+      selectedTags: [],
+      images: [],
+      syncToHomework: false,
+      currentPage: 'postTree',
+      treeContent:'',
+      homeworkTags:[
+        {type:'周边环境',files:[],text:''},
+        {type:'整株树形',files:[],text:''},
+        {type:'根茎',files:[],text:''},
+        {type:'树叶',files:[],text:''},
+        {type:'花（含孢子）',files:[],text:''},
+        {type:'果（含种子）',files:[],text:''},
+        {type:'树栖动物',files:[],text:''},
+        {type:'树生植物',files:[],text:''},
+        {type:'病虫害',files:[],text:''},
+        {type:'特殊性状',files:[],text:''},
+        {type:'人文资料',files:[],text:''},
+        {type:'其它',files:[],text:''}
+      ],
+      homeworkTitle:'',
+      homeworkFrontContent:'',
+      homeworkEndContent:'',
+      latitude: null,
+      longitude: null,
+      city: '获取位置',
+      homeworkTime:'',
+      canPublish:true,
+      reason:'',
+      jieqi:{}
+    });
+  },
 });

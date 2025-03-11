@@ -30,7 +30,7 @@
             {{tools.includes(userInfo.my_attention,item._id) ? '已互关' : '回关'}}
           </view>
           
-          <image class="image-sx" src="/image/icon-sx.png"></image>
+          <image class="image-sx" src="/image/icon-sx.png" bindtap="chat" data-userId="{{item._id}}"></image>
         </view>
       </view>
     </block>

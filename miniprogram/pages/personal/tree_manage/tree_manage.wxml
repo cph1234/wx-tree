@@ -51,10 +51,6 @@
                 <text class="label">土壤类型</text>
                 <text class="value">{{item.soil || '-'}}</text>
               </view>
-              <view class="info-item">
-                <text class="label">天气情况</text>
-                <text class="value">{{item.weather || '-'}}</text>
-              </view>
             </view>
 
             <!-- 第四行：树木规格 -->
