@@ -13,10 +13,14 @@
   var ifShow = function(array, flag){
     return flag==false&&array.length>3
   }
+  var ifShow2 = function(array, flag){
+    return flag==true&&array.length>3
+  }
   module.exports = {
     includes:includes,
     arrayFilter:arrayFilter,
-    ifShow:ifShow
+    ifShow:ifShow,
+    ifShow2:ifShow2
   }
 </wxs>
 
@@ -137,6 +141,9 @@
           </view>
           <view class="load-more" bindtap="loadmore" data-index="{{index}}" wx:if="{{tools.ifShow(item.comment,item.showmore)}}">
             <text>点击查看更多</text><ion-icon name="arrow-down" size="16"></ion-icon>
+          </view>
+          <view class="load-more" bindtap="loadless" data-index="{{index}}" wx:if="{{tools.ifShow2(item.comment,item.showmore)}}">
+            <text>点击收起</text><ion-icon name="arrow-down" size="16"></ion-icon>
           </view>
         </view>
         

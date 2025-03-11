@@ -473,6 +473,20 @@
   font-style: normal;
   margin-left: auto;
 }
+.publish-btn3 {
+  background: #909399;
+  text-align: center;
+  padding: 30rpx;
+  border-radius: 50rpx;
+  width: 400rpx;
+  margin: 40rpx 0;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 500;
+  font-size: 30rpx;
+  color: #F2F3F5;
+  font-style: normal;
+  margin-left: auto;
+}
 /* 九宫格图片展示 */
 /* 容器基础样式 */
 .grid-container {

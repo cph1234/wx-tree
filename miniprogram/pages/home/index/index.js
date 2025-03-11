@@ -921,5 +921,15 @@ Page({
         dataList:dataList,
         isRefresh:false
       })
+    },
+    loadless(e){
+      console.log(e.currentTarget.dataset.index)
+      let index = e.currentTarget.dataset.index
+      let dataList = this.data.dataList
+      dataList[index].showmore = false
+      this.setData({
+        dataList:dataList,
+        isRefresh:false
+      })
     }
 })
