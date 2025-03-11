@@ -10,9 +10,26 @@
   <!-- 树木规格 -->
   <view class="form-item">
     <text class="label" decode>&nbsp;树木规格</text>
-    <input name="treeDimensions1" placeholder="胸径" class="input"  bindblur="treeDimensions1"/>
-    <input name="treeDimensions2" placeholder="树高" class="input"  bindblur="treeDimensions2"/>
-    <input name="treeDimensions3" placeholder="冠幅" class="input"  bindblur="treeDimensions3"/>
+    <view class="input">
+      <!-- 实际输入框（去除默认样式） -->
+      <input name="treeDimensions1" placeholder="胸径" bindblur="treeDimensions1"/>
+      <!-- 固定单位显示 -->
+      <text class="unit-text">cm</text>
+    </view>
+    <view class="input">
+      <!-- 实际输入框（去除默认样式） -->
+      <input name="treeDimensions2" placeholder="树高"  bindblur="treeDimensions2"/>
+      <!-- 固定单位显示 -->
+      <text class="unit-text">cm</text>
+    </view>
+    <view class="input">
+      <!-- 实际输入框（去除默认样式） -->
+      <input name="treeDimensions3" placeholder="冠幅"  bindblur="treeDimensions3"/>
+      <!-- 固定单位显示 -->
+      <text class="unit-text">cm</text>
+    </view>
+
+
   </view>
 
   <!-- 树木定位 -->

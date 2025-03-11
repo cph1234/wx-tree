@@ -39,6 +39,13 @@
   font-style: normal;
   padding-left: 20rpx;
   margin-top: 10rpx;
+  align-items: center;
+  display: flex;
+}
+
+.unit-text {
+  position: absolute;
+  right: 60rpx;
 }
 
 .specs-container {
