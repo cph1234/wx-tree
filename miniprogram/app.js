@@ -18,9 +18,10 @@ App({
         param: false,
         // 是否从posttopic跳转
         isposttopic:false,
-        user_openid:''
+        user_openid:'',
+        jsonData:[]
     },
-    onLaunch: function() {
+    onLaunch: async function() {
         // 初始化云环境
         if (!wx.cloud) {
             console.error('请使用 2.2.3 或以上的基础库以使用云能力')
@@ -41,8 +42,36 @@ App({
             console.log(this.globalData.user_openid)
           }
         })
-    },
 
+        //读取节气
+        let year = new Date().getFullYear();
+        let path = 'cloud://dev-9gwar4qf4378940c.6465-dev-9gwar4qf4378940c-1342595866/date_json/year.json'
+        let currentTempFilePath = await wx.cloud.downloadFile({
+          fileID: path.replace('year',year),
+        })
+        let preTempFilePath = await wx.cloud.downloadFile({
+          fileID: path.replace('year',year-1),
+        })
+        let nextTempFilePath = await wx.cloud.downloadFile({
+          fileID: path.replace('year',year+1),
+        })
+        let current = await this.readJSONFile(currentTempFilePath.tempFilePath); // 读取文件内容
+        let pre = await this.readJSONFile(preTempFilePath.tempFilePath); // 读取文件内容
+        let next = await this.readJSONFile(nextTempFilePath.tempFilePath); // 读取文件内容
+        let jsonData = JSON.parse(JSON.parse(pre)).concat(JSON.parse(JSON.parse(current)), JSON.parse(JSON.parse(next)));
+        this.globalData.jsonData = jsonData
+    },
+    async readJSONFile(tempFilePath) {
+      return new Promise((resolve, reject) => {
+        const fs = wx.getFileSystemManager();
+        fs.readFile({
+          filePath: tempFilePath,
+          encoding: 'utf8', // 指定编码格式，如 'utf8' 或 'binary'
+          success: (res) => resolve(res.data),
+          fail: (err) => reject(err),
+        });
+      });
+    },
     // 获取当前时间
     getnowtime: function() {
         var date = new Date

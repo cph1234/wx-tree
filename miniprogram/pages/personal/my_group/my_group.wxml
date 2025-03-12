@@ -17,8 +17,8 @@
           <view class="text-info">
             <text class="username">{{item.name}}</text>
             <view class="home-info">
-              <text class="status {{item.submitted ? 'submitted' : 'unsubmitted'}}">{{item.submitted ? '本次已交' : '本次未交'}}</text>
-              <text class="home-text"> | 共未交{{item.unsubmittedCount}}次
+              <text class="status {{item.currentCount ? 'submitted' : 'unsubmitted'}}">{{item.currentCount ? '本次已交' : '本次未交'}}</text>
+              <text class="home-text"> | 共未交{{item.count}}次
               </text>
             </view>
           </view>

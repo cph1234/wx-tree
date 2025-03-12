@@ -167,7 +167,7 @@ Page({
   },
   my_group(){
     wx.navigateTo({
-      url: '/pages/personal/my_group/my_group?userId='+this.data.userInfo._id,
+      url: '/pages/personal/my_group/my_group?userId='+this.data.userInfo._id+'&treeType='+this.data.treeType,
     })
   },
   my_follow(){

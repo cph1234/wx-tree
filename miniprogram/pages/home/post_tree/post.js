@@ -536,21 +536,7 @@ Page({
      })
   },
   async getDate(){
-    let year = new Date().getFullYear();
-    let path = 'cloud://dev-9gwar4qf4378940c.6465-dev-9gwar4qf4378940c-1342595866/date_json/year.json'
-    let currentTempFilePath = await wx.cloud.downloadFile({
-      fileID: path.replace('year',year),
-    })
-    let preTempFilePath = await wx.cloud.downloadFile({
-      fileID: path.replace('year',year-1),
-    })
-    let nextTempFilePath = await wx.cloud.downloadFile({
-      fileID: path.replace('year',year+1),
-    })
-    let current = await this.readJSONFile(currentTempFilePath.tempFilePath); // 读取文件内容
-    let pre = await this.readJSONFile(preTempFilePath.tempFilePath); // 读取文件内容
-    let next = await this.readJSONFile(nextTempFilePath.tempFilePath); // 读取文件内容
-    let jsonData = JSON.parse(JSON.parse(pre)).concat(JSON.parse(JSON.parse(current)), JSON.parse(JSON.parse(next)));
+    let jsonData = app.globalData.jsonData;
     const currentTime = this.getCurrentTime();
     let nextJieqi;
     let preJieqi;
@@ -603,17 +589,6 @@ Page({
     const minutes = String(now.getMinutes()).padStart(2, '0');
     const seconds = String(now.getSeconds()).padStart(2, '0');
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-  },
-  async readJSONFile(tempFilePath) {
-    return new Promise((resolve, reject) => {
-      const fs = wx.getFileSystemManager();
-      fs.readFile({
-        filePath: tempFilePath,
-        encoding: 'utf8', // 指定编码格式，如 'utf8' 或 'binary'
-        success: (res) => resolve(res.data),
-        fail: (err) => reject(err),
-      });
-    });
   },
   resetData() {
     this.setData({
