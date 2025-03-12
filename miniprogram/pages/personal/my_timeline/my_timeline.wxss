@@ -160,3 +160,16 @@
   text-overflow: ellipsis; /* 当内容超出时显示省略号 */
   word-break: break-all; /* 防止长单词无法换行 */
 }
+.year{
+  margin-bottom: 40rpx;
+  font-size: large;
+}
+.icon-sx {
+  width: 52rpx;
+  height: 52rpx;
+  margin-left: auto;
+}
+
+.line{
+  display: flex;
+}

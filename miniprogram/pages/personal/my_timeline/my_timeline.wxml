@@ -1,22 +1,17 @@
 <!--pages/personal/my_timeline/my_timeline.wxml-->
 <view class="container">
   
-  <view class="header">
-    <picker range="{{year}}" value="{{selectedYear}}" bindchange="bindYearChange">
-      <view class="picker">
-        <text class="year-title">{{selectedYear}}</text>
-        <image src="/image/arrow_down.png" class="arrow-down"></image>
-      </view>
-    </picker>
-  </view>
-
   <!-- 时间轴容器 -->
   <view class="timeline">
       <!-- 年份区块 -->
-      <view class="year-group">
+      <view class="year-group" wx:for="{{timeline}}" wx:key="index">
         <!-- 记录 -->
+        <view class="line">
+          <view class="year">{{item.year}}年</view>
+          <image class="icon-sx" src="/image/icon-sx.png" wx:if="{{index==0}}" bindtap="chat" data-userId="{{circleUser}}"></image>
+        </view>
         <view class="records">
-          <block wx:for="{{timeline}}" wx:for-item="entry" wx:key="date">
+          <block wx:for="{{item.data}}" wx:for-item="entry" wx:key="date">
             <view class="record-item">
               <!-- 左侧时间 -->
               <view class="time">

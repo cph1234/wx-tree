@@ -39,7 +39,6 @@ App({
             //获取用户openid
             console.log(res)
             this.globalData.user_openid = res.result.openid
-            console.log(this.globalData.user_openid)
           }
         })
 
