@@ -26,6 +26,14 @@
       新增粉丝
       <text class="badge">{{current_fans.length}}</text>
     </view>
+    <view 
+      class="tab-item {{currentTab === 3 ? 'active' : ''}}" 
+      bindtap="switchTab" 
+      data-index="3"
+    >
+      私信
+      <text class="badge">{{current_fans.length}}</text>
+    </view>
   </view>
 
   <!-- 内容区域 -->
@@ -74,5 +82,25 @@
         <view class="divider"></view>
       </view>
     </block>
+
+    <!-- 私信列表（结构示例） -->
+    <block wx:if="{{currentTab === 3}}">
+      <view class="item">
+        <image class="avatar" src="/image/tree_logo.png"></image>
+        <view class="info">
+          <view class="top">
+            <view class="username_m">组员1</view>
+            <view class="time_m">2025/01/01</view>
+          </view>
+          <view class="bottom">
+            <view class="content_m">您好，组长，我是香樟树组员XX关于观察壹...</view>
+            <view class="num_m">5</view>
+          </view>
+        </view>
+        <!-- 分割线 -->
+        <view class="divider"></view>
+      </view>
+    </block>
+
   </view>
 </view>

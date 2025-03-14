@@ -4,7 +4,7 @@ const db = wx.cloud.database()
 const _ = db.command
 Page({
   data: {
-    currentTab: 0,
+    currentTab: 3,
     userInfo:{},
     current_likes:[],
     current_comments:[],

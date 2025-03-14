@@ -18,7 +18,7 @@
 .tab-item {
   text-align: center;
   font-size: 32rpx;
-  width: 212rpx;
+  width: 160rpx;
   height: 72rpx;
   background: #FFFFFF;
   border-radius: 22rpx;
@@ -101,6 +101,38 @@
   font-style: normal;
 }
 
+.username_m{
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 500;
+  font-size: 28rpx;
+  color: #1E0417;
+  text-align: left;
+  font-style: normal;
+}
+
+.top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 15rpx;
+}
+
+.num_m {
+  display: flex;
+  width: 28rpx;
+  height: 28rpx;
+  background: #F1B1DF;
+  border-radius: 14rpx;
+  align-items: center;
+  justify-content: center;
+  font-family: DINAlternate, DINAlternate;
+  font-weight: bold;
+  font-size: 20rpx;
+  color: #1E0417;
+  font-style: normal;
+  margin-left: auto;
+}
+
 .action {
   font-family: PingFangSC, PingFang SC;
   font-weight: 400;
@@ -119,6 +151,32 @@
   text-align: justify;
   font-style: normal;
   margin-top: 30rpx;
+}
+
+.time_m {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 20rpx;
+  color: #898781;
+  line-height: 20rpx;
+  text-align: left;
+  font-style: normal;
+  margin-left: auto;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+}
+
+.content_m {
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 24rpx;
+  color: #898781;
+  line-height: 24rpx;
+  text-align: left;
+  font-style: normal;
 }
 
 .preview {

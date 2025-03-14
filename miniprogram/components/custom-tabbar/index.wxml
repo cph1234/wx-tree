@@ -19,7 +19,7 @@
     data-index="1" 
     bindtap="switchTab"
   >
-    <view class="image-wrapper_1 {{currentIndex === 1 ? 'active-middle' : ''}}">
+    <view class="image-wrapper_1">
       <image 
         src="{{currentIndex === 1 ? '/image/camera.png' : '/image/camera.png'}}" 
         class="image_3"

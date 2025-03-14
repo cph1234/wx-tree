@@ -103,10 +103,3 @@
   line-height: 24rpx;
   font-style: normal;
 }
-
-/* 中间按钮激活状态 */
-.image-wrapper_1.active-middle {
-  background-color: rgba(245, 186, 220, 0.8) !important;
-  transform: scale(1.1);
-  transition: all 0.3s ease;
-}

@@ -3,5 +3,6 @@
   "backgroundTextStyle": "dark",
   "onReachBottomDistance": 50,
   "usingComponents": {
+    "custom-tabbar": "/components/custom-tabbar/index"
   }
 }
