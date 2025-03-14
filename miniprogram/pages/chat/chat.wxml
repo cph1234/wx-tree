@@ -31,7 +31,6 @@
       <input 
         placeholder="请您输入" 
         placeholder-class="placeholder"
-        bindinput="onInput"
         model:value="{{mess}}"
       />
       <!-- <image src="/image/emoji.png" class="icon emoji"></image> -->

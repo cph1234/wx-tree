@@ -13,7 +13,8 @@ Page({
     mineAvatorSrc : '/images/user_male.jpg',
     himAvatorSrc : '/images/user_female.jpg',
     sendUser : {},
-    receiveUser : {}
+    receiveUser : {},
+    currentId:''
 	},
 	
     //获取格式化的时间 yyyy-mm-dd-hh:mm-ss
@@ -33,6 +34,7 @@ Page({
       content : this.data.mess,
       timestamp : this.getFormatTime()
     }
+    let that = this
     db.collection('chatContent')
       .doc(this.data.currentId)
       .update({
@@ -42,6 +44,42 @@ Page({
       }).then(res=>{
         this.setData({
           mess:''
+        })
+        db.collection('userInfo').where({
+          _id: that.data.receiveUser._id,
+          current_chats: {
+            userId: this.data.sendUser._id
+          }
+        })
+        .get({
+          success: function(res) {
+            let addInfo={
+              userId : info.sendId,
+              content : info.content,
+              time : info.timestamp
+            }
+            if(res.data.length==0){
+              db.collection('userInfo')
+              .doc(that.data.receiveUser._id)
+              .update({
+                  data:{
+                    current_chats:_.push(addInfo)
+                  }
+              })
+            }else{
+              db.collection('userInfo')
+              .where({
+                _id:that.data.receiveUser._id,
+                'current_chats.userId':that.data.sendUser._id
+              })
+              .update({
+                  data:{
+                      'current_chats.$.content':info.content,
+                      'current_chats.$.time':info.timestamp
+                  }
+              })
+            }
+          }
         })
       })
   },
@@ -75,9 +113,6 @@ Page({
         })
         .get({
           success:function(res){
-            console.log("查询成功！",res);
-            console.log("查询成功！",res.data[0].message[0].timestamp);
-            console.log("查询成功！",new Date(res.data[0].message[0].timestamp));
             if(res.data.length == 0){
               that.initChatContent();//初始化数据库字段
             }

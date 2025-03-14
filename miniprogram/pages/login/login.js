@@ -47,6 +47,7 @@ Page({
                   current_likes:[],
                   current_comments:[],
                   current_fans:[],
+                  current_chats:[],
                   medal_count:0
                 },
                 success: res => {
