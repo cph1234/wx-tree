@@ -60,6 +60,7 @@ Page({
       db.collection("userInfo").where({
         _openid:user_openid
       }).get().then(res=>{
+        console.log(res)
         if((res.data[0].current_comments==undefined||res.data[0].current_comments.length==0)&&
         (res.data[0].current_likes==undefined||res.data[0].current_likes.length==0)&&
         (res.data[0].current_fans==undefined||res.data[0].current_fans.length==0)){
@@ -496,6 +497,12 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function(option) {
+      if (typeof this.getTabBar === 'function' &&
+        this.getTabBar()) {
+        this.getTabBar().setData({
+          currentIndex: 0 // 控制哪一项是选中状态
+        })
+      }
       if(app.globalData.refresh!=undefined&&app.globalData.refresh == true){
         this.setData({
           dataList:[],

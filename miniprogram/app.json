@@ -37,6 +37,7 @@
     "chooseLocation"
   ],
   "tabBar": {
+    "custom": true,
     "color": "#515151",
     "selectedColor": "#F5BADC",
     "borderStyle": "black",
