@@ -1,5 +1,16 @@
 <view class="personal-container">
-  
+  <wxs module="tools">
+    var array = function (num) {
+      var arr = []
+      for(var i=0;i<num;i++){
+        arr.push('')
+      }
+      return arr
+    }
+    module.exports = {
+      array:array
+    }
+  </wxs>
   <!-- 用户信息区域 -->
   <view class="user-section">
     <view class="user-info">
@@ -17,7 +28,7 @@
         </view>
         <view class="badges">
           <text class="badges-text"> 树龄勋章 </text>
-          <block wx:for="{{item.badges}}" wx:key="*this">
+          <block wx:for="{{tools.array(userInfo.medal_count)}}" wx:key="*this">
             <image class="badge-icon" src="/image/tree-badge.png" />
           </block>
         </view>

@@ -3,8 +3,16 @@
   var includes = function (array, searchElement) {
     return array.indexOf(searchElement) !== -1
   }
+  var array = function (num) {
+    var arr = []
+    for(var i=0;i<num;i++){
+      arr.push('')
+    }
+    return arr
+  }
   module.exports = {
-    includes:includes
+    includes:includes,
+    array:array
   }
 </wxs>
 <view class="container">
@@ -17,7 +25,7 @@
         <text class="username">{{userInfo.name}}</text>
         <view class="badges">
           <text class="badges-text"> 树龄勋章 </text>
-          <block wx:for="{{treeCircle.badges}}" wx:key="*this">
+          <block wx:for="{{tools.array(userInfo.medal_count)}}" wx:key="*this">
             <image class="badge-icon" src="/image/tree-badge.png" />
           </block>
         </view>

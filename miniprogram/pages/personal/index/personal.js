@@ -130,8 +130,13 @@ Page({
       })
     }, 1000);
   },
-  onShow: function () {
-    
+  onShow: function(option) {
+    if (typeof this.getTabBar === 'function' &&
+      this.getTabBar()) {
+      this.getTabBar().setData({
+        currentIndex: 2 // 控制哪一项是选中状态
+      })
+    }
   },
   onReady: function () {
   },

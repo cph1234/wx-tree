@@ -16,11 +16,19 @@
   var ifShow2 = function(array, flag){
     return flag==true&&array.length>3
   }
+  var array = function (num) {
+    var arr = []
+    for(var i=0;i<num;i++){
+      arr.push('')
+    }
+    return arr
+  }
   module.exports = {
     includes:includes,
     arrayFilter:arrayFilter,
     ifShow:ifShow,
-    ifShow2:ifShow2
+    ifShow2:ifShow2,
+    array:array
   }
 </wxs>
 
@@ -77,7 +85,7 @@
               <text class="username">{{item.data.name}}</text>
               <view class="badges">
                 <text class="badges-text"> 树龄勋章 </text>
-                <block wx:for="{{item.badges}}" wx:key="*this">
+                <block wx:for="{{tools.array(item.data.medal_count)}}" wx:key="*this">
                   <image class="badge-icon" src="/image/tree-badge.png" />
                 </block>
               </view>

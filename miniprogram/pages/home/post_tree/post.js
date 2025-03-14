@@ -428,6 +428,21 @@ Page({
           tree_circle_count: _.inc(1) ,
         }
       }).then(res=>{
+        db.collection("treeInfo")
+          .doc(this.data.selectedTree._id)
+          .get().then(res=>{
+            const currentYear = new Date().getFullYear();
+            const count = res.data.homework.filter(item => item.year === currentYear).length;
+            if(count==24){
+              db.collection("userInfo")
+                .doc(this.data.userInfo._id)
+                .update({
+                  data:{
+                    medal_count: _.inc(1) ,
+                  }
+                })
+            }
+          })
         console.log(res)
         app.globalData.refresh = true
         this.resetData()
@@ -642,4 +657,16 @@ Page({
       jieqi:{}
     });
   },
+  onShow: function(option) {
+    if (typeof this.getTabBar === 'function' &&
+      this.getTabBar()) {
+      this.getTabBar().setData({
+        currentIndex: 1 // 控制哪一项是选中状态
+      })
+    }
+  },
+
+
+  //生成长图
+  
 });

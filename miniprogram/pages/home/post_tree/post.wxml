@@ -5,7 +5,6 @@
     <picker bindchange="bindTreeChange" value="{{index}}" range="{{trees}}">
       <view class="picker">{{selectedTree.treeType || '请选择树种'}}</view>
     </picker>
-    
     <!-- 树木信息展示 -->
     <view class="info-box">
 

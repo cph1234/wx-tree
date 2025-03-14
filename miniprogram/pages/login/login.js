@@ -46,7 +46,8 @@ Page({
                   my_likes:[],
                   current_likes:[],
                   current_comments:[],
-                  current_fans:[]
+                  current_fans:[],
+                  medal_count:0
                 },
                 success: res => {
                   wx.showToast({
