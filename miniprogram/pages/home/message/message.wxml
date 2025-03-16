@@ -1,4 +1,16 @@
 <!--pages/home/message/message.wxml-->
+<wxs module="tools">
+  var filter = function (array) {
+    var filterData = array.filter(function(item){
+      item.count != 0
+    })
+    return filterData.length
+  }
+  module.exports = {
+    filter:filter
+  }
+</wxs>
+
 <view class="container">
   <!-- 顶部切换栏 -->
   <view class="tabs">
@@ -32,7 +44,7 @@
       data-index="3"
     >
       私信
-      <text class="badge">{{current_chats.length}}</text>
+      <text class="badge">{{tools.filter(current_chats)}}</text>
     </view>
   </view>
 

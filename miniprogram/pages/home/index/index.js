@@ -507,6 +507,12 @@ Page({
         this.getData(0,0)
         app.globalData.refresh = false
       }
+      if (typeof this.getTabBar === 'function' &&
+        this.getTabBar()) {
+        this.getTabBar().setData({
+          currentIndex: 0 // 控制哪一项是选中状态
+        })
+      }
     },
  
     /**
