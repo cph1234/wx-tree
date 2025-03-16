@@ -71,6 +71,11 @@
   margin-top: 20rpx;
 }
 
+.item2 {
+  display: flex;
+  width: 100%;
+}
+
 .divider {
   position: absolute;
   left: 100rpx; /* 头像宽度80 + 间距20 */

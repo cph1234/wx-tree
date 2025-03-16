@@ -56,8 +56,10 @@ Page({
             let addInfo={
               userId : info.sendId,
               content : info.content,
-              time : info.timestamp
+              time : info.timestamp,
+              count : 1
             }
+            console.log(res.data[0])
             if(res.data.length==0){
               db.collection('userInfo')
               .doc(that.data.receiveUser._id)
@@ -67,6 +69,10 @@ Page({
                   }
               })
             }else{
+              let chats = res.data[0].current_chats
+              console.log(chats)
+              const chat = chats.find(item => item.userId === that.data.sendUser._id);
+              console.log(chat)
               db.collection('userInfo')
               .where({
                 _id:that.data.receiveUser._id,
@@ -75,7 +81,8 @@ Page({
               .update({
                   data:{
                       'current_chats.$.content':info.content,
-                      'current_chats.$.time':info.timestamp
+                      'current_chats.$.time':info.timestamp,
+                      'current_chats.$.count':chat.count+1,
                   }
               })
             }

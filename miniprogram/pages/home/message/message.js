@@ -97,6 +97,25 @@ Page({
       })
     }
 
+    let current_chats = userInfo.data.current_chats
+    if(current_chats==undefined||current_chats.length==0){
+      current_chats = []
+    }else{
+      console.log(current_chats)
+      for(let item of current_chats){
+        let chat = await db.collection("userInfo")
+        .doc(item.userId)
+        .get()
+        item.avatar_url = chat.data.avatar_url
+        item.name = chat.data.name
+        item.time = this.checkDateAndTime(item.time)
+      }
+      console.log(current_chats)
+      this.setData({
+        current_chats:current_chats
+      })
+    }
+
     db.collection("userInfo")
     .doc(userInfo.data._id)
     .update({
@@ -112,4 +131,21 @@ Page({
     let resDate = ymd + ' ' + time;
     return resDate
   },
+  goToChat(e){
+    let userId = e.currentTarget.dataset.id
+    db.collection('userInfo')
+    .where({
+      _id:this.data.userInfo._id,
+      'current_chats.userId':userId
+    })
+    .update({
+        data:{
+            'current_chats.$.count':0,
+        }
+    })
+    wx.navigateTo({
+      url: '/pages/chat/chat?sendUserId='+this.data.userInfo._id+'&receiveUserId='+userId // 目标页面路径，支持传递参数
+    });
+
+  }
 })
