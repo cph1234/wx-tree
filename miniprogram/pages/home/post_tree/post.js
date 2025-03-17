@@ -1,7 +1,10 @@
 const app = getApp()
 const db = wx.cloud.database()
 const _ = db.command
-
+const {
+  wxml,
+  style
+ } = require('../../../utils/generateImg.js')
 let QQMapWX = require('./qqmap-wx-jssdk.js');
 let qqmapsdk = new QQMapWX({
   key: 'UGDBZ-Z3SWW-RHER7-3PAQH-4Y5CH-BEBUJ' // 必填，填自己在腾讯位置服务申请的key
@@ -64,6 +67,11 @@ Page({
   onLoad: function(e) {
     this.getData()
     this.getDate()
+    var that = this;
+    // this.widget = this.selectComponent('.widget');
+    setTimeout(function(){
+      that.widget = that.selectComponent('.widget');
+      },1000)
   },
   getData(){
     db.collection("userInfo").where({
@@ -668,5 +676,54 @@ Page({
 
 
   //生成长图
-  
+  generateImage(){
+    let that = this
+    that.widget = this.selectComponent('.widget');
+    const _wxml = wxml("测试", "https://6465-dev-9gwar4qf4378940c-1342595866.tcb.qcloud.la/e33be08d67b2d22002bdab847b275734202521714729.png?sign=73ba97e28a69d6aef7c55ecc17370faf&t=1742179649","https://6465-dev-9gwar4qf4378940c-1342595866.tcb.qcloud.la/e33be08d67b2d22002bdab847b275734202521714729.png?sign=73ba97e28a69d6aef7c55ecc17370faf&t=1742179649")
+    console.log(_wxml)
+    setTimeout(()=>{
+      const p1 = that.widget.renderToCanvas({
+        wxml: _wxml,
+        style
+      })
+      p1.then((res) => {
+        console.log(res)
+          that.container = res;
+          const p2 = that.widget.canvasToTempFilePath()
+          p2.then(res => {
+            console.log(res)
+            try {
+              wx.cloud.uploadFile({
+                cloudPath: `${Date.now()}.png`, // 云存储路径，确保唯一性
+                filePath: res.tempFilePath // 临时文件路径
+              });
+            } catch (err) {
+              console.error('上传图片失败:', err);
+              throw err;
+            }
+              that.setData({
+                  src: res.tempFilePath,
+                  width: that.container.layoutBox.width,
+                  height: that.container.layoutBox.height,
+              },function(){
+                  wx.hideLoading();
+              })
+          }).catch(fail => {
+              wx.hideLoading();
+              wx.showToast({
+                  icon: 'error',
+                  title: '请稍后再试',
+              })
+          })
+      }).catch(fail => {
+        console.log(fail)
+          wx.hideLoading();
+          wx.showToast({
+              icon: 'error',
+              title: '请稍后再试',
+          })
+      })
+    },500)
+    
+  }
 });

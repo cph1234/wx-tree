@@ -1,0 +1,15 @@
+{
+  "name": "wx-tree",
+  "version": "1.0.0",
+  "description": "功能：全局搜索/朋友圈图片展示",
+  "main": "qqmap-wx-jssdk.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "wxml-to-canvas": "^1.1.1"
+  }
+}

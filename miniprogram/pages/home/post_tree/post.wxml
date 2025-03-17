@@ -235,7 +235,7 @@
           <image src="/image/save_script.png" class = "btn-image"></image>
           <text class="text-other">存草稿</text>
         </view>
-        <view class = 'btn-area'>
+        <view class = 'btn-area' bindtap="generateImage">
           <image src="/image/preview.png" class = "btn-image"></image>
           <text class='text-other'>预览</text>
         </view>
@@ -247,5 +247,6 @@
         </view>
       </view>
     </view>
-  </view>   
+  </view>
+  <wxml-to-canvas class="widget" ></wxml-to-canvas>
 </view>
