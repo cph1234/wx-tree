@@ -239,7 +239,7 @@
           <image src="/image/preview.png" class = "btn-image"></image>
           <text class='text-other'>预览</text>
         </view>
-        <view class="publish-btn2" bindtap="handlePublish" wx:if="{{canPublish}}">
+        <view class="publish-btn2" bindtap="handlePublish" wx:if="{{canPublish&&treePublish}}">
           交作业
         </view>
         <view class="publish-btn3" wx:else>
@@ -248,5 +248,5 @@
       </view>
     </view>
   </view>
-  <wxml-to-canvas class="widget" ></wxml-to-canvas>
+  <wxml-to-canvas class="widget" hidden="{{false}}"></wxml-to-canvas>
 </view>

@@ -58,8 +58,10 @@ Page({
     city: '获取位置',
     homeworkTime:'',
     canPublish:true,
+    treePublish:true,
     reason:'',
-    jieqi:{}
+    jieqi:{},
+    index:''
   },
   /**
    * 生命周期函数--监听页面加载
@@ -136,10 +138,15 @@ Page({
       .doc(this.data.selectedTree._id)
       .get().then(res=>{
         const hasElement = res.data.homework.some(item => item.name === this.data.jieqi.name && item.year === this.data.jieqi.time.split('/')[0]);
+        console.log(hasElement)
         if(hasElement){
           this.setData({
             reason:"该节气作业已发布",
-            canPublish:false
+            treePublish:false
+          })
+        }else{
+          this.setData({
+            treePublish:true
           })
         }
       })
@@ -564,7 +571,7 @@ Page({
     let nextJieqi;
     let preJieqi;
     for (const index in jsonData) {
-      if (jsonData[index].time > currentTime) {
+      if (new Date(jsonData[index].time.replace(/-/g,'/')) > new Date(currentTime)) {
         nextJieqi = jsonData[index]
         nextJieqi.time = nextJieqi.time.replace(/-/g,'/')
         preJieqi = jsonData[index-1]
@@ -584,6 +591,7 @@ Page({
       result = nextJieqi;
     }
     let time = result.time.split(" ")[0]
+    console.log(result)
     result.time = new Date(result.time).setHours(0, 0, 0, 0)
     timeDiffInDays = Math.floor((new Date().setHours(0, 0, 0, 0) - result.time) / (1000 * 60 * 60 * 24));
     let flag = Math.abs(timeDiffInDays) <= 3;
@@ -616,7 +624,6 @@ Page({
   resetData() {
     this.setData({
       userInfo:{},
-      trees: [],
       treesInfo:[],
       selectedTree: {},
       wordCount: 0,
@@ -674,56 +681,108 @@ Page({
     }
   },
 
-
   //生成长图
-  generateImage(){
-    let that = this
-    that.widget = this.selectComponent('.widget');
-    const _wxml = wxml("测试", "https://6465-dev-9gwar4qf4378940c-1342595866.tcb.qcloud.la/e33be08d67b2d22002bdab847b275734202521714729.png?sign=73ba97e28a69d6aef7c55ecc17370faf&t=1742179649","https://6465-dev-9gwar4qf4378940c-1342595866.tcb.qcloud.la/e33be08d67b2d22002bdab847b275734202521714729.png?sign=73ba97e28a69d6aef7c55ecc17370faf&t=1742179649")
-    console.log(_wxml)
-    setTimeout(()=>{
+  generateImage: function() {
+    const that = this;
+    // wx.showLoading({
+    //   title: '生成中...',
+    //   mask: true
+    // });
+    // 配置wxml-to-canvas
+    this.widget = this.selectComponent('.widget');
+    setTimeout(function(){
       const p1 = that.widget.renderToCanvas({
-        wxml: _wxml,
-        style
-      })
-      p1.then((res) => {
-        console.log(res)
-          that.container = res;
-          const p2 = that.widget.canvasToTempFilePath()
-          p2.then(res => {
-            console.log(res)
-            try {
-              wx.cloud.uploadFile({
-                cloudPath: `${Date.now()}.png`, // 云存储路径，确保唯一性
-                filePath: res.tempFilePath // 临时文件路径
-              });
-            } catch (err) {
-              console.error('上传图片失败:', err);
-              throw err;
-            }
-              that.setData({
-                  src: res.tempFilePath,
-                  width: that.container.layoutBox.width,
-                  height: that.container.layoutBox.height,
-              },function(){
-                  wx.hideLoading();
-              })
-          }).catch(fail => {
+        wxml: wxml(that.data.selectedTree), // 生成需要渲染的wxml
+        style // 生成样式
+      });
+  
+      p1.then(() => {
+        const p2 = that.widget.canvasToTempFilePath()
+        p2.then(res => {
+          const cloudPath = `preview/${Date.now()}_${that.data.userInfo._id}.png`;
+          // 上传云存储
+          wx.cloud.uploadFile({
+            cloudPath,
+            filePath: res.tempFilePath,
+            success: res => {
               wx.hideLoading();
-              wx.showToast({
-                  icon: 'error',
-                  title: '请稍后再试',
-              })
-          })
-      }).catch(fail => {
-        console.log(fail)
-          wx.hideLoading();
-          wx.showToast({
-              icon: 'error',
-              title: '请稍后再试',
-          })
-      })
-    },500)
-    
-  }
+              wx.previewImage({
+                current: res.tempFilePath,
+                urls: [res.tempFilePath]
+              });
+              console.log('云存储成功', res.fileID);
+            },
+            fail: err => {
+              wx.hideLoading();
+              console.error('上传失败', err);
+            }
+          });
+        }).catch(fail => {
+            wx.hideLoading();
+            wx.showToast({
+                icon: 'error',
+                title: '请稍后再试',
+            })
+        })
+
+
+        that.widget.canvasToTempFilePath({
+          fileType: 'png',
+          quality: 1,
+          success: res => {
+            console.log(res)
+            const tempFilePath = res.tempFilePath;
+            const cloudPath = `preview/${Date.now()}_${that.data.userInfo._id}.png`;
+  
+            // 上传云存储
+            wx.cloud.uploadFile({
+              cloudPath,
+              filePath: tempFilePath,
+              success: res => {
+                wx.hideLoading();
+                wx.previewImage({
+                  current: tempFilePath,
+                  urls: [tempFilePath]
+                });
+                console.log('云存储成功', res.fileID);
+              },
+              fail: err => {
+                wx.hideLoading();
+                console.error('上传失败', err);
+              }
+            });
+          },
+          fail: err => {
+            wx.hideLoading();
+            console.error('生成失败', err);
+          }
+        });
+      });
+    },1000)
+  },
+
+  // 生成需要渲染的wxml结构
+  createWxml: function() {
+    return `
+      <view class="container">
+        <!-- 原页面结构需要在此复现 -->
+        ${document.querySelector('.container').innerHTML}
+      </view>
+    `;
+  },
+
+  // 生成样式表
+  createStyle: function() {
+    return {
+      container: {
+        width: '750rpx',
+        overflow: 'hidden',
+        backgroundColor: '#ffffff'
+      },
+      // 需要补充所有页面元素的样式
+      'section': { margin: '20rpx' },
+      'info-box': { padding: '20rpx' },
+      // ...其他样式规则...
+    }
+  },
 });
