@@ -1,6 +1,4 @@
 const wxml = (selectedTree)=>{
-  console.log('here')
-  console.log(selectedTree)
   return `
   <view class="container">
     <view class="section">
