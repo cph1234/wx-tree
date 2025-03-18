@@ -131,6 +131,9 @@
       <view>
         <!-- 作业信息  -->
         <view class="homework-info">
+          <view class='note'>
+            <text class="work-note-1">每个节气交作业一次，节气前后3天内提交有效！</text>
+          </view>
           <!-- 题目输入 -->
           <input 
             name="title" 

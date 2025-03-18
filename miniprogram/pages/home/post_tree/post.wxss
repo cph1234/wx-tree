@@ -6,8 +6,8 @@
 }
 
 .section {
+  width: 690rpx;
   margin-bottom: 10rpx;
-  padding: 10rpx;
   display: flex;
   flex-direction: column;
 }
@@ -71,7 +71,7 @@
 .custom-btns {
   display: flex;
   justify-content: space-between;
-  margin: 40rpx 0;
+  margin: 20rpx 0;
   background-color: #F2F3F5;
   border-radius: 28rpx;
   width: 100%;
@@ -192,15 +192,19 @@
   font-style: normal;
 }
 
+.note {
+  margin-bottom: 20rpx;
+  display: flex;
+}
+
 .work-note-1{
-  width: 520rpx;
   font-family: PingFangSC, PingFang SC;
   font-weight: 400;
   font-size: 24rpx;
   color: #898781;
   text-align: left;
   font-style: normal;
-  right: 0; /* 靠右调节 */
+  margin-left: auto;
 }
 
 .homework-info{
