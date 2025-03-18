@@ -61,7 +61,8 @@ Page({
     treePublish:true,
     reason:'',
     jieqi:{},
-    index:''
+    index:'',
+    horizontal:''
   },
   /**
    * 生命周期函数--监听页面加载
@@ -783,6 +784,40 @@ Page({
       'section': { margin: '20rpx' },
       'info-box': { padding: '20rpx' },
       // ...其他样式规则...
+    }
+  },
+  touchStart(e) {
+    this.startX = e.touches[0].pageX
+    this.startY = e.touches[0].pageY
+  },
+  
+  touchMove(e) {
+    this.endX = e.touches[0].pageX
+    this.endY = e.touches[0].pageY
+    // 计算滑动方向
+    const horizontal = this.endX - this.startX
+    const vertical = Math.abs(this.endY - this.startY)
+    
+    // 过滤垂直滑动
+    if (Math.abs(horizontal) < 10 || vertical > 30) return
+    console.log(horizontal)
+    if (Math.abs(horizontal) > 80) {
+      // 左滑达到阈值，执行返回
+      this.setData({
+        horizontal:horizontal
+      })
+    }
+  },
+  
+  touchEnd() {
+    // 可选：添加滑动结束后的处理
+    if(Math.abs(this.data.horizontal) > 80){
+      this.setData({
+        horizontal:0
+      })
+      wx.switchTab({
+        url: '/pages/home/index/index'
+      })
     }
   },
 });

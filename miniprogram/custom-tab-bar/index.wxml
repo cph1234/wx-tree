@@ -1,5 +1,5 @@
 <!--components/custom-tabbar/index.wxml-->
-<view class="box_10">
+<view class="box_10" wx:if="{{show}}">
   <!-- 第一个 Tab -->
   <view 
     class="image-text_5 {{currentIndex == 0 ? 'active' : ''}}" 

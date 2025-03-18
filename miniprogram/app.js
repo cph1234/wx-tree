@@ -19,7 +19,8 @@ App({
         // 是否从posttopic跳转
         isposttopic:false,
         user_openid:'',
-        jsonData:[]
+        jsonData:[],
+        showTabbar:true
     },
     onLaunch: async function() {
         // 初始化云环境

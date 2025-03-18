@@ -1,7 +1,8 @@
 // components/custom-tabbar/index.js
 Component({
   data: {
-    currentIndex: 0 // 默认选中第一个 Tab
+    currentIndex: 0, // 默认选中第一个 Tab
+    show:true
   },
 
   methods: {
@@ -14,6 +15,19 @@ Component({
       wx.switchTab({
         url: pages[index]
       })
+    }
+  },
+  observers: {
+    'currentIndex': function(val) {
+      if(this.data.currentIndex==1){
+        this.setData({
+          show:false
+        })
+      }else{
+        this.setData({
+          show:true
+        })
+      }
     }
   }
 })

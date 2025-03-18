@@ -1,5 +1,8 @@
 <!--pages/home/post_tree/post.wxml-->
-<view class="container">
+<view class="container"
+      bindtouchstart="touchStart"
+      bindtouchmove="touchMove"
+      bindtouchend="touchEnd">
   <!-- 第一部分：选择树木 -->
   <view class="section">
     <picker bindchange="bindTreeChange" value="{{index}}" range="{{trees}}">
