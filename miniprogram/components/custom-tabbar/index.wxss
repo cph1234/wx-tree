@@ -87,11 +87,6 @@
   filter: brightness(1.2); /* 图标高亮效果 */
 }
 
-.image-text_6.active .image_3 {
-  width: 48rpx;
-  height: 44rpx; /* 激活时图标放大 */
-}
-
 /* 文字激活状态 */
 .image-text_5.active .text-group_6,
 .image-text_6.active .text-group_7,
