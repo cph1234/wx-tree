@@ -114,8 +114,11 @@
   color: #898781;
 }
 
+.note {
+  display: flex;
+}
+
 .work-note-1{
-  width: 520rpx;
   height: 24rpx;
   font-family: PingFangSC, PingFang SC;
   font-weight: 400;
@@ -124,8 +127,7 @@
   line-height: 24rpx;
   text-align: left;
   font-style: normal;
-  position: absolute; /* 相对relative也可以 */
-  right: 0; /* 靠右调节 */
+  margin-left: auto;
 }
 
 .homework-info{

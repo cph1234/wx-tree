@@ -63,7 +63,7 @@
           <text class="btn-text-active">交作业</text>
         </view>
       </view>    
-      <view>
+      <view class='note'>
         <text class="work-note-1">每个节气交作业一次，节气前后3天内提交有效！</text>
       </view>
   </view>
