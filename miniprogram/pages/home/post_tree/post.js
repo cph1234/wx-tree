@@ -70,11 +70,6 @@ Page({
   onLoad: function(e) {
     this.getData()
     this.getDate()
-    var that = this;
-    // this.widget = this.selectComponent('.widget');
-    setTimeout(function(){
-      that.widget = that.selectComponent('.widget');
-      },1000)
   },
   getData(){
     db.collection("userInfo").where({
@@ -624,9 +619,6 @@ Page({
   },
   resetData() {
     this.setData({
-      userInfo:{},
-      treesInfo:[],
-      selectedTree: {},
       wordCount: 0,
       tags: [
         {type:'周边环境',imgUrl:''},
@@ -674,6 +666,8 @@ Page({
     });
   },
   onShow: function(option) {
+    this.getData()
+    this.getDate()
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({
@@ -820,4 +814,9 @@ Page({
       })
     }
   },
+  handleBack(){
+    wx.switchTab({
+      url: '/pages/home/index/index'
+    })
+  }
 });

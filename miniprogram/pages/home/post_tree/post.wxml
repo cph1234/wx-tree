@@ -1,258 +1,268 @@
 <!--pages/home/post_tree/post.wxml-->
-<view class="container"
-      bindtouchstart="touchStart"
-      bindtouchmove="touchMove"
-      bindtouchend="touchEnd">
-  <!-- 第一部分：选择树木 -->
-  <view class="section">
-    <picker bindchange="bindTreeChange" value="{{index}}" range="{{trees}}">
-      <view class="picker">{{selectedTree.treeType || '请选择树种'}}</view>
-    </picker>
-    <!-- 树木信息展示 -->
-    <view class="info-box">
-
-      <!-- 第一行：树木定位 -->
-      <view class="info-row single-line">
-        <view class="info-item full-width">
-          <text class="label">树木定位</text>
-          <text class="value">{{selectedTree.position || '-'}}</text>
-        </view>
-      </view>
-
-        <!-- 第二行：海拔高度 + 日照情况 -->
-      <view class="info-row">
-        <view class="info-item">
-          <text class="label">海拔高度</text>
-          <text class="value">{{selectedTree.altitude || '-'}}</text>
-        </view>
-        <view class="info-item">
-          <text class="label">日照情况</text>
-          <text class="value">{{selectedTree.sunshine || '-'}}</text>
-        </view>
-      </view>
-
-      <!-- 第三行：土壤类型 + 天气情况 -->
-      <view class="info-row">
-        <view class="info-item">
-          <text class="label">土壤类型</text>
-          <text class="value">{{selectedTree.soil || '-'}}</text>
-        </view>
-        <view class="info-item">
-          <text class="label">天气情况</text>
-          <text class="value">{{selectedTree.weather || '-'}}</text>
-        </view>
-      </view>
-
-      <!-- 第四行：树木规格 -->
-      <view class="info-row">
-        <view class="info-item">
-          <text class="label">树木规格</text>
-          <text class="value">{{selectedTree.treeDimensions || '-'}}</text>
-        </view>
-      </view>
+<view class="blank">
+  <view class="navbar">
+    <!-- 返回按钮 -->
+    <view class="back-btn" bindtap="handleBack">
+      <image src="/image/返回.png" class="back-icon" />
     </view>
+    <!-- 标题 -->
+    <view class="title">{{"发布"}}</view>
   </view>
+  <view class="container"
+        bindtouchstart="touchStart"
+        bindtouchmove="touchMove"
+        bindtouchend="touchEnd">
+    <!-- 第一部分：选择树木 -->
+    <view class="section">
+      <picker bindchange="bindTreeChange" value="{{index}}" range="{{trees}}">
+        <view class="picker">{{selectedTree.treeType || '请选择树种'}}</view>
+      </picker>
+      <!-- 树木信息展示 -->
+      <view class="info-box">
 
+        <!-- 第一行：树木定位 -->
+        <view class="info-row single-line">
+          <view class="info-item full-width">
+            <text class="label">树木定位</text>
+            <text class="value">{{selectedTree.position || '-'}}</text>
+          </view>
+        </view>
 
-  <!-- 第二部分：发布树友圈/交作业 -->
-  <view class="section">
-    
-    <view class="custom-btns">
-      <!-- 发布树友圈按钮 -->
-      <view 
-        class="btn-container" 
-        bindtap="switchTab" 
-        data-page="postTree"
-      >
-        <image 
-          src="/image/btn_bg.png" 
-          class="btn-bg" 
-          mode="widthFix"
-          wx:if="{{currentPage === 'postTree'}}"
-        />
-        <text 
-          class="{{currentPage === 'postTree' ? 'btn-text-active' : 'btn-text'}}"
-        >发布树友圈</text>
-      </view>
-      <!-- 交作业按钮 -->
-      <view 
-        class="btn-container" 
-        bindtap="switchTab" 
-        data-page="handInHomework"
-      >
-        <image 
-          src="/image/btn_bg2.png" 
-          class="btn-bg" 
-          mode="widthFix"
-          wx:if="{{currentPage === 'handInHomework'}}"
-        />
-        <text 
-          class="{{currentPage === 'handInHomework' ? 'btn-text-active' : 'btn-text'}}"
-        >交作业</text>
+          <!-- 第二行：海拔高度 + 日照情况 -->
+        <view class="info-row">
+          <view class="info-item">
+            <text class="label">海拔高度</text>
+            <text class="value">{{selectedTree.altitude || '-'}}</text>
+          </view>
+          <view class="info-item">
+            <text class="label">日照情况</text>
+            <text class="value">{{selectedTree.sunshine || '-'}}</text>
+          </view>
+        </view>
+
+        <!-- 第三行：土壤类型 + 天气情况 -->
+        <view class="info-row">
+          <view class="info-item">
+            <text class="label">土壤类型</text>
+            <text class="value">{{selectedTree.soil || '-'}}</text>
+          </view>
+          <view class="info-item">
+            <text class="label">天气情况</text>
+            <text class="value">{{selectedTree.weather || '-'}}</text>
+          </view>
+        </view>
+
+        <!-- 第四行：树木规格 -->
+        <view class="info-row">
+          <view class="info-item">
+            <text class="label">树木规格</text>
+            <text class="value">{{selectedTree.treeDimensions || '-'}}</text>
+          </view>
+        </view>
       </view>
     </view>
 
-    <!-- 内容区域 -->
-    <view wx:if="{{currentPage === 'postTree'}}">
-      <textarea 
-        class="textarea" 
-        placeholder="在这里写下你的观察内容吧" 
-        maxlength="100" 
-        bindinput="bindTextAreaInput"
-        value="{{treeContent}}"
-      ></textarea>
-      <view class="word-count">{{wordCount}}/100</view>
 
-      <!-- 分类上传区域 -->
-      <view class="upload-section">
-        <block wx:for="{{tags}}" wx:key="index">
-          <view class="upload-item" data-item="{{item}}" wx:if="{{item.imgUrl==''}}" bindtap="chooseImage">
-            <view class="add-btn">
-              <text>+ \n \n {{item.type}}</text>
-            </view>
-          </view>
-          <image class="upload-item" src="{{item.imgUrl}}" mode="aspectFill" wx:else bindtap="chooseImage" data-item="{{item}}"></image>
-        </block>
-      </view>
-
-      <view class="upload-bottom">
-        <view class="note-word">*最多选9张发树友圈</view>
-        <view class="sync-option">
-        <checkbox checked="{{syncToHomework}}" bindtap="toggleSync"/>
-        <text class="sync-word">同步照片至交作业</text>
-      </view>
-      </view>
-
-        <!-- 第三部分：发布按钮 -->
-      <view class="publish-btn" bindtap="publishCircle">
-        一键发布树友圈
-      </view>
-    </view>
-
-    <view wx:if="{{currentPage === 'handInHomework'}}">
-      <!-- 第三部分：作业内容 -->
-      <view>
-        <!-- 作业信息  -->
-        <view class="homework-info">
-          <view class='note'>
-            <text class="work-note-1">每个节气交作业一次，节气前后3天内提交有效！</text>
-          </view>
-          <!-- 题目输入 -->
-          <input 
-            name="title" 
-            class="input-title" 
-            placeholder="请输入题目" 
-            placeholder-class="placeholder-title"
-            bindblur="homeworkText"
-            value="{{homeworkTitle}}"
+    <!-- 第二部分：发布树友圈/交作业 -->
+    <view class="section">
+      
+      <view class="custom-btns">
+        <!-- 发布树友圈按钮 -->
+        <view 
+          class="btn-container" 
+          bindtap="switchTab" 
+          data-page="postTree"
+        >
+          <image 
+            src="/image/btn_bg.png" 
+            class="btn-bg" 
+            mode="widthFix"
+            wx:if="{{currentPage === 'postTree'}}"
           />
-          <!-- 作者输入 -->
-          <view class="form-item">
-            <text class="author-label">作者：</text>
-            <text 
-              name="author" 
-              class="input" 
-              placeholder="输入作者昵称" 
-              placeholder-class="placeholder-other"
-            >{{userInfo.name}}</text>
-          </view>
-
-          <!-- 所在位置 -->
-          <view class="form-item">
-            <text class="author-label">所在位置：</text>
-            <view bindtap="getLocation">
-              <image src="/image/定位.png" class="icon"></image>
-              <text>{{city}}</text>
-            </view>
-          </view>
-
-          <!-- 作业时间 -->
-          <view class="form-item">
-            <text class="author-label">作业时间：</text>
-            <input 
-              name="author" 
-              class="input" 
-              placeholder="输入作业时间(备注节气)" 
-              placeholder-class="placeholder-other"
-              value="{{homeworkTime}}"
-              bindblur="homeworkTime"
-            />
-          </view>
-
+          <text 
+            class="{{currentPage === 'postTree' ? 'btn-text-active' : 'btn-text'}}"
+          >发布树友圈</text>
         </view>
+        <!-- 交作业按钮 -->
+        <view 
+          class="btn-container" 
+          bindtap="switchTab" 
+          data-page="handInHomework"
+        >
+          <image 
+            src="/image/btn_bg2.png" 
+            class="btn-bg" 
+            mode="widthFix"
+            wx:if="{{currentPage === 'handInHomework'}}"
+          />
+          <text 
+            class="{{currentPage === 'handInHomework' ? 'btn-text-active' : 'btn-text'}}"
+          >交作业</text>
+        </view>
+      </view>
 
-        <!-- 前言  -->
-        <textarea
-          name="intro" 
-          class="input-intro" 
-          placeholder="前言" 
-          placeholder-class="placeholder-intro"
-          bindblur="inputFrontContent"
-          value="{{homeworkFrontContent}}"
+      <!-- 内容区域 -->
+      <view wx:if="{{currentPage === 'postTree'}}">
+        <textarea 
+          class="textarea" 
+          placeholder="在这里写下你的观察内容吧" 
+          maxlength="100" 
+          bindinput="bindTextAreaInput"
+          value="{{treeContent}}"
         ></textarea>
+        <view class="word-count">{{wordCount}}/100</view>
 
-        <!-- 描述分析区域  -->
-        <view>
-          <!-- 周边环境  -->
-          <view wx:for="{{homeworkTags}}" wx:key="index">
-            <view class="description">
-              <view class="d-info">
-                  <text class="d-title">{{item.type}}</text>
-                  <text class="d-note">*最多可传3张图</text>
-                  <image src="/image/add-photo.png" class="add-photo"></image>
-                  <text class="add-text" bindtap="addImage" data-type="{{item.type}}">添加</text>
+        <!-- 分类上传区域 -->
+        <view class="upload-section">
+          <block wx:for="{{tags}}" wx:key="index">
+            <view class="upload-item" data-item="{{item}}" wx:if="{{item.imgUrl==''}}" bindtap="chooseImage">
+              <view class="add-btn">
+                <text>+ \n \n {{item.type}}</text>
               </view>
-              <view class="grid-container">
-                <block wx:for="{{item.files}}" wx:for-item="imageItem" wx:key="index">
-                  <view class="grid-item">
-                    <image class="grid-item-img" src="{{imageItem}}" mode="aspectFill" bindtap="previewHomeworkImage"  data-url="{{imageItem}}" data-urls="{{item.files}}"></image>
-                  </view>
-                </block>
-                <!-- 占位view，用于在图片数量不足时实现布局自适应 -->
-                <view class="grid-item" wx:if="{{item.fileIds.length % 3 === 1 || item.fileIds.length % 3 === 2}}"></view>
-                <view class="grid-item" wx:if="{{item.fileIds.length % 3 === 1}}"></view>
-              </view>
-              <textarea
-                name="intro" 
-                class="input-desp" 
-                placeholder="请输入文字描述" 
-                placeholder-class="placeholder-intro"
-                bindblur="inputText"
-                data-type="{{item.type}}"
-                value="{{item.text}}"
-              ></textarea>
             </view>
-          </view>
+            <image class="upload-item" src="{{item.imgUrl}}" mode="aspectFill" wx:else bindtap="chooseImage" data-item="{{item}}"></image>
+          </block>
         </view>
 
-        <!-- 结语  -->
-        <textarea
+        <view class="upload-bottom">
+          <view class="note-word">*最多选9张发树友圈</view>
+          <view class="sync-option">
+          <checkbox checked="{{syncToHomework}}" bindtap="toggleSync"/>
+          <text class="sync-word">同步照片至交作业</text>
+        </view>
+        </view>
+
+          <!-- 第三部分：发布按钮 -->
+        <view class="publish-btn" bindtap="publishCircle">
+          一键发布树友圈
+        </view>
+      </view>
+
+      <view wx:if="{{currentPage === 'handInHomework'}}">
+        <!-- 第三部分：作业内容 -->
+        <view>
+          <!-- 作业信息  -->
+          <view class="homework-info">
+            <view class='note'>
+              <text class="work-note-1">每个节气交作业一次，节气前后3天内提交有效！</text>
+            </view>
+            <!-- 题目输入 -->
+            <input 
+              name="title" 
+              class="input-title" 
+              placeholder="请输入题目" 
+              placeholder-class="placeholder-title"
+              bindblur="homeworkText"
+              value="{{homeworkTitle}}"
+            />
+            <!-- 作者输入 -->
+            <view class="form-item">
+              <text class="author-label">作者：</text>
+              <text 
+                name="author" 
+                class="input" 
+                placeholder="输入作者昵称" 
+                placeholder-class="placeholder-other"
+              >{{userInfo.name}}</text>
+            </view>
+
+            <!-- 所在位置 -->
+            <view class="form-item">
+              <text class="author-label">所在位置：</text>
+              <view bindtap="getLocation">
+                <image src="/image/定位.png" class="icon"></image>
+                <text>{{city}}</text>
+              </view>
+            </view>
+
+            <!-- 作业时间 -->
+            <view class="form-item">
+              <text class="author-label">作业时间：</text>
+              <input 
+                name="author" 
+                class="input" 
+                placeholder="输入作业时间(备注节气)" 
+                placeholder-class="placeholder-other"
+                value="{{homeworkTime}}"
+                bindblur="homeworkTime"
+              />
+            </view>
+
+          </view>
+
+          <!-- 前言  -->
+          <textarea
             name="intro" 
             class="input-intro" 
-            placeholder="结语" 
+            placeholder="前言" 
             placeholder-class="placeholder-intro"
-            bindblur="inputEndContent"
-            value="{{homeworkEndContent}}"
-        ></textarea>
-      </view>
-      <!-- 第四部分：保存/提交按钮 -->
-      <view class="add-hw-area">
-        <view class = 'btn-area' bindtap="handleDraft">
-          <image src="/image/save_script.png" class = "btn-image"></image>
-          <text class="text-other">存草稿</text>
+            bindblur="inputFrontContent"
+            value="{{homeworkFrontContent}}"
+          ></textarea>
+
+          <!-- 描述分析区域  -->
+          <view>
+            <!-- 周边环境  -->
+            <view wx:for="{{homeworkTags}}" wx:key="index">
+              <view class="description">
+                <view class="d-info">
+                    <text class="d-title">{{item.type}}</text>
+                    <text class="d-note">*最多可传3张图</text>
+                    <image src="/image/add-photo.png" class="add-photo"></image>
+                    <text class="add-text" bindtap="addImage" data-type="{{item.type}}">添加</text>
+                </view>
+                <view class="grid-container">
+                  <block wx:for="{{item.files}}" wx:for-item="imageItem" wx:key="index">
+                    <view class="grid-item">
+                      <image class="grid-item-img" src="{{imageItem}}" mode="aspectFill" bindtap="previewHomeworkImage"  data-url="{{imageItem}}" data-urls="{{item.files}}"></image>
+                    </view>
+                  </block>
+                  <!-- 占位view，用于在图片数量不足时实现布局自适应 -->
+                  <view class="grid-item" wx:if="{{item.fileIds.length % 3 === 1 || item.fileIds.length % 3 === 2}}"></view>
+                  <view class="grid-item" wx:if="{{item.fileIds.length % 3 === 1}}"></view>
+                </view>
+                <textarea
+                  name="intro" 
+                  class="input-desp" 
+                  placeholder="请输入文字描述" 
+                  placeholder-class="placeholder-intro"
+                  bindblur="inputText"
+                  data-type="{{item.type}}"
+                  value="{{item.text}}"
+                ></textarea>
+              </view>
+            </view>
+          </view>
+
+          <!-- 结语  -->
+          <textarea
+              name="intro" 
+              class="input-intro" 
+              placeholder="结语" 
+              placeholder-class="placeholder-intro"
+              bindblur="inputEndContent"
+              value="{{homeworkEndContent}}"
+          ></textarea>
         </view>
-        <view class = 'btn-area' bindtap="generateImage">
-          <image src="/image/preview.png" class = "btn-image"></image>
-          <text class='text-other'>预览</text>
-        </view>
-        <view class="publish-btn2" bindtap="handlePublish" wx:if="{{canPublish&&treePublish}}">
-          交作业
-        </view>
-        <view class="publish-btn3" wx:else>
-          {{reason}}
+        <!-- 第四部分：保存/提交按钮 -->
+        <view class="add-hw-area">
+          <view class = 'btn-area' bindtap="handleDraft">
+            <image src="/image/save_script.png" class = "btn-image"></image>
+            <text class="text-other">存草稿</text>
+          </view>
+          <view class = 'btn-area' bindtap="generateImage">
+            <image src="/image/preview.png" class = "btn-image"></image>
+            <text class='text-other'>预览</text>
+          </view>
+          <view class="publish-btn2" bindtap="handlePublish" wx:if="{{canPublish&&treePublish}}">
+            交作业
+          </view>
+          <view class="publish-btn3" wx:else>
+            {{reason}}
+          </view>
         </view>
       </view>
     </view>
+    <wxml-to-canvas class="widget" hidden="{{false}}"></wxml-to-canvas>
   </view>
-  <wxml-to-canvas class="widget" hidden="{{false}}"></wxml-to-canvas>
 </view>

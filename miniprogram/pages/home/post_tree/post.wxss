@@ -1,6 +1,36 @@
 /* pages/home/post_tree/post.wxss */
+/* components/custom-navbar/custom-navbar.wxss */
+.blank{
+  background-color: #fff;
+}
+.navbar {
+  height: 88rpx;  /* 导航栏高度 */
+  padding-top: 40rpx;  /* 状态栏高度 */
+  display: flex;
+  align-items: center;
+  margin-top: 60rpx;
+  background: #ffffff;
+}
+
+.back-btn {
+  padding: 0 16px;
+}
+
+.back-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.title {
+  flex: 1;
+  text-align: center;
+  font-size: 16px;
+  margin-left: -100rpx;
+}
+
 .container {
   padding: 20rpx;
+  padding-top: 40rpx;
   background-color: #FFFFFF;
   margin-bottom: 160rpx;
 }
