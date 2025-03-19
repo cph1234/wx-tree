@@ -22,7 +22,7 @@
         <view class="content">
           <view class="card-header">
             <text class="tree-name">{{item.treeType}}</text>
-            <view><text class="contact-leader" style="position: relative; left: -29rpx; top: -4rpx"> 联系组长</text></view>
+            <view bindtap="chat" data-type="{{item.treeType}}"><text class="contact-leader" style="position: relative; left: -29rpx; top: -4rpx"> 联系组长</text></view>
           </view>
           <view class="info-box">
             <!-- 第一行：树木定位 -->

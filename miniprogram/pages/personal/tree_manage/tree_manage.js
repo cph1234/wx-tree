@@ -66,6 +66,27 @@ Page({
     })
     this.getData(this.data.year[e.detail.value])
   },
+  chat(e){
+    let type=e.currentTarget.dataset.type
+    console.log(type)
+    db.collection("treeManage").where({
+      treeType:type
+    }).get().then(res=>{
+      console.log(res.data)
+      if(res.data.length==0){
+        wx.showToast({
+          title: '该树种暂无组长',
+          icon: 'error'
+        })
+      }else{
+        let userId = res.data[0].teamLeader
+        wx.navigateTo({
+          url: '/pages/chat/chat?sendUserId='+this.data.userInfo._id+'&receiveUserId='+userId // 目标页面路径，支持传递参数
+        });
+      }
+      
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

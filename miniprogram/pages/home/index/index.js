@@ -60,10 +60,13 @@ Page({
       db.collection("userInfo").where({
         _openid:user_openid
       }).get().then(res=>{
+        let current_chats = res.data[0].current_chats
+        console.log(current_chats) 
+        let flag = current_chats.some(item=>item.count!==0)
         if((res.data[0].current_comments==undefined||res.data[0].current_comments.length==0)&&
         (res.data[0].current_likes==undefined||res.data[0].current_likes.length==0)&&
         (res.data[0].current_fans==undefined||res.data[0].current_fans.length==0)&&
-        (res.data[0].current_chats==undefined||res.data[0].current_chats.length==0)){
+        !flag){
           this.setData({
             hasNotification:false
           })
@@ -821,7 +824,10 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function() {
-      console.log('onPullDownRefresh')
+      this.setData({
+        dataList:[]
+      })
+      console.log(this.data.dataList)
       this.getData(this.data.filterIndex,0)
       this.getUserInfo()
       wx.stopPullDownRefresh();

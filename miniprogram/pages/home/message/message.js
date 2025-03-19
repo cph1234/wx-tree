@@ -13,6 +13,9 @@ Page({
   onLoad(options){
     this.getData(options.userId)
   },
+  onShow(){
+    this.getData(this.data.userInfo._id)
+  },
   switchTab(e) {
     const index = parseInt(e.currentTarget.dataset.index)
     this.setData({
@@ -110,9 +113,10 @@ Page({
         item.name = chat.data.name
         item.time = this.checkDateAndTime(item.time)
       }
-      console.log(current_chats)
+      console.log(current_chats.filter(item=>item.count!==0).length)
       this.setData({
-        current_chats:current_chats
+        current_chats:current_chats,
+        chat_count:current_chats.filter(item=>item.count!==0).length
       })
     }
 

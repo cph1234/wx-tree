@@ -44,7 +44,7 @@
       data-index="3"
     >
       私信
-      <text class="badge">{{tools.filter(current_chats)}}</text>
+      <text class="badge">{{chat_count}}</text>
     </view>
   </view>
 
