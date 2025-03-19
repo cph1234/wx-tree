@@ -61,7 +61,6 @@ Page({
         _openid:user_openid
       }).get().then(res=>{
         let current_chats = res.data[0].current_chats
-        console.log(current_chats) 
         let flag = current_chats.some(item=>item.count!==0)
         if((res.data[0].current_comments==undefined||res.data[0].current_comments.length==0)&&
         (res.data[0].current_likes==undefined||res.data[0].current_likes.length==0)&&
@@ -827,7 +826,6 @@ Page({
       this.setData({
         dataList:[]
       })
-      console.log(this.data.dataList)
       this.getData(this.data.filterIndex,0)
       this.getUserInfo()
       wx.stopPullDownRefresh();
