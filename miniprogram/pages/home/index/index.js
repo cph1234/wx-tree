@@ -79,6 +79,16 @@ Page({
         })
       })
     },
+    watch: function (key, callback) {
+      let oldValue = this.data[key];
+      Object.defineProperty(this.data, key, {
+        set: (value) => {
+          oldValue = value;
+          callback(value, oldValue);
+        },
+        get: () => oldValue
+      });
+    },
     thumbsUp(e){
       let treeId = e.currentTarget.dataset.id
       let likes=this.data.userInfo.my_likes
@@ -476,6 +486,15 @@ Page({
     onLoad: function(e) {
       this.getData(this.data.filterIndex,0)
       this.getUserInfo()
+      this.watch('showInputBox', (newValue, oldValue) => {
+        if (typeof this.getTabBar === 'function' &&
+          this.getTabBar()) {
+          this.getTabBar().setData({
+            show: !newValue
+          })
+        }
+      });
+  
     },
 
     /**
