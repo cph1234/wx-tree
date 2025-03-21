@@ -32,7 +32,6 @@
   padding: 20rpx;
   padding-top: 40rpx;
   background-color: #FFFFFF;
-  margin-bottom: 160rpx;
 }
 
 .section {
@@ -58,8 +57,6 @@
 
 .info-box {
   margin-top: 20rpx;
-  margin-left: 20rpx;
-  margin-right: 20rpx;
 }
 
 .info-row {

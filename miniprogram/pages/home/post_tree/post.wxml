@@ -38,17 +38,9 @@
             <text class="label">日照情况</text>
             <text class="value">{{selectedTree.sunshine || '-'}}</text>
           </view>
-        </view>
-
-        <!-- 第三行：土壤类型 + 天气情况 -->
-        <view class="info-row">
           <view class="info-item">
             <text class="label">土壤类型</text>
             <text class="value">{{selectedTree.soil || '-'}}</text>
-          </view>
-          <view class="info-item">
-            <text class="label">天气情况</text>
-            <text class="value">{{selectedTree.weather || '-'}}</text>
           </view>
         </view>
 
@@ -263,6 +255,5 @@
         </view>
       </view>
     </view>
-    <wxml-to-canvas class="widget" hidden="{{false}}"></wxml-to-canvas>
   </view>
 </view>

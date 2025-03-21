@@ -1,53 +1,107 @@
 const wxml = (selectedTree)=>{
   return `
   <view class="container">
-    <view class="section">
-      <view class="picker">`+selectedTree.treeType+`</view>
-      <!-- 树木信息展示 -->
-      <view class="infoBox">
-        <!-- 第一行：树木定位 -->
-        <view class="infoRow singleLine">
-          <view class="infoItem fullWidth">
-            <text class="label">树木定位</text>
-            <text class="value">`+selectedTree.position+`</text>
-          </view>
-        </view>
+  <view>
+  <!-- 作业信息  -->
+  <view class="homework-info">
+    <!-- 题目输入 -->
+    <input 
+      name="title" 
+      class="input-title" 
+      placeholder="请输入题目" 
+      placeholder-class="placeholder-title"
+      bindblur="homeworkText"
+      value="{{homeworkTitle}}"
+    />
+    <!-- 作者输入 -->
+    <view class="form-item">
+      <text class="author-label">作者：</text>
+      <text 
+        name="author" 
+        class="input" 
+        placeholder="输入作者昵称" 
+        placeholder-class="placeholder-other"
+      >{{userInfo.name}}</text>
+    </view>
 
-          <!-- 第二行：海拔高度 + 日照情况 -->
-        <view class="infoRow">
-          <view class="infoItem">
-            <text class="label">海拔高度</text>
-            <text class="value">`+selectedTree.altitude+`</text>
-          </view>
-          <view class="infoItem">
-            <text class="label">日照情况</text>
-            <text class="value">`+selectedTree.altitude+`</text>
-          </view>
-        </view>
-
-        <!-- 第三行：土壤类型 + 天气情况 -->
-        <view class="infoRow">
-          <view class="infoItem">
-            <text class="label">土壤类型</text>
-            <text class="value">`+selectedTree.soil+`</text>
-          </view>
-          <view class="infoItem">
-            <text class="label">天气情况</text>
-            <text class="value">`+selectedTree.weather+`</text>
-          </view>
-        </view>
-
-        <!-- 第四行：树木规格 -->
-        <view class="infoRow">
-          <view class="infoItem">
-            <text class="label">树木规格</text>
-            <text class="value">`+selectedTree.treeDimensions+`</text>
-          </view>
-        </view>
+    <!-- 所在位置 -->
+    <view class="form-item">
+      <text class="author-label">所在位置：</text>
+      <view bindtap="getLocation">
+        <image src="/image/定位.png" class="icon"></image>
+        <text>{{city}}</text>
       </view>
     </view>
 
-    
+    <!-- 作业时间 -->
+    <view class="form-item">
+      <text class="author-label">作业时间：</text>
+      <input 
+        name="author" 
+        class="input" 
+        placeholder="输入作业时间(备注节气)" 
+        placeholder-class="placeholder-other"
+        value="{{homeworkTime}}"
+        bindblur="homeworkTime"
+      />
+    </view>
+
+  </view>
+
+  <!-- 前言  -->
+  <textarea
+    name="intro" 
+    class="input-intro" 
+    placeholder="前言" 
+    placeholder-class="placeholder-intro"
+    bindblur="inputFrontContent"
+    value="{{homeworkFrontContent}}"
+  ></textarea>
+
+  <!-- 描述分析区域  -->
+  <view>
+    <!-- 周边环境  -->
+    <view wx:for="{{homeworkTags}}" wx:key="index">
+      <view class="description">
+        <view class="d-info">
+            <text class="d-title">{{item.type}}</text>
+            <text class="d-note">*最多可传3张图</text>
+            <image src="/image/add-photo.png" class="add-photo"></image>
+            <text class="add-text" bindtap="addImage" data-type="{{item.type}}">添加</text>
+        </view>
+        <view class="grid-container">
+          <block wx:for="{{item.files}}" wx:for-item="imageItem" wx:key="index">
+            <view class="grid-item">
+              <image class="grid-item-img" src="{{imageItem}}" mode="aspectFill" bindtap="previewHomeworkImage"  data-url="{{imageItem}}" data-urls="{{item.files}}"></image>
+            </view>
+          </block>
+          <!-- 占位view，用于在图片数量不足时实现布局自适应 -->
+          <view class="grid-item" wx:if="{{item.fileIds.length % 3 === 1 || item.fileIds.length % 3 === 2}}"></view>
+          <view class="grid-item" wx:if="{{item.fileIds.length % 3 === 1}}"></view>
+        </view>
+        <textarea
+          name="intro" 
+          class="input-desp" 
+          placeholder="请输入文字描述" 
+          placeholder-class="placeholder-intro"
+          bindblur="inputText"
+          data-type="{{item.type}}"
+          value="{{item.text}}"
+        ></textarea>
+      </view>
+    </view>
+  </view>
+
+  <!-- 结语  -->
+  <textarea
+      name="intro" 
+      class="input-intro" 
+      placeholder="结语" 
+      placeholder-class="placeholder-intro"
+      bindblur="inputEndContent"
+      value="{{homeworkEndContent}}"
+  ></textarea>
+</view>    
   </view>
   `
  }

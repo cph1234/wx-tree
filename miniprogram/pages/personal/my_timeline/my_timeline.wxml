@@ -8,7 +8,10 @@
         <!-- 记录 -->
         <view class="line">
           <view class="year">{{item.year}}年</view>
-          <image class="icon-sx" src="/image/icon-sx.png" wx:if="{{index==0}}" bindtap="chat" data-userId="{{circleUser}}"></image>
+          <view class="sx" wx:if="{{index==0}}" bindtap="chat" data-userId="{{circleUser}}">
+            <image class="icon-sx" src="/image/sx.png"></image>
+            私信Ta
+          </view>
         </view>
         <view class="records">
           <block wx:for="{{item.data}}" wx:for-item="entry" wx:key="date">

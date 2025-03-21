@@ -1,15 +1,8 @@
 {
-  "appid": "wxa87fc6e36db6e5a4",
-  "projectname": "wx-tree",
   "compileType": "miniprogram",
-  "libVersion": "3.7.8",
   "miniprogramRoot": "miniprogram/",
   "srcMiniprogramRoot": "miniprogram/",
   "cloudfunctionRoot": "cloudfunctions/",
-  "packOptions": {
-    "ignore": [],
-    "include": []
-  },
   "setting": {
     "urlCheck": false,
     "coverView": true,
@@ -30,11 +23,18 @@
         "packageJsonPath": "./package.json",
         "miniprogramNpmDistDir": "./miniprogram/"
       }
-    ]
+    ],
+    "postcss": false,
+    "showShadowRootInWxmlPanel": false
   },
   "editorSetting": {
     "tabIndent": "insertSpaces",
     "tabSize": 2
   },
-  "cloudfunctionTemplateRoot": "cloudfunctionTemplate/"
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate/",
+  "appid": "wxa87fc6e36db6e5a4",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  }
 }

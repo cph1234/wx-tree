@@ -1,6 +1,6 @@
 /* pages/home/hand_in_homework/hand_in_homework.wxss */
 .container {
-  padding: 20rpx;
+  padding: 30rpx;
   background-color: #FFFFFF;
 }
 
@@ -9,7 +9,6 @@
   flex-direction: column;
   position: relative;
   margin-bottom: 10rpx;
-  padding: 30rpx;
   width: 100%;
 }
 
@@ -136,11 +135,23 @@
 }
 
 .input-title {
-  height: 60rpx;
+  width: 690rpx;
+  height: 32rpx;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 500;
+  font-size: 36rpx;
+  color: #1E0417;
+  line-height: 32rpx;
   text-align: left;
-  padding-bottom: 10rpx;
-  border-bottom: 2rpx solid #F2F3F5;
-  margin-bottom: 10rpx;
+  font-style: normal;
+}
+
+.line {
+  width: 690rpx;
+  height: 2rpx;
+  border: 2rpx solid #F2F3F5;
+  margin-top: 15rpx;
+  margin-bottom: 15rpx;
 }
 
 .input-intro{
@@ -208,7 +219,8 @@
 }
 
 .photo-big {
-  width: 100%;
+  width: 690rpx;
+  height: 690rpx;
   margin-top: 10rpx;
   margin-bottom: 10rpx;
   border-radius: 20rpx;

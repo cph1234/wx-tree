@@ -20,7 +20,7 @@ page{
 
 .user-info {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
 }
 
 /* 新增角标样式 */
@@ -37,7 +37,7 @@ page{
 
 .avatar-badge {
   position: absolute;
-  bottom: 16rpx;
+  bottom: 12rpx;
   left: 50%;
   transform:
    translate(-50%) 
@@ -62,13 +62,14 @@ page{
 .username {
   font-size: 36rpx;
   font-weight: bold;
-  margin-bottom: 16rpx;
+  margin-bottom: 10rpx;
   width: fit-content;
 }
 
 .badges {
   display: flex;
   align-items: center;
+  margin-bottom: 16rpx;
 }
 
 .badge-icon {

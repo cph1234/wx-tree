@@ -165,9 +165,27 @@
   font-size: large;
 }
 .icon-sx {
-  width: 52rpx;
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 18rpx;
+}
+
+.sx {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 26rpx;
+  border: 1rpx solid #898781;
+  width: 228rpx;
   height: 52rpx;
   margin-left: auto;
+  font-family: PingFangSC, PingFang SC;
+  font-weight: 400;
+  font-size: 24rpx;
+  color: #1E0417;
+  line-height: 24rpx;
+  text-align: right;
+  font-style: normal;
 }
 
 .line{
