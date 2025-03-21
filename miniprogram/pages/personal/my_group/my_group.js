@@ -40,7 +40,7 @@ Page({
       let currentTime = this.getCurrentTime()
       // 3. 判断下一个节气是否在 3 天内
       for (const index in jsonData) {
-        if (jsonData[index].time > currentTime) {
+        if (new Date(jsonData[index].time.replace(/-/g,'/')).setHours(0, 0, 0, 0) > new Date(currentTime.replace(/-/g,'/')).setHours(0, 0, 0, 0)) {
           nextJieqi = jsonData[index]
           nextJieqi.time = nextJieqi.time.replace(/-/g,'/')
           preJieqi = jsonData[index-1]
@@ -48,6 +48,7 @@ Page({
           break;
         }
       }
+      console.log(nextJieqi)
       let timeDiffInDays = null;
       const nextTime = new Date(nextJieqi.time);
       nextTime.setHours(0, 0, 0, 0); // 忽略时间部分
@@ -60,7 +61,7 @@ Page({
       } else {
         result = preJieqi;
       }
-      console.log(result)
+      console.log(totalCount)
       let team = await db.collection("userInfo").where({_id:_.in(my_team_member)}).get()
       let teamData = team.data
       for(let user of teamData){
@@ -69,6 +70,7 @@ Page({
         const currentYear = new Date().getFullYear().toString();
         const count = homework.filter(item => item.year === currentYear).length;
         user.count = totalCount-count
+        console.log(homework)
         const currentCount = homework.filter(item => item.year === currentYear&&item.name==result.name).length;
         user.currentCount = currentCount == 0?false:true
       }

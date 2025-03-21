@@ -2,7 +2,7 @@
 <view class="container">
   <!-- 聊天内容区域 -->
   <scroll-view class="chat-area" scroll-y scroll-into-view="{{toBottom}}">
-    <view class="message-container" wx:for="{{content}}" id="item{{index}}">
+    <view class="message-container" wx:for="{{content}}" id="item{{index}}" wx:key="index">
       <!-- 接收消息 -->
       <view class="message left" wx:if="{{item.sendId == receiveUser._id}}">
         <image class="avator" src="{{receiveUser.avatar_url}}"></image>
