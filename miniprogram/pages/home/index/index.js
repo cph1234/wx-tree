@@ -953,7 +953,10 @@ Page({
       })
     },
     loadless(e){
-      console.log(e.currentTarget.dataset.index)
+      wx.pageScrollTo({
+        selector: '.commentActive-'+e.currentTarget.dataset.index, // 目标元素的 class
+        duration: 600             // 滚动动画时长，单位 ms，默认 300ms
+      });
       let index = e.currentTarget.dataset.index
       let dataList = this.data.dataList
       dataList[index].showmore = false
