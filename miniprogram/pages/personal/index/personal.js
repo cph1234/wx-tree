@@ -138,6 +138,18 @@ Page({
       })
     }
   },
+  getId: function() {
+    const that = this;
+    wx.setClipboardData({
+      data: that.data.userInfo._id,
+      success: function() {
+        wx.showToast({
+          title: '已复制',
+          icon: 'success'
+        });
+      }
+    });
+  },
   onReady: function () {
   },
   treeInfoManage(){

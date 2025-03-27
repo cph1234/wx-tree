@@ -76,7 +76,11 @@ page{
   height: 28rpx;
   margin-right: 10rpx;
 }
-
+.badge-icon2{
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 20rpx;
+}
 .badges-text {
   font-family: PingFangSC, PingFang SC;
   font-weight: 400;

@@ -29,6 +29,7 @@ Page({
   //“发送”
   sendMess(e){
     let content = this.data.content
+    if (!this.data.mess.trim()) return
     let info = {
       sendId : this.data.sendUser._id,
       content : this.data.mess,
