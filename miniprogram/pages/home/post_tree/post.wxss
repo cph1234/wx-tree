@@ -72,7 +72,7 @@
 
 .info-item {
   flex: 1;
-  padding: 12rpx 20rpx;
+  padding: 12rpx 10rpx;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -211,7 +211,8 @@
   padding: 30rpx;
   border-radius: 50rpx;
   width: 690rpx;
-  margin: 40rpx 0;
+  margin-top: 40rpx;
+  margin-bottom: 0rpx;
   font-family: PingFangSC, PingFang SC;
   font-weight: 500;
   font-size: 30rpx;
