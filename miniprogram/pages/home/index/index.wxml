@@ -77,7 +77,7 @@
       <!-- 遍历 -->  
       <view class="row" wx:for="{{dataList}}" wx:key="index">
         <!-- 动态卡片 -->
-        <view class="post-card">
+        <view class="post-card" class="commentActive-{{index}}">
           <!-- 用户信息 -->
           <view class="user-info">
             <image class="avatar" src="{{item.data.avatar_url}}" data-id="{{item.userId}}" bindtap="observation"></image>

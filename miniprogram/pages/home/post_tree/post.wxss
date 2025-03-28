@@ -292,6 +292,7 @@
   color: #C6C8CE;
   line-height: 26rpx;
   text-align: right;
+  margin-left: auto;
   font-style: normal;
 }
 

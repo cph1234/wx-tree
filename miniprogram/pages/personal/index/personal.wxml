@@ -23,8 +23,9 @@
         <view class="avatar-badge" wx:if="{{ifTL}}">{{treeType}}组长</view>
       </view>
       <view class="user-detail">
-        <view style="display: flex;align-content: flex-start;" bindtap="enableInput">
-          <input type="nickname" disabled="{{isDisabled}}" class="username" value="{{inputContent}}" style="width: {{inputWidth}}rpx" bindinput="onInput" id="inputField"  focus="{{!isDisabled}}" bindblur="onInputBlur"/>
+        <view style="display: flex;align-content: flex-start;">
+          <input type="nickname" disabled="{{isDisabled}}" class="username" value="{{inputContent}}" style="width: {{inputWidth}}rpx" bindinput="onInput" id="inputField"  focus="{{!isDisabled}}" bindblur="onInputBlur"  bindtap="enableInput"/>
+          <image class="badge-icon2" src="/image/id.png" bindtap="getId"/>
         </view>
         <view class="badges">
           <text class="badges-text"> 树龄勋章 </text>

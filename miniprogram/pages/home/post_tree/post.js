@@ -82,38 +82,57 @@ Page({
       db.collection("treeInfo").where({
         userId:userInfo._id
       }).get().then(res=>{
-        if(res.data.length==0){
+        let treeInfo = res.data
+        if(treeInfo.length==0){
           wx.showToast({
             title: '未登记树木信息，请先登记！',
             icon: 'error'
           })
         }
         let trees = []
-        res.data.forEach(item=>{
+        treeInfo.forEach(item=>{
           trees.push(item.treeType)
         })
         this.setData({
-          treesInfo: res.data,
+          treesInfo: treeInfo,
           trees: trees
         })
-        if(userInfo.draft!==null&&userInfo.draft!==undefined&&userInfo.draft.userId!==''){
-          let draft = userInfo.draft
-          let treeId = draft.treeId
-          let selectedTree = {}
-          res.data.forEach(item=>{
-            if(item._id===treeId){
-              selectedTree = item
+        let that = this
+        if(userInfo.draft!=undefined&&Object.keys(userInfo.draft).length!= 0){
+          wx.showModal({
+            title: '确认',
+            content: '是否使用草稿内容？',
+            success(res) {
+              if (res.confirm) {
+                let draft = userInfo.draft
+                let treeId = draft.treeId
+                let selectedTree = {}
+                treeInfo.forEach(item=>{
+                  if(item._id===treeId){
+                    selectedTree = item
+                  }
+                })
+                that.setData({
+                  homeworkTitle:draft.title,
+                  homeworkTime:draft.create_time,
+                  city:draft.position,
+                  homeworkFrontContent:draft.frontContent,
+                  homeworkEndContent:draft.endContent,
+                  homeworkTags:draft.details,
+                  selectedTree:selectedTree
+                })
+              } else if (res.cancel) {
+                db.collection("userInfo")
+                .doc(that.data.userInfo._id)
+                .update({
+                  data:{
+                    draft:_.set({})
+                  }
+                })
+              }
             }
-          })
-          this.setData({
-            homeworkTitle:draft.title,
-            homeworkTime:draft.create_time,
-            city:draft.position,
-            homeworkFrontContent:draft.frontContent,
-            homeworkEndContent:draft.endContent,
-            homeworkTags:draft.details,
-            selectedTree:selectedTree
-          })
+          });
+          
         }
       })
     })
@@ -202,11 +221,7 @@ Page({
 
   },
   async publishCircle(){
-    // const currentDate = new Date();
-    // const year = currentDate.getFullYear();
-    // const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-    // const day = String(currentDate.getDate()).padStart(2, '0');
-    // const formattedDate = `${year}-${month}-${day}`;
+    if(!this.data.treeContent.trim()) return
     let info={}
     info.comment=[]
     info.content=this.data.treeContent
