@@ -98,11 +98,9 @@
         <textarea 
           class="textarea" 
           placeholder="在这里写下你的观察内容吧" 
-          maxlength="100" 
           bindinput="bindTextAreaInput"
           value="{{treeContent}}"
         ></textarea>
-        <view class="word-count">{{wordCount}}/100</view>
 
         <!-- 分类上传区域 -->
         <view class="upload-section">

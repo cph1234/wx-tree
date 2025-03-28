@@ -32,7 +32,9 @@
   padding: 20rpx;
   padding-top: 40rpx;
   background-color: #FFFFFF;
+  min-height: 91vh;
 }
+
 
 .section {
   width: 690rpx;
@@ -211,7 +213,7 @@
   padding: 30rpx;
   border-radius: 50rpx;
   width: 690rpx;
-  margin-top: 40rpx;
+  margin-top: 50rpx;
   margin-bottom: 0rpx;
   font-family: PingFangSC, PingFang SC;
   font-weight: 500;

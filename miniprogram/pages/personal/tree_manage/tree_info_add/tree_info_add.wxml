@@ -36,7 +36,7 @@
   <view class="form-item">
     <text class="required">*</text>
     <text class="label">树木定位</text>
-    <input name="position" placeholder="某某市" class="input" bindblur="position"/>
+    <input name="position" placeholder="某某市某某区" class="input" bindblur="position"/>
   </view>
 
   <!-- 海拔高度 -->
@@ -47,7 +47,7 @@
       <!-- 实际输入框（去除默认样式） -->
       <input name="altitude" placeholder="请输入" bindblur="altitude"/>
       <!-- 固定单位显示 -->
-      <text class="unit-text">cm</text>
+      <text class="unit-text">m</text>
     </view>
   </view>
 
